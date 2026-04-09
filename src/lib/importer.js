@@ -1,9 +1,26 @@
 // src/lib/importer.js
 // High-level recipe import: parse raw text → match ingredients → build recipe object.
+// Also owns importFinished — the single write gateway that persists a confirmed recipe.
 
-import { parseRecipeText } from './parser.js';
+import { parseRecipeText, parseIngredientLine } from './parser.js';
 import { matchIngredient } from './matcher.js';
 import { readFileAsText } from './fileUploader.js';
+import { addIngredientToPantry } from '../io/pantryStore.js';
+import { addRecipe } from '../io/recipeStore.js';
+
+/**
+ * Determines the baseUnit family from a raw unit string.
+ * Used when creating a user pantry item for an unmatched ingredient.
+ * @param {string} unit
+ * @returns {'g'|'ml'|'each'}
+ */
+function unitToBaseUnit(unit) {
+  if (!unit) return 'each';
+  const lower = unit.toLowerCase();
+  if (['g', 'kg', 'oz', 'lb'].some(u => lower.includes(u))) return 'g';
+  if (['ml', 'l', 'cup', 'tbsp', 'tsp'].some(u => lower.includes(u))) return 'ml';
+  return 'each';
+}
 
 /**
  * Convert a parsed amount+unit to the pantry item's baseUnit using its conversions map.
@@ -24,6 +41,38 @@ function convertAmount(amount, unit, pantryEntry) {
   }
 
   return { convertedUnit: unit, convertedAmount: amount };
+}
+
+/**
+ * resolveIngredientLine(rawLine, pantry) → resolved fields | null
+ *
+ * Runs a raw ingredient line through the full parse → match → convert pipeline.
+ * Used by AIMatchIngredient (AI re-parse) and the UI (manual correction pass).
+ * Returns null if the line cannot be parsed.
+ *
+ * @param {string} rawLine
+ * @param {Array}  pantry — PantryItem[]
+ * @returns {{ name, amount, unit, matchedIngredient, confident, candidates,
+ *             convertedUnit, convertedAmount } | null}
+ */
+export function resolveIngredientLine(rawLine, pantry) {
+  const parsed = parseIngredientLine(rawLine);
+  if (!parsed) return null;
+
+  const { name, amount, unit } = parsed;
+  const { match, confident, candidates } = matchIngredient(name, unit, pantry);
+  const { convertedUnit, convertedAmount } = convertAmount(amount, unit, match);
+
+  return {
+    name,
+    amount,
+    unit,
+    matchedIngredient: match?.id ?? null,
+    confident,
+    candidates,
+    convertedUnit,
+    convertedAmount,
+  };
 }
 
 /**
@@ -95,4 +144,42 @@ function logRecipe(recipe) {
 export async function importFromFile(input, pantry) {
   const rawText = await readFileAsText(input);
   return importRecipe(rawText, pantry);
+}
+
+/**
+ * importFinished(recipe, opts?) → StoredRecipe[]
+ *
+ * Called by the UI when the user has signed off on a recipe import
+ * (after deterministic matching, optional AI pass, and manual disambiguation).
+ *
+ * - Queues any still-unmatched ingredients into the user pantry.
+ * - Wraps the recipe in a StoredRecipe and persists it via recipeStore.
+ *
+ * @param {Object} recipe — output of importRecipe / AIMatchIngredient
+ * @param {Object} opts   — { tag?: string, favorite?: boolean }
+ * @returns {Array} Updated StoredRecipe[]
+ */
+export function importFinished(recipe, opts = {}) {
+  const { tag = '', favorite = false } = opts;
+
+  // Queue still-unmatched ingredients for user pantry / community submission.
+  recipe.ingredients.forEach((ing) => {
+    if (!ing.matchedIngredient) {
+      const baseUnit = unitToBaseUnit(ing.unit);
+      addIngredientToPantry(ing, baseUnit);
+    }
+  });
+
+  const stored = {
+    id: crypto.randomUUID(),
+    title: recipe.title,
+    servings: recipe.servings,
+    rawText: recipe.rawText,
+    ingredients: recipe.ingredients,
+    favorite,
+    tag,
+    dateAdded: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+  };
+
+  return addRecipe(stored);
 }
