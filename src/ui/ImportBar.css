@@ -1,0 +1,89 @@
+.import-bar {
+  padding: 12px 14px;
+}
+
+.import-inner {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.drop-zone {
+  flex: 1;
+  min-height: 56px;
+  border: 1px dashed var(--border);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--tx-muted);
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+  background: var(--import-hover);
+}
+
+.paste-area {
+  flex: 1;
+  min-height: 56px;
+  max-height: 180px;
+  overflow-y: auto;
+  resize: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--tx-primary);
+  background: var(--surface);
+  line-height: 1.5;
+}
+
+.paste-area::placeholder {
+  color: var(--tx-muted);
+}
+
+.paste-area:focus {
+  outline: none;
+  border-color: var(--green-accent);
+}
+
+.import-btn {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-family: inherit;
+  align-self: center;
+  flex-shrink: 0;
+  background: var(--sage-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--tx-primary);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.import-btn:hover {
+  background: var(--expand-bg);
+}
+
+.import-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.drop-zone.loading {
+  cursor: default;
+  color: var(--green-accent);
+}
+
+.import-error {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #c0392b;
+}

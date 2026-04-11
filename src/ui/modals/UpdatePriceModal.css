@@ -1,0 +1,94 @@
+.update-price-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Current ingredient name in controls row ── */
+.price-current-name {
+  flex: 1;
+  font-size: 12px;
+  color: var(--tx-primary);
+  font-weight: 600;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price-skip-btn {
+  flex-shrink: 0;
+}
+
+/* ── Result rows ── */
+.price-result-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.price-result-row:hover {
+  background: var(--import-hover);
+}
+
+.price-result-name {
+  flex: 1;
+  color: var(--tx-primary);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price-result-pkg {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--tx-secondary);
+  white-space: nowrap;
+}
+
+.price-result-select {
+  flex-shrink: 0;
+}
+
+/* ── Stub placeholder ── */
+.price-stub-placeholder {
+  font-size: 11px;
+  color: var(--tx-muted);
+  font-style: italic;
+  margin: 20px 14px;
+}
+
+/* ── Progress indicator ── */
+.price-progress {
+  padding: 6px 14px;
+  font-size: 10px;
+  color: var(--tx-muted);
+  border-top: 1px solid var(--border);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Done state ── */
+.price-done {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.price-done-msg {
+  font-size: 13px;
+  color: var(--green-accent);
+  font-weight: 600;
+  margin: 0;
+}

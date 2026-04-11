@@ -7,11 +7,26 @@
 
 
 
-import _wtnModule from 'words-to-numbers';
-// words-to-numbers is CJS: Vite unwraps the default; Node ESM keeps the module object
-const wordsToNumbers = (typeof _wtnModule === 'function')
-  ? _wtnModule
-  : (_wtnModule.default ?? _wtnModule.wordsToNumbers);
+// Inline word-to-number converter — covers every number word that appears in
+// real recipes. Replaces the 'words-to-numbers' npm package which is a CJS
+// module incompatible with Vite's browser bundler.
+const WORD_NUM_MAP = {
+  zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5,
+  six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+  eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15,
+  sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19,
+  twenty: 20, thirty: 30, forty: 40, fifty: 50,
+  sixty: 60, seventy: 70, eighty: 80, ninety: 90,
+  half: 0.5, quarter: 0.25,
+}
+const WORD_NUM_RE = new RegExp(`\\b(${Object.keys(WORD_NUM_MAP).join('|')})\\b`, 'gi')
+
+function wordsToNumbers(str) {
+  const replaced = String(str).replace(WORD_NUM_RE, m => WORD_NUM_MAP[m.toLowerCase()])
+  const trimmed = replaced.trim()
+  const n = Number(trimmed)
+  return trimmed !== '' && !isNaN(n) ? n : replaced
+}
 
 //some constants
 
@@ -110,7 +125,7 @@ function resolveAndConnector(str) {
  * Convert a text string that may contain word numbers or fractions to a float.
  * Returns 0 on failure, never throws.
  */
-function parseWordNumber(str) {
+export function parseWordNumber(str) {
   try {
     let s = expandUnicodeFracs(String(str).trim());
 
@@ -141,7 +156,6 @@ function parseWordNumber(str) {
   }
 }
 
-export { parseWordNumber };
 export default parseWordNumber;
 
 /**
@@ -306,7 +320,7 @@ export function parseRecipeText(text) {
   }
 
   const ingredientLines = findIngredients(candidateLines);
-  const ingredients = ingredientLines.map((l) => parseIngredientLine(l)).filter(Boolean);
+  const ingredients = ingredientLines.map(l => parseIngredientLine(l)).filter(Boolean);
 
   return { title: title.trim(), servings, ingredients };
 }

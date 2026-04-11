@@ -1,0 +1,147 @@
+.import-recipe-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.modal-title-row .panel-heading {
+  margin: 0;
+}
+
+.modal-servings {
+  font-size: 11px;
+  color: var(--tx-secondary);
+}
+
+.ing-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ing-row:hover {
+  background: var(--import-hover);
+}
+
+.ing-name {
+  flex: 1;
+  font-size: 12px;
+  color: var(--tx-primary);
+}
+
+.ing-qty {
+  font-size: 11px;
+  color: var(--tx-muted);
+  white-space: nowrap;
+}
+
+/* ── Empty state ── */
+.ing-empty {
+  font-size: 11px;
+  color: var(--tx-muted);
+  font-style: italic;
+  margin: 20px 14px;
+}
+
+/* ── Edit mode inputs ── */
+.ing-edit-name,
+.ing-edit-qty,
+.ing-edit-unit {
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--tx-primary);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ing-edit-name:focus,
+.ing-edit-qty:focus,
+.ing-edit-unit:focus {
+  border-color: var(--green-accent);
+}
+
+/* Name input + dropdown wrapper */
+.ing-edit-name-wrap {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.ing-edit-name {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Typeahead dropdown */
+.ing-dropdown {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  z-index: 60;
+  overflow: hidden;
+}
+
+.ing-dropdown-item {
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--tx-primary);
+  cursor: pointer;
+}
+
+.ing-dropdown-item:hover {
+  background: var(--import-hover);
+}
+
+.ing-dropdown-add {
+  color: var(--green-accent);
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+
+.ing-edit-qty  { width: 58px; text-align: right; }
+.ing-edit-unit { width: 46px; }
+
+/* ── Title / servings meta row ── */
+.ing-row--meta {
+  gap: 10px;
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+}
+
+.ing-meta-label {
+  font-size: 10px;
+  color: var(--tx-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Confirm buttons ── */
+.ing-name--guess { font-size: 12px; flex: 1; }
+
+.ing-confirm-btn {
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  flex-shrink: 0;
+}

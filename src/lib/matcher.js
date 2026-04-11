@@ -98,7 +98,10 @@ export function matchIngredient(name, unit, pantry) {
   }
 
   if (confident) {
-    return { match: top.entry, confident: true, candidates: [] };
+    return { match: top.entry, confident: true, needsConfirm: false, candidates: [] };
   }
-  return { match: top.entry, confident: false, candidates };
+
+  // Mid-confidence band: show best guess inline for user confirmation
+  const needsConfirm = top.score >= 0.5;
+  return { match: top.entry, confident: false, needsConfirm, candidates };
 }

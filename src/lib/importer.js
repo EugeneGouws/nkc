@@ -44,6 +44,35 @@ function convertAmount(amount, unit, pantryEntry) {
 }
 
 /**
+ * resolveIngredients(ingredients, pantry) → ingredients[]
+ *
+ * Runs matching + conversion on any ingredient that hasn't been through the
+ * import pipeline yet (identified by absent convertedAmount). Used to fix up
+ * seed recipes whose ingredients only have name/amount/unit.
+ *
+ * @param {Array} ingredients — RecipeIngredient[] (may be partially resolved)
+ * @param {Array} pantry      — PantryItem[]
+ * @returns {Array} RecipeIngredient[] with matchedIngredient + convertedAmount set
+ */
+export function resolveIngredients(ingredients, pantry) {
+  return ingredients.map(ing => {
+    if (ing.convertedAmount !== undefined) return ing  // already resolved
+    const name = ing.name ?? ing.raw ?? ''
+    const { match, confident, needsConfirm, candidates } = matchIngredient(name, ing.unit ?? '', pantry)
+    const { convertedUnit, convertedAmount } = convertAmount(ing.amount ?? 0, ing.unit ?? '', match)
+    return {
+      ...ing,
+      matchedIngredient: match?.id ?? null,
+      confident,
+      needsConfirm: needsConfirm ?? false,
+      candidates: candidates ?? [],
+      convertedUnit,
+      convertedAmount,
+    }
+  })
+}
+
+/**
  * resolveIngredientLine(rawLine, pantry) → resolved fields | null
  *
  * Runs a raw ingredient line through the full parse → match → convert pipeline.
@@ -98,7 +127,7 @@ export function importRecipe(rawText, pantry) {
 
   const enriched = ingredients.map(parsed => {
     const { name, amount, unit, raw } = parsed;
-    const { match, confident, candidates } = matchIngredient(name, unit, pantry);
+    const { match, confident, needsConfirm, candidates } = matchIngredient(name, unit, pantry);
 
     const pantryIndex = match ? pantry.findIndex(e => e.id === match.id) : -1;
     const { convertedUnit, convertedAmount } = convertAmount(amount, unit, match);
@@ -111,6 +140,7 @@ export function importRecipe(rawText, pantry) {
       raw,
       matchedIngredient: match?.id ?? null,
       confident,
+      needsConfirm: needsConfirm ?? false,
       candidates,
       convertedUnit,
       convertedAmount,

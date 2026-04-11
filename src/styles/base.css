@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--sage-bg);
+  min-height: 100vh;
+  font-family: system-ui, "Segoe UI", sans-serif;
+  color: var(--tx-primary);
+}
+
+#app {
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  border: none;
+  display: block;
+  background: var(--sage-bg);
+  min-height: 100vh;
+}

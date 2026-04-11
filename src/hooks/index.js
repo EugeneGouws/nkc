@@ -1,1 +1,1 @@
-// src/hooks/
+export { default as useAppState } from './useAppState.js'

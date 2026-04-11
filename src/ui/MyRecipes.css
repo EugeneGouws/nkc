@@ -1,0 +1,95 @@
+.recipe-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px 11px 2px;
+  margin-left: 12px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+}
+
+.recipe-row:hover {
+  background: var(--import-hover);
+}
+
+.recipe-item:last-child .recipe-row {
+  border-bottom: none;
+}
+
+.recipe-item:last-child .recipe-preview {
+  border-bottom: none;
+}
+
+.recipe-star {
+  font-size: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+  line-height: 1;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.recipe-title {
+  flex: 1;
+  font-size: 12px;
+  color: var(--tx-primary);
+  min-width: 0;
+}
+
+.recipe-row.expanded {
+  background: var(--import-hover);
+}
+
+.recipe-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.recipe-preview-cost {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.recipe-preview-total {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tx-primary);
+  white-space: nowrap;
+}
+
+.recipe-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.recipe-delete-btn {
+  color: var(--tx-muted) !important;
+  border-color: var(--border) !important;
+}
+
+.recipe-delete-btn:hover {
+  color: #c0392b !important;
+  border-color: #c0392b !important;
+}
+
+.coll-pill {
+  background: var(--tag-bg);
+  color: var(--tag-tx);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}

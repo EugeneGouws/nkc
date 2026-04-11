@@ -1,0 +1,96 @@
+.nkc-panel {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.panel-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tx-primary);
+  margin: 0 0 8px;
+}
+
+/* Panel headings that stand alone (not inside a modal heading row) get a
+   slightly larger size and the same 24px line-height as the ✕ button row,
+   so the border-bottom lands at the same position as in modal headers. */
+.panel-header > .panel-heading {
+  font-size: 15px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.panel-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  height: 24px;
+}
+
+.panel-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.ctrl-btn,
+.ctrl-select {
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+  font-size: 11px;
+  font-family: inherit;
+  color: var(--tx-secondary);
+  padding: 0 10px;
+  cursor: pointer;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ctrl-btn:hover {
+  background: var(--import-hover);
+}
+
+.ctrl-btn.active {
+  border-color: var(--green-accent);
+  color: var(--green-accent);
+}
+
+.ctrl-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: var(--tx-muted);
+  border-color: var(--border);
+}
+
+/* ── Modal positioning wrappers ── */
+.modal-left-wrap {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: calc(50% - 2.5px);
+  z-index: 50;
+}
+
+.modal-right-wrap {
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: calc(50% - 2.5px);
+  z-index: 50;
+}
+
+.modal-full-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+}

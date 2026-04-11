@@ -1,0 +1,123 @@
+.add-ingredient-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.field-row:hover {
+  background: var(--import-hover);
+}
+
+.field-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.field-label {
+  font-size: 11px;
+  color: var(--tx-secondary);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.field-value {
+  flex: 1;
+  min-width: 0;
+}
+
+.field-value input,
+.field-value select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--tx-primary);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.field-value input:focus,
+.field-value select:focus {
+  border-color: var(--green-accent);
+}
+
+.field-text {
+  font-size: 12px;
+  color: var(--tx-primary);
+}
+
+.field-empty {
+  font-size: 11px;
+  color: var(--tx-muted);
+  font-style: normal;
+}
+
+.field-subheading {
+  margin: 0;
+  padding: 8px 14px 4px 29px;
+  font-size: 10px;
+  color: var(--tx-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Inline package price row ── */
+.field-price-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.field-price-value {
+  width: 62px;
+}
+
+.field-price-unit {
+  width: 60px;
+}
+
+.field-price-r {
+  font-size: 11px;
+  color: var(--tx-secondary);
+  padding: 0 1px;
+}
+
+.field-price-price {
+  width: 70px;
+}
+
+.field-price-wrap input,
+.field-price-wrap select {
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--tx-primary);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.field-price-wrap input:focus,
+.field-price-wrap select:focus {
+  border-color: var(--green-accent);
+}

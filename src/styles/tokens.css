@@ -1,0 +1,15 @@
+:root {
+  --sage-bg: #eef4f0;
+  --surface: #ffffff;
+  --border: #c8d8d0;
+  --green-accent: #3a7a58;
+  --tx-primary: #1a2820;
+  --tx-secondary: #527060;
+  --tx-muted: #8aa490;
+  --tag-bg: #dff0e7;
+  --tag-tx: #235a3a;
+  --star-active: #c49020;
+  --dot-stale: #d4922a;
+  --import-hover: #f5faf7;
+  --expand-bg: #f0f7f3;
+}
