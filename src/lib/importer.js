@@ -186,11 +186,11 @@ export async function importFromFile(input, pantry) {
  * - Wraps the recipe in a StoredRecipe and persists it via recipeStore.
  *
  * @param {Object} recipe — output of importRecipe / AIMatchIngredient
- * @param {Object} opts   — { tag?: string, favorite?: boolean }
+ * @param {Object} opts   — { collection?: string, favorite?: boolean }
  * @returns {Array} Updated StoredRecipe[]
  */
 export function importFinished(recipe, opts = {}) {
-  const { tag = '', favorite = false } = opts;
+  const { collection = '', favorite = false } = opts;
 
   // Queue still-unmatched ingredients for user pantry / community submission.
   recipe.ingredients.forEach((ing) => {
@@ -207,7 +207,7 @@ export function importFinished(recipe, opts = {}) {
     rawText: recipe.rawText,
     ingredients: recipe.ingredients,
     favorite,
-    tag,
+    collection: recipe.collection ?? collection,
     dateAdded: new Date().toISOString().split('T')[0], // YYYY-MM-DD
   };
 

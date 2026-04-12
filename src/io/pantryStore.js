@@ -1,17 +1,17 @@
 /**
  * pantryStore.js — unified pantry persistence layer.
  *
- * On first read, seeds pantry.json into localStorage under nkc_pantry.
+ * On first read, seeds pantry.json into localStorage under local_pantry.
  * All subsequent reads and writes (price updates, new items) go to that key.
  * The seed file (pantry.json) is never mutated.
  *
  * Community diff: items with userAdded:true were added by the user after seeding.
- * Price changes on static items are visible via the diff between nkc_pantry and pantry.json.
+ * Price changes on static items are visible via the diff between local_pantry and pantry.json.
  */
 
 import seedPantry from '../data/pantry.json';
 
-const PANTRY_KEY = 'nkc_pantry';
+const PANTRY_KEY = 'local_pantry';
 
 // ─── Internal read/write ──────────────────────────────────────────────────────
 
@@ -49,6 +49,23 @@ function nameToCanonical(name) {
     .split(/\s+/)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ');
+}
+
+// "cup:240, tbsp:15" → { cup: 240, tbsp: 15 }
+function parseConversionsStr(str) {
+  if (!str || !str.trim()) return {};
+  return Object.fromEntries(
+    str.split(',')
+      .map(s => s.trim().split(':').map(p => p.trim()))
+      .filter(([k, v]) => k && !isNaN(parseFloat(v)))
+      .map(([k, v]) => [k, parseFloat(v)])
+  );
+}
+
+// "flour, plain flour" → ["flour", "plain flour"]
+function parseAliasesStr(str) {
+  if (!str || !str.trim()) return [];
+  return str.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
 }
 
 // ─── Public reads ─────────────────────────────────────────────────────────────
@@ -115,19 +132,23 @@ export function addIngredientToPantry(ingredient, baseUnit) {
 
   if (items.some(item => item.id === id)) return items;
 
+  const pv = parseFloat(ingredient.pkgValue);
+  const pp = parseFloat(ingredient.pkgPrice);
+  const parsedAliases = parseAliasesStr(ingredient.aliases);
+
   const userItem = {
     id,
     canonicalName: nameToCanonical(ingredient.name),
-    aliases: [ingredient.name.toLowerCase()],
+    aliases: parsedAliases.length ? parsedAliases : [ingredient.name.toLowerCase()],
     baseUnit,
-    conversions: {},
-    costPerUnit: 0,
-    packageValue: 0,
-    packageUnit: '',
-    packagePrice: 0,
-    matchedProduct: null,
+    conversions: parseConversionsStr(ingredient.conversions),
+    costPerUnit: pv > 0 && pp > 0 ? pp / pv : 0,
+    packageValue: pv || null,
+    packageUnit: ingredient.pkgUnit || baseUnit,
+    packagePrice: pp || null,
+    matchedProduct: ingredient.pkgMatch || null,
     dateLastUpdated: null,
-    needsCosting: true,
+    needsCosting: !(pv > 0 && pp > 0),
     priceOptionCount: 3,
     searchHints: [],
     userAdded: true,
@@ -141,8 +162,46 @@ export function addIngredientToPantry(ingredient, baseUnit) {
 }
 
 /**
+ * Updates an existing pantry item in-place by ID.
+ * Used by AddIngredientModal edit mode. Never changes the item's ID.
+ *
+ * @param {string} itemId
+ * @param {{ name, baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases }} data
+ * @returns {Array} Updated pantry
+ */
+export function updateIngredientInPantry(itemId, { name, baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases }) {
+  const items = readAllPantry();
+  const idx = items.findIndex(item => item.id === itemId);
+  if (idx === -1) {
+    console.error(`updateIngredientInPantry: item '${itemId}' not found`);
+    return items;
+  }
+
+  const pv = parseFloat(pkgValue);
+  const pp = parseFloat(pkgPrice);
+  const parsedAliases = parseAliasesStr(aliases);
+
+  items[idx] = {
+    ...items[idx],
+    canonicalName: nameToCanonical(name),
+    baseUnit,
+    conversions: parseConversionsStr(conversions),
+    aliases: parsedAliases.length ? parsedAliases : items[idx].aliases,
+    costPerUnit: pv > 0 && pp > 0 ? pp / pv : items[idx].costPerUnit,
+    packageValue: pv || items[idx].packageValue,
+    packageUnit: pkgUnit,
+    packagePrice: pp || items[idx].packagePrice,
+    matchedProduct: pkgMatch || null,
+    needsCosting: !(pv > 0 && pp > 0),
+  };
+
+  writePantry(items);
+  return items;
+}
+
+/**
  * Updates the price fields of a pantry item in localStorage.
- * Works for both seed items and user-added items — both live in nkc_pantry.
+ * Works for both seed items and user-added items — both live in local_pantry.
  *
  * @param {string} itemId
  * @param {{ costPerUnit, packageValue, packageUnit, packagePrice, matchedProduct, dateLastUpdated }} data

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import './MyRecipes.css'
 
 function recipeStatus(recipe, pantryMap) {
@@ -26,6 +26,7 @@ export default function MyRecipes({
   pantry,
   onToggleFavourite,
   onOpenCosting,
+  onEditRecipe,
   onDeleteRecipe,
   onFavFilterChange,
   onCollectionChange,
@@ -33,12 +34,20 @@ export default function MyRecipes({
   const [favActive,           setFavActive]           = useState(false)
   const [selectedCollection,  setSelectedCollection]  = useState('')
   const [expandedId,          setExpandedId]          = useState(null)
+  const [searchQuery,         setSearchQuery]         = useState('')
+  const searchRef = useRef(null)
 
   const pantryMap = useMemo(() => {
     const m = new Map()
     if (pantry) pantry.forEach(p => m.set(p.id, p))
     return m
   }, [pantry])
+
+  const filteredRecipes = useMemo(() => {
+    if (!searchQuery.trim()) return recipes
+    const q = searchQuery.toLowerCase()
+    return recipes.filter(r => r.title.toLowerCase().includes(q))
+  }, [recipes, searchQuery])
 
   function handleFavClick() {
     const next = !favActive
@@ -87,10 +96,29 @@ export default function MyRecipes({
             ))}
           </select>
         </div>
+        <div className="search-row">
+          <input
+            ref={searchRef}
+            className="search-input"
+            type="text"
+            placeholder="Search recipes…"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button
+              className="search-clear"
+              onClick={() => { setSearchQuery(''); searchRef.current?.focus() }}
+              aria-label="Clear search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="panel-list">
-        {recipes.map(recipe => {
+        {filteredRecipes.map(recipe => {
           const isExpanded = expandedId === recipe.id
           const { status, total } = recipeStatus(recipe, pantryMap)
           return (
@@ -107,7 +135,7 @@ export default function MyRecipes({
                   ★
                 </button>
                 <span className="recipe-title">{recipe.title}</span>
-                {recipe.tag && <span className="coll-pill">{recipe.tag}</span>}
+                {recipe.collection && <span className="coll-pill">{recipe.collection}</span>}
               </div>
 
               {isExpanded && (
@@ -125,7 +153,10 @@ export default function MyRecipes({
                     </button>
                   </div>
                   <div className="recipe-preview-actions">
-                    <button className="ctrl-btn" onClick={e => e.stopPropagation()}>
+                    <button
+                      className="ctrl-btn"
+                      onClick={e => { e.stopPropagation(); onEditRecipe?.(recipe) }}
+                    >
                       Edit recipe
                     </button>
                     <button

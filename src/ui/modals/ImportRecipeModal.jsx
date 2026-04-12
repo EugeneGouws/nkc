@@ -21,16 +21,19 @@ function computeSuggestions(value, pantryList) {
   return findCandidates(value, pantryList)
 }
 
-export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, onAddIngredient, onClose }) {
-  const [editMode,       setEditMode]       = useState(false)
-  const [editRows,       setEditRows]       = useState([])
-  const [editTitle,      setEditTitle]      = useState('')
-  const [editServings,   setEditServings]   = useState(1)
-  const [suggestions,    setSuggestions]    = useState({})  // { rowIndex: [{entry}] }
-  const [openDropdown,   setOpenDropdown]   = useState(null) // rowIndex | null
-  const [confirmStates,  setConfirmStates]  = useState({})  // { rowIndex: true|false }
-  const [addIngOpen,     setAddIngOpen]     = useState(false)
-  const [addIngName,     setAddIngName]     = useState('')
+export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImport, onSave, onAddIngredient, onClose }) {
+  const isEditRecipe = mode === 'edit'
+
+  const [editMode,        setEditMode]        = useState(false)
+  const [editRows,        setEditRows]        = useState([])
+  const [editTitle,       setEditTitle]       = useState('')
+  const [editServings,    setEditServings]    = useState(1)
+  const [editCollection,  setEditCollection]  = useState('')
+  const [suggestions,     setSuggestions]     = useState({})  // { rowIndex: [{entry}] }
+  const [openDropdown,    setOpenDropdown]    = useState(null) // rowIndex | null
+  const [confirmStates,   setConfirmStates]   = useState({})  // { rowIndex: true|false }
+  const [addIngOpen,      setAddIngOpen]      = useState(false)
+  const [addIngName,      setAddIngName]      = useState('')
 
   useEffect(() => {
     if (!isOpen) {
@@ -38,11 +41,20 @@ export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, on
       setEditRows([])
       setEditTitle('')
       setEditServings(1)
+      setEditCollection('')
       setSuggestions({})
       setOpenDropdown(null)
       setConfirmStates({})
       setAddIngOpen(false)
       setAddIngName('')
+    }
+    // When opened in edit-recipe mode, jump straight into edit mode
+    if (isOpen && isEditRecipe && recipe) {
+      setEditRows(buildEditRows(recipe, pantry ?? []))
+      setEditTitle(recipe.title ?? '')
+      setEditServings(recipe.servings ?? 1)
+      setEditCollection(recipe.collection ?? '')
+      setEditMode(true)
     }
   }, [isOpen])
 
@@ -56,10 +68,10 @@ export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, on
 
   // ── Edit row helpers ───────────────────────────────────────────────────────
 
-  function buildEditRows() {
-    return ingredients.map(ing => {
+  function buildEditRows(src, pList) {
+    return (src?.ingredients ?? []).map(ing => {
       const matched = ing.matchedIngredient
-        ? pantryList.find(p => p.id === ing.matchedIngredient)
+        ? pList.find(p => p.id === ing.matchedIngredient)
         : null
       return {
         nameInput: matched?.canonicalName ?? ing.name ?? ing.raw ?? '',
@@ -71,9 +83,10 @@ export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, on
   }
 
   function handleEnterEdit() {
-    setEditRows(buildEditRows())
+    setEditRows(buildEditRows(recipe, pantryList))
     setEditTitle(recipe?.title ?? '')
     setEditServings(recipe?.servings ?? 1)
+    setEditCollection(recipe?.collection ?? '')
     setEditMode(true)
   }
 
@@ -113,7 +126,12 @@ export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, on
           convertedUnit:     row.unit,
         }
       })
-      onImport({ ...recipe, title: editTitle, servings: editServings, ingredients: updatedIngredients })
+      const updated = { ...recipe, title: editTitle, servings: editServings, collection: editCollection, ingredients: updatedIngredients }
+      if (isEditRecipe) {
+        onSave?.(updated)
+      } else {
+        onImport?.(updated)
+      }
     } else {
       // Apply confirmStates: confirmed → confident, rejected → needsManual
       const updatedIngredients = ingredients.map((ing, i) => {
@@ -122,7 +140,7 @@ export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, on
         if (confirmStates[i] === false) return { ...ing, confident: false, needsConfirm: false, needsManual: true, matchedIngredient: null }
         return ing
       })
-      onImport({ ...recipe, ingredients: updatedIngredients })
+      onImport?.({ ...recipe, ingredients: updatedIngredients })
     }
   }
 
@@ -177,7 +195,7 @@ export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, on
             disabled={!canImport}
             onClick={handleImport}
           >
-            Import Recipe
+            {isEditRecipe ? 'Save Recipe' : 'Import Recipe'}
           </button>
           {hasUnresolved && <span className="status-dot dot-thinking" />}
           <span className="modal-info-box">{infoText}</span>
@@ -210,6 +228,16 @@ export default function ImportRecipeModal({ isOpen, recipe, pantry, onImport, on
                 min="1"
                 value={editServings}
                 onChange={e => setEditServings(Math.max(1, parseInt(e.target.value) || 1))}
+              />
+            </div>
+            <div className="ing-row ing-row--meta">
+              <span className="ing-meta-label">Collection</span>
+              <input
+                className="ing-edit-name"
+                style={{ flex: 1 }}
+                value={editCollection}
+                onChange={e => setEditCollection(e.target.value)}
+                placeholder="e.g. Cakes, Breads…"
               />
             </div>
             {editRows.map((row, i) => (

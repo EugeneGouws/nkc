@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { readPantry, readRecipes, saveRecipes, priceUpdate, addIngredientToPantry, toggleRecipeFavourite, deleteRecipe as _deleteRecipe } from '../io/index.js'
+import { readPantry, readRecipes, saveRecipes, priceUpdate, addIngredientToPantry, updateIngredientInPantry, updateRecipe as _updateRecipe, toggleRecipeFavourite, deleteRecipe as _deleteRecipe } from '../io/index.js'
+import { migrateFromBakersPro } from '../io/migration.js'
 import { importFinished, resolveIngredients } from '../lib/index.js'
 
 export default function useAppState() {
@@ -7,11 +8,13 @@ export default function useAppState() {
   const [recipes, setRecipes] = useState([])
 
   useEffect(() => {
+    migrateFromBakersPro()   // no-op once old keys are gone
     const loadedPantry   = readPantry()
     const loadedRecipes  = readRecipes()
 
-    // Seed recipes only have name/amount/unit — no matchedIngredient or convertedAmount.
-    // Run the matcher once and persist so subsequent loads skip this step.
+    // bakerspro-migrated recipes arrive without matchedIngredient/convertedAmount.
+    // Run matching once and persist so this fixup never reruns after.
+    // Seed data (recipes.json) is pre-resolved and will not trigger this.
     const needsFixup = loadedRecipes.some(r =>
       r.ingredients?.some(i => i.convertedAmount === undefined)
     )
@@ -45,8 +48,18 @@ export default function useAppState() {
     setPantry(readPantry())
   }
 
+  function updateIngredient(itemId, data) {
+    updateIngredientInPantry(itemId, data)
+    setPantry(readPantry())
+  }
+
   function toggleFavourite(id) {
     toggleRecipeFavourite(id)
+    setRecipes(readRecipes())
+  }
+
+  function editRecipeInState(id, updatedRecipe) {
+    _updateRecipe(id, updatedRecipe)
     setRecipes(readRecipes())
   }
 
@@ -55,5 +68,5 @@ export default function useAppState() {
     setRecipes(readRecipes())
   }
 
-  return { pantry, recipes, addRecipeToState, updateItemPrice, addIngredient, toggleFavourite, deleteRecipe }
+  return { pantry, recipes, addRecipeToState, editRecipeInState, updateItemPrice, addIngredient, updateIngredient, toggleFavourite, deleteRecipe }
 }

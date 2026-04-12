@@ -1,24 +1,29 @@
 /**
  * Recipe persistence layer — localStorage-backed storage for confirmed recipes.
  *
- * StoredRecipe shape: { id, title, servings, rawText, ingredients[], favorite, tag, dateAdded }
+ * StoredRecipe shape: { id, title, servings, rawText, ingredients[], favorite, collection, dateAdded }
  *
- * On first read, seeds data/recipes.json into localStorage under nkc_recipes.
+ * On first read, seeds data/recipes.json into localStorage under local_recipes.
  * Write gateway: importFinished() in src/lib/importer.js calls addRecipe() here.
  */
 
 import seedRecipesFile from '../data/recipes.json';
 
-const STORAGE_KEY = 'nkc_recipes';
+const STORAGE_KEY = 'local_recipes';
 
-const seedRecipes = (seedRecipesFile.items ?? seedRecipesFile).map(r => ({
-  favorite:  false,
-  rawText:   '',
-  dateAdded: r.importedAt?.split('T')[0] ?? '',
-  ...r,
-  // Normalise: seed JSON uses tags[] array; app uses tag string
-  tag: Array.isArray(r.tags) ? (r.tags[0] ?? '') : (r.tag ?? ''),
-}))
+// Normalise a raw recipe object (seed or bakerspro-migrated) to the current StoredRecipe shape.
+function normalise(r) {
+  return {
+    favorite:   false,
+    rawText:    '',
+    dateAdded:  r.importedAt?.split('T')[0] ?? r.dateAdded ?? '',
+    ...r,
+    // Unify: bakerspro uses tags[] array; nkc uses collection string
+    collection: Array.isArray(r.tags) ? (r.tags[0] ?? '') : (r.collection ?? ''),
+  }
+}
+
+const seedRecipes = (seedRecipesFile.items ?? seedRecipesFile).map(normalise)
 
 /**
  * Reads and parses all stored recipes from localStorage.
@@ -32,7 +37,7 @@ export function readRecipes() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(seedRecipes));
       return [...seedRecipes];
     }
-    return JSON.parse(raw);
+    return JSON.parse(raw).map(normalise);
   } catch (err) {
     console.error(`Failed to read recipes from localStorage:`, err);
     return [...seedRecipes];
@@ -82,5 +87,15 @@ export function toggleRecipeFavourite(id) {
 
 export function deleteRecipe(id) {
   writeRecipes(readRecipes().filter(r => r.id !== id));
+}
+
+/**
+ * Overwrites a stored recipe in-place by ID.
+ * Called by the Edit Recipe flow in the UI.
+ * @param {string} id
+ * @param {Object} updatedRecipe — Partial or full StoredRecipe fields to merge
+ */
+export function updateRecipe(id, updatedRecipe) {
+  writeRecipes(readRecipes().map(r => r.id === id ? { ...r, ...updatedRecipe } : r));
 }
 

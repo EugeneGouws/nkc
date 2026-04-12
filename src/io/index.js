@@ -13,5 +13,5 @@
  * (writeRecipes is intentionally not exported — it is an internal implementation detail.)
  */
 
-export { readRecipes, addRecipe, saveRecipes, toggleRecipeFavourite, deleteRecipe } from './recipeStore.js';
-export { readPantry, getMyPantry, addIngredientToPantry, getPendingSubmissions, priceUpdate, refreshNeedsCosting } from './pantryStore.js';
+export { readRecipes, addRecipe, saveRecipes, updateRecipe, toggleRecipeFavourite, deleteRecipe } from './recipeStore.js';
+export { readPantry, getMyPantry, addIngredientToPantry, updateIngredientInPantry, getPendingSubmissions, priceUpdate, refreshNeedsCosting } from './pantryStore.js';

@@ -15,13 +15,14 @@ import './styles/book-layout.css'
 import './styles/panel-shared.css'
 
 export default function App() {
-  const { pantry, recipes, addRecipeToState, updateItemPrice, addIngredient, toggleFavourite, deleteRecipe } = useAppState()
+  const { pantry, recipes, addRecipeToState, editRecipeInState, updateItemPrice, addIngredient, updateIngredient, toggleFavourite, deleteRecipe } = useAppState()
 
   const [favFilterOn, setFavFilterOn]           = useState(false)
   const [collectionFilter, setCollectionFilter] = useState('')
   const [activeTab, setActiveTab]               = useState('pantry')
   const [layoutMode, setLayoutMode]             = useState('wide')
   const [modalState, setModalState]             = useState({ open: false, type: null, context: null })
+
   const appRef = useRef(null)
 
   useEffect(() => { refreshNeedsCosting() }, [])
@@ -35,11 +36,11 @@ export default function App() {
   }, [])
 
   const visibleRecipes = useMemo(() =>
-    recipes.filter(r => (!favFilterOn || r.favorite) && (!collectionFilter || r.tag === collectionFilter)),
+    recipes.filter(r => (!favFilterOn || r.favorite) && (!collectionFilter || r.collection === collectionFilter)),
     [recipes, favFilterOn, collectionFilter]
   )
 
-  const pantryItems = useMemo(() => {
+  const visiblePantryItems = useMemo(() => {
     const ids = new Set(visibleRecipes.flatMap(r => r.ingredients.map(i => i.matchedIngredient)))
     return pantry
       .filter(p => ids.has(p.id))
@@ -47,7 +48,7 @@ export default function App() {
   }, [pantry, visibleRecipes])
 
   const collections = useMemo(() =>
-    [...new Set(recipes.map(r => r.tag).filter(Boolean))].sort(),
+    [...new Set(recipes.map(r => r.collection).filter(Boolean))].sort(),
     [recipes]
   )
 
@@ -74,7 +75,11 @@ export default function App() {
         isOpen
         item={modalState.context}
         onAdd={({ name, baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases }) => {
-          addIngredient({ name, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases }, baseUnit)
+          if (modalState.context?.id) {
+            updateIngredient(modalState.context.id, { name, baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases })
+          } else {
+            addIngredient({ name, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases }, baseUnit)
+          }
           closeModal()
         }}
         onClose={closeModal}
@@ -85,7 +90,7 @@ export default function App() {
       <UpdatePriceModal
         isOpen
         selectedIds={modalState.context ?? []}
-        pantry={pantryItems}
+        pantry={visiblePantryItems}
         onSave={(id, data) => updateItemPrice(id, data)}
         onClose={closeModal}
       />
@@ -102,10 +107,22 @@ export default function App() {
       />
     )
 
+    if (modalState.type === 'editRecipe') return wrap('right',
+      <ImportRecipeModal
+        isOpen
+        mode="edit"
+        recipe={modalState.context}
+        pantry={pantry}
+        onSave={recipe => { editRecipeInState(recipe.id, recipe); closeModal() }}
+        onAddIngredient={(ingredient, baseUnit) => addIngredient(ingredient, baseUnit)}
+        onClose={closeModal}
+      />
+    )
+
     if (modalState.type === 'openCosting') return (
       <CostingModal
         recipe={modalState.context}
-        pantry={pantryItems}
+        pantry={visiblePantryItems}
         layoutMode={mode}
         onSave={(id, data) => updateItemPrice(id, data)}
         onClose={closeModal}
@@ -117,7 +134,7 @@ export default function App() {
 
   const pantryPanel = (
     <MyPantry
-      items={pantryItems}
+      items={visiblePantryItems}
       onEditIngredient={item => openModal('editIngredient', item)}
       onUpdatePrices={ids => openModal('updatePrices', ids)}
     />
@@ -127,9 +144,10 @@ export default function App() {
     <MyRecipes
       recipes={visibleRecipes}
       collections={collections}
-      pantry={pantry}
+      pantry={pantry} //used for recipe status and totals
       onToggleFavourite={toggleFavourite}
       onOpenCosting={recipe => openModal('openCosting', recipe)}
+      onEditRecipe={recipe => openModal('editRecipe', recipe)}
       onDeleteRecipe={deleteRecipe}
       onFavFilterChange={setFavFilterOn}
       onCollectionChange={setCollectionFilter}
@@ -141,7 +159,7 @@ export default function App() {
 
       <header className="app-header nkc-card">
         <span className="app-title">Kitchen Costings</span>
-        <span className="app-brand">Nana's Kitchen</span>
+        <span className="app-brand">Recipe costing tool</span>
       </header>
 
       <ImportBar

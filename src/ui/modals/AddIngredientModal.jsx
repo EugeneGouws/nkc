@@ -73,7 +73,7 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
             disabled={!canAdd}
             onClick={handleAdd}
           >
-            Add Ingredient
+            {item ? 'Save Changes' : 'Add Ingredient'}
           </button>
           <span className="modal-info-box">{infoText}</span>
           {!editMode && (
