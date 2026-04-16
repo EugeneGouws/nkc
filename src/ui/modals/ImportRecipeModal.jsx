@@ -24,44 +24,46 @@ function computeSuggestions(value, pantryList) {
 export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImport, onSave, onAddIngredient, onClose }) {
   const isEditRecipe = mode === 'edit'
 
-  const [editMode,        setEditMode]        = useState(false)
-  const [editRows,        setEditRows]        = useState([])
-  const [editTitle,       setEditTitle]       = useState('')
-  const [editServings,    setEditServings]    = useState(1)
-  const [editCollection,  setEditCollection]  = useState('')
-  const [suggestions,     setSuggestions]     = useState({})  // { rowIndex: [{entry}] }
-  const [openDropdown,    setOpenDropdown]    = useState(null) // rowIndex | null
-  const [confirmStates,   setConfirmStates]   = useState({})  // { rowIndex: true|false }
-  const [addIngOpen,      setAddIngOpen]      = useState(false)
-  const [addIngName,      setAddIngName]      = useState('')
+  const [aiMode,        setAiMode]        = useState(false)
+  const [editRows,      setEditRows]      = useState([])
+  const [editTitle,     setEditTitle]     = useState('')
+  const [editServings,  setEditServings]  = useState(1)
+  const [editCollection,setEditCollection]= useState('')
+  const [suggestions,   setSuggestions]   = useState({})  // { rowIndex: [{entry}] }
+  const [openDropdown,  setOpenDropdown]  = useState(null) // rowIndex | null
+  const [addIngOpen,    setAddIngOpen]    = useState(false)
+  const [addIngName,    setAddIngName]    = useState('')
+
+  // Auto-exit AI mode when all ingredients become matched
+  useEffect(() => {
+    if (aiMode && editRows.length > 0 && editRows.every(r => r.matchedId)) {
+      setAiMode(false)
+    }
+  }, [editRows])
 
   useEffect(() => {
     if (!isOpen) {
-      setEditMode(false)
+      setAiMode(false)
       setEditRows([])
       setEditTitle('')
       setEditServings(1)
       setEditCollection('')
       setSuggestions({})
       setOpenDropdown(null)
-      setConfirmStates({})
       setAddIngOpen(false)
       setAddIngName('')
     }
-    // When opened in edit-recipe mode, jump straight into edit mode
-    if (isOpen && isEditRecipe && recipe) {
+    if (isOpen && recipe) {
       setEditRows(buildEditRows(recipe, pantry ?? []))
       setEditTitle(recipe.title ?? '')
       setEditServings(recipe.servings ?? 1)
       setEditCollection(recipe.collection ?? '')
-      setEditMode(true)
     }
   }, [isOpen])
 
   if (!isOpen) return null
 
   const ingredients = recipe?.ingredients ?? []
-  const servings    = recipe?.servings    ?? null
   const pantryList  = pantry ?? []
 
   const pantryByName = new Map(pantryList.map(p => [p.canonicalName.toLowerCase(), p]))
@@ -80,14 +82,6 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
         unit:      ing.unit ?? '',
       }
     })
-  }
-
-  function handleEnterEdit() {
-    setEditRows(buildEditRows(recipe, pantryList))
-    setEditTitle(recipe?.title ?? '')
-    setEditServings(recipe?.servings ?? 1)
-    setEditCollection(recipe?.collection ?? '')
-    setEditMode(true)
   }
 
   function updateRow(i, changes) {
@@ -111,82 +105,41 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
 
   function handleImport() {
     if (!recipe) return
-    if (editMode) {
-      const updatedIngredients = ingredients.map((ing, i) => {
-        const row = editRows[i]
-        return {
-          ...ing,
-          name:              row.nameInput,
-          matchedIngredient: row.matchedId,
-          confident:         !!row.matchedId,
-          needsConfirm:      false,
-          amount:            parseFloat(row.amount) || 0,
-          unit:              row.unit,
-          convertedAmount:   parseFloat(row.amount) || 0,
-          convertedUnit:     row.unit,
-        }
-      })
-      const updated = { ...recipe, title: editTitle, servings: editServings, collection: editCollection, ingredients: updatedIngredients }
-      if (isEditRecipe) {
-        onSave?.(updated)
-      } else {
-        onImport?.(updated)
+    const updatedIngredients = ingredients.map((ing, i) => {
+      const row = editRows[i]
+      return {
+        ...ing,
+        name:              row.nameInput,
+        matchedIngredient: row.matchedId,
+        confident:         !!row.matchedId,
+        needsConfirm:      false,
+        amount:            parseFloat(row.amount) || 0,
+        unit:              row.unit,
+        convertedAmount:   parseFloat(row.amount) || 0,
+        convertedUnit:     row.unit,
       }
+    })
+    const updated = { ...recipe, title: editTitle, servings: editServings, collection: editCollection, ingredients: updatedIngredients }
+    if (isEditRecipe) {
+      onSave?.(updated)
     } else {
-      // Apply confirmStates: confirmed → confident, rejected → needsManual
-      const updatedIngredients = ingredients.map((ing, i) => {
-        if (!ing.needsConfirm) return ing
-        if (confirmStates[i] === true)  return { ...ing, confident: true,  needsConfirm: false }
-        if (confirmStates[i] === false) return { ...ing, confident: false, needsConfirm: false, needsManual: true, matchedIngredient: null }
-        return ing
-      })
-      onImport?.({ ...recipe, ingredients: updatedIngredients })
+      onImport?.(updated)
     }
   }
 
   // ── Derived state ──────────────────────────────────────────────────────────
 
-  const pendingConfirm = !editMode && ingredients.some(
-    (ing, i) => ing.needsConfirm && confirmStates[i] === undefined
-  )
-
-  const canImport = editMode
-    ? editRows.every(r => r.matchedId)
-    : recipe != null && !pendingConfirm && !ingredients.some(
-        (ing, i) => ing.needsConfirm && confirmStates[i] === false
-      )
-
-  const hasUnresolved = !editMode && recipe && ingredients.some(i => !i.confident && !i.needsConfirm)
-
-  const matchedCount = recipe ? ingredients.filter(i => i.confident || confirmStates[ingredients.indexOf(i)] === true).length : 0
+  const canImport   = recipe != null && editRows.every(r => r.matchedId)
+  const matchedCount = editRows.filter(r => r.matchedId).length
   const infoText     = recipe
     ? `${matchedCount} / ${ingredients.length} matched`
     : 'Awaiting import…'
-
-  // ── Dot class (view mode) ──────────────────────────────────────────────────
-
-  function dotClass(ing) {
-    if (ing.confident)   return 'green'
-    if (ing.needsManual) return 'red'
-    return 'amber'
-  }
-
-  function ingName(ing) {
-    return ing.confident && ing.matchedIngredient ? ing.matchedIngredient : (ing.name ?? ing.raw)
-  }
-
-  function ingQty(ing) {
-    return `${ing.amount ?? ''} ${ing.unit ?? ''}`.trim()
-  }
 
   return (
     <div className="import-recipe-modal">
       <div className="panel-header">
         <div className="modal-title-row">
           <p className="panel-heading">{recipe?.title ?? 'Import Recipe'}</p>
-          {!editMode && servings != null && (
-            <span className="modal-servings">{servings} servings</span>
-          )}
           <button className="ctrl-btn modal-close-x" onClick={onClose} aria-label="Close">✕</button>
         </div>
         <div className="panel-controls">
@@ -197,12 +150,12 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
           >
             {isEditRecipe ? 'Save Recipe' : 'Import Recipe'}
           </button>
-          {hasUnresolved && <span className="status-dot dot-thinking" />}
+          {aiMode && <span className="status-dot dot-thinking" />}
           <span className="modal-info-box">{infoText}</span>
-          {!editMode && recipe && (
-            <button className="ctrl-btn" onClick={handleEnterEdit}>
-              Edit Recipe
-            </button>
+          {recipe && editRows.some(r => !r.matchedId) && (
+            aiMode
+              ? <button className="ctrl-btn" onClick={() => setAiMode(false)}>Cancel</button>
+              : <button className="ctrl-btn" onClick={() => setAiMode(true)}>AI Check</button>
           )}
         </div>
       </div>
@@ -210,7 +163,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
       <div className="panel-list">
         {!recipe ? (
           <p className="ing-empty">Drop or paste a recipe above to get started</p>
-        ) : editMode ? (
+        ) : (
           <>
             <div className="ing-row ing-row--meta">
               <span className="ing-meta-label">Title</span>
@@ -247,15 +200,17 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
                 <input
                   className="ing-edit-name"
                   value={row.nameInput}
-                  onChange={e => handleNameChange(i, e.target.value)}
+                  onChange={e => !aiMode && handleNameChange(i, e.target.value)}
                   onFocus={() => {
+                    if (aiMode) return
                     const suggs = computeSuggestions(row.nameInput, pantryList)
                     if (suggs.length > 0) { setSuggestions(prev => ({ ...prev, [i]: suggs })); setOpenDropdown(i) }
                   }}
                   onBlur={() => setTimeout(() => setOpenDropdown(null), 150)}
                   placeholder="Search pantry…"
+                  readOnly={aiMode}
                 />
-                {openDropdown === i && (suggestions[i]?.length > 0 || row.nameInput.length >= 2) && (
+                {!aiMode && openDropdown === i && (suggestions[i]?.length > 0 || row.nameInput.length >= 2) && (
                   <div className="ing-dropdown">
                     {(suggestions[i] ?? []).map(({ entry }) => (
                       <div
@@ -288,52 +243,18 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
                 value={row.amount}
                 onChange={e => updateRow(i, { amount: e.target.value })}
                 placeholder="qty"
+                readOnly={aiMode}
               />
               <input
                 className="ing-edit-unit"
                 value={row.unit}
                 onChange={e => updateRow(i, { unit: e.target.value })}
                 placeholder="unit"
+                readOnly={aiMode}
               />
             </div>
           ))}
           </>
-        ) : (
-          ingredients.map((ing, i) => {
-            // needsConfirm: show best-guess name with Yes / No inline
-            if (ing.needsConfirm && confirmStates[i] === undefined) {
-              const guessName = ing.matchedIngredient
-                ? (pantryList.find(p => p.id === ing.matchedIngredient)?.canonicalName ?? ing.name)
-                : ing.name
-              return (
-                <div key={i} className="ing-row">
-                  <span className="status-dot dot-thinking" />
-                  <span className="ing-name ing-name--guess">Is this <strong>{guessName}</strong>?</span>
-                  <span className="ing-qty">{ingQty(ing)}</span>
-                  <button
-                    className="ctrl-btn ing-confirm-btn"
-                    onClick={() => setConfirmStates(prev => ({ ...prev, [i]: true }))}
-                  >Yes</button>
-                  <button
-                    className="ctrl-btn ing-confirm-btn"
-                    onClick={() => setConfirmStates(prev => ({ ...prev, [i]: false }))}
-                  >No</button>
-                </div>
-              )
-            }
-
-            // Confirmed or view mode fallback
-            const confirmed = ing.needsConfirm && confirmStates[i] === true
-            const rejected   = ing.needsConfirm && confirmStates[i] === false
-            const dc = confirmed ? 'green' : rejected ? 'red' : dotClass(ing)
-            return (
-              <div key={i} className="ing-row">
-                <span className={`status-dot ${dc === 'amber' ? 'dot-thinking' : dc}`} />
-                <span className="ing-name">{ingName(ing)}</span>
-                <span className="ing-qty">{ingQty(ing)}</span>
-              </div>
-            )
-          })
         )}
       </div>
 

@@ -66,4 +66,5 @@ lerna-debug.log*
 data/
 docs/
 dist/
+legacy/
 CLAUDE.md

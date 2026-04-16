@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { readPantry, readRecipes, saveRecipes, priceUpdate, addIngredientToPantry, updateIngredientInPantry, updateRecipe as _updateRecipe, toggleRecipeFavourite, deleteRecipe as _deleteRecipe } from '../io/index.js'
+import { readPantry, readRecipes, saveRecipes, savePantryItem, saveRecipe, toggleRecipeFavourite, deleteRecipe as _deleteRecipe } from '../io/index.js'
 import { migrateFromBakersPro } from '../io/migration.js'
 import { importFinished, resolveIngredients } from '../lib/index.js'
 
@@ -39,17 +39,17 @@ export default function useAppState() {
   }
 
   function updateItemPrice(itemId, data) {
-    priceUpdate(itemId, data)
+    savePantryItem({ id: itemId, ...data })
     setPantry(readPantry())
   }
 
   function addIngredient(ingredient, baseUnit) {
-    addIngredientToPantry(ingredient, baseUnit)
+    savePantryItem({ name: ingredient.name, baseUnit, ...ingredient })
     setPantry(readPantry())
   }
 
   function updateIngredient(itemId, data) {
-    updateIngredientInPantry(itemId, data)
+    savePantryItem({ id: itemId, ...data })
     setPantry(readPantry())
   }
 
@@ -59,7 +59,7 @@ export default function useAppState() {
   }
 
   function editRecipeInState(id, updatedRecipe) {
-    _updateRecipe(id, updatedRecipe)
+    saveRecipe({ id, ...updatedRecipe })
     setRecipes(readRecipes())
   }
 

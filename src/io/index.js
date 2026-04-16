@@ -3,15 +3,15 @@
  *
  * Recipe management:
  *   - readRecipes() — get all stored recipes
- *   - addRecipe(recipe) — append a recipe to storage
- *   - importFinished(importerOutput, opts) — ONLY public write path; called by UI
+ *   - saveRecipe(data) — upsert a recipe by id (creates if not found, merges if found)
+ *   - saveRecipes(recipes) — bulk replace (migration only)
  *
  * Pantry management:
  *   - readPantry() — get the full pantry
- *   - getMyPantry(recipes) — get pantry reordered by recipe usage
+ *   - savePantryItem(data) — upsert a pantry item by id/name (creates if not found, merges if found)
  *
- * (writeRecipes is intentionally not exported — it is an internal implementation detail.)
+ * (writeRecipes and writePantry are intentionally not exported — internal details.)
  */
 
-export { readRecipes, addRecipe, saveRecipes, updateRecipe, toggleRecipeFavourite, deleteRecipe } from './recipeStore.js';
-export { readPantry, getMyPantry, addIngredientToPantry, updateIngredientInPantry, getPendingSubmissions, priceUpdate, refreshNeedsCosting } from './pantryStore.js';
+export { readRecipes, saveRecipe, saveRecipes, toggleRecipeFavourite, deleteRecipe } from './recipeStore.js';
+export { readPantry, savePantryItem, getPendingSubmissions, refreshNeedsCosting } from './pantryStore.js';

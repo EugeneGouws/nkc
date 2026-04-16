@@ -2,11 +2,8 @@
  * pantryStore.js — unified pantry persistence layer.
  *
  * On first read, seeds pantry.json into localStorage under local_pantry.
- * All subsequent reads and writes (price updates, new items) go to that key.
+ * All subsequent reads and writes go to that key.
  * The seed file (pantry.json) is never mutated.
- *
- * Community diff: items with userAdded:true were added by the user after seeding.
- * Price changes on static items are visible via the diff between local_pantry and pantry.json.
  */
 
 import seedPantry from '../data/pantry.json';
@@ -51,9 +48,9 @@ function nameToCanonical(name) {
     .join(' ');
 }
 
-// "cup:240, tbsp:15" → { cup: 240, tbsp: 15 }
+// "cup:250, tbsp:15" → { cup: 250, tbsp: 15 }
 function parseConversionsStr(str) {
-  if (!str || !str.trim()) return {};
+  if (!str || typeof str !== 'string' || !str.trim()) return null;
   return Object.fromEntries(
     str.split(',')
       .map(s => s.trim().split(':').map(p => p.trim()))
@@ -64,7 +61,7 @@ function parseConversionsStr(str) {
 
 // "flour, plain flour" → ["flour", "plain flour"]
 function parseAliasesStr(str) {
-  if (!str || !str.trim()) return [];
+  if (!str || typeof str !== 'string' || !str.trim()) return null;
   return str.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
 }
 
@@ -78,154 +75,120 @@ export function readPantry() {
   return readAllPantry();
 }
 
+// ─── Public writes ───────────────────────────────────────────────────────────
+
 /**
- * Returns the full pantry, reordered by recipe usage.
- * Used items come first (by usage count desc, then name asc),
- * followed by unused items (alphabetically by canonicalName).
+ * Upsert a pantry item.
  *
- * @param {Array} recipes — StoredRecipe[]
- * @returns {Array} Reordered PantryItem[]
+ * Looks up by data.id, then by nameToId(data.name), then by alias match.
+ * - Not found → create new item with defaults, merged with provided data.
+ * - Found     → merge provided data into the existing item in-place.
+ *
+ * Accepts both pkg* (modal) and package* (price update) field names.
+ *
+ * @param {Object} data
+ *   id?, name?, baseUnit?,
+ *   pkgValue?/packageValue?, pkgUnit?/packageUnit?, pkgPrice?/packagePrice?,
+ *   pkgMatch?/matchedProduct?, costPerUnit?,
+ *   conversions? (string "cup:250" or object), aliases? (string or array),
+ *   dateLastUpdated?, needsCosting?
+ * @returns {Array} Updated PantryItem[]
  */
-export function getMyPantry(recipes) {
-  const fullPantry = readAllPantry();
+export function savePantryItem(data) {
+  const items = readAllPantry();
 
-  const usageCount = {};
-  recipes.forEach((recipe) => {
-    recipe.ingredients.forEach((ingredient) => {
-      if (ingredient.matchedIngredient) {
-        usageCount[ingredient.matchedIngredient] =
-          (usageCount[ingredient.matchedIngredient] || 0) + 1;
-      }
-    });
-  });
+  // ── Normalize field names ─────────────────────────────────────────────────
+  const pv  = parseFloat(data.pkgValue   ?? data.packageValue)  || null;
+  const pu  = data.pkgUnit     ?? data.packageUnit  ?? null;
+  const pp  = parseFloat(data.pkgPrice   ?? data.packagePrice)  || null;
+  const pm  = data.pkgMatch    ?? data.matchedProduct ?? null;
+  const cpu = data.costPerUnit != null ? parseFloat(data.costPerUnit) : null;
 
-  const used = [];
-  const unused = [];
+  const parsedConversions = data.conversions
+    ? (typeof data.conversions === 'string' ? parseConversionsStr(data.conversions) : data.conversions)
+    : null;
 
-  fullPantry.forEach((item) => {
-    if (usageCount[item.id]) {
-      used.push({ item, count: usageCount[item.id] });
-    } else {
-      unused.push(item);
+  const parsedAliases = data.aliases
+    ? (typeof data.aliases === 'string' ? parseAliasesStr(data.aliases) : data.aliases)
+    : null;
+
+  // ── Lookup ────────────────────────────────────────────────────────────────
+  const lookupId = data.id ?? (data.name ? nameToId(data.name) : null);
+  let idx = lookupId != null ? items.findIndex(item => item.id === lookupId) : -1;
+
+  // Alias fallback: lookupId might appear in another item's alias list
+  if (idx === -1 && lookupId) {
+    idx = items.findIndex(item => item.aliases?.includes(lookupId));
+    if (idx !== -1 && data.id && items[idx].id !== data.id) {
+      // Conflict: name resolves to a different item than the provided id
+      window.alert(`This item already exists as "${items[idx].canonicalName}".`);
+      return items;
     }
-  });
+  }
 
-  used.sort((a, b) => b.count - a.count || a.item.canonicalName.localeCompare(b.item.canonicalName));
-  unused.sort((a, b) => a.canonicalName.localeCompare(b.canonicalName));
+  // ── Compute derived fields ────────────────────────────────────────────────
+  const computedCostPerUnit = cpu != null
+    ? cpu
+    : (pv != null && pp != null && pv > 0 ? pp / pv : null);
 
-  return [...used.map(({ item }) => item), ...unused];
-}
+  const priceComplete = pv != null && pp != null && pv > 0 && pp > 0;
 
-// ─── Writes ───────────────────────────────────────────────────────────────────
+  // ── Update existing ───────────────────────────────────────────────────────
+  if (idx !== -1) {
+    const existing = items[idx];
+    const updated  = { ...existing };
 
-/**
- * Appends an unmatched ingredient as a new pantry item.
- * Deduplicates by id. Called by importFinished for still-unmatched ingredients.
- *
- * @param {Object} ingredient — RecipeIngredient { name, ... }
- * @param {string} baseUnit   — 'g' | 'ml' | 'each', computed by importer
- * @returns {Array} Updated pantry
- */
-export function addIngredientToPantry(ingredient, baseUnit) {
-  const id = nameToId(ingredient.name);
-  const items = readAllPantry();
+    if (data.name)                      updated.canonicalName   = nameToCanonical(data.name);
+    if (data.baseUnit)                  updated.baseUnit        = data.baseUnit;
+    if (parsedAliases?.length)          updated.aliases         = parsedAliases;
+    if (parsedConversions)              updated.conversions     = parsedConversions;
+    if (pv != null)                     updated.packageValue    = pv;
+    if (pu != null)                     updated.packageUnit     = pu;
+    if (pp != null)                     updated.packagePrice    = pp;
+    if (pm != null)                     updated.matchedProduct  = pm;
+    if (computedCostPerUnit != null)    updated.costPerUnit     = computedCostPerUnit;
+    if (data.dateLastUpdated !== undefined) updated.dateLastUpdated = data.dateLastUpdated;
 
-  if (items.some(item => item.id === id)) return items;
+    // needsCosting: explicit override wins; otherwise false when price complete
+    if (data.needsCosting !== undefined) {
+      updated.needsCosting = data.needsCosting;
+    } else if (priceComplete) {
+      updated.needsCosting = false;
+    }
 
-  const pv = parseFloat(ingredient.pkgValue);
-  const pp = parseFloat(ingredient.pkgPrice);
-  const parsedAliases = parseAliasesStr(ingredient.aliases);
+    items[idx] = updated;
+    writePantry(items);
+    return items;
+  }
 
-  const userItem = {
-    id,
-    canonicalName: nameToCanonical(ingredient.name),
-    aliases: parsedAliases.length ? parsedAliases : [ingredient.name.toLowerCase()],
-    baseUnit,
-    conversions: parseConversionsStr(ingredient.conversions),
-    costPerUnit: pv > 0 && pp > 0 ? pp / pv : 0,
-    packageValue: pv || null,
-    packageUnit: ingredient.pkgUnit || baseUnit,
-    packagePrice: pp || null,
-    matchedProduct: ingredient.pkgMatch || null,
-    dateLastUpdated: null,
-    needsCosting: !(pv > 0 && pp > 0),
+  // ── Create new ───────────────────────────────────────────────────────────
+  if (!data.name) {
+    console.error('savePantryItem: cannot create item without a name');
+    return items;
+  }
+
+  const newId = nameToId(data.name);
+  const newItem = {
+    id:              newId,
+    canonicalName:   nameToCanonical(data.name),
+    aliases:         parsedAliases?.length ? parsedAliases : [data.name.toLowerCase()],
+    baseUnit:        data.baseUnit ?? 'each',
+    conversions:     parsedConversions ?? {},
+    costPerUnit:     computedCostPerUnit ?? 0,
+    packageValue:    pv,
+    packageUnit:     pu ?? data.baseUnit ?? 'each',
+    packagePrice:    pp,
+    matchedProduct:  pm,
+    dateLastUpdated: data.dateLastUpdated ?? null,
+    needsCosting:    !priceComplete,
     priceOptionCount: 3,
-    searchHints: [],
-    userAdded: true,
+    searchHints:     [],
+    userAdded:       true,
     submittedToSeed: false,
-    dateUserAdded: new Date().toISOString().split('T')[0],
+    dateUserAdded:   new Date().toISOString().split('T')[0],
   };
 
-  items.push(userItem);
-  writePantry(items);
-  return items;
-}
-
-/**
- * Updates an existing pantry item in-place by ID.
- * Used by AddIngredientModal edit mode. Never changes the item's ID.
- *
- * @param {string} itemId
- * @param {{ name, baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases }} data
- * @returns {Array} Updated pantry
- */
-export function updateIngredientInPantry(itemId, { name, baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases }) {
-  const items = readAllPantry();
-  const idx = items.findIndex(item => item.id === itemId);
-  if (idx === -1) {
-    console.error(`updateIngredientInPantry: item '${itemId}' not found`);
-    return items;
-  }
-
-  const pv = parseFloat(pkgValue);
-  const pp = parseFloat(pkgPrice);
-  const parsedAliases = parseAliasesStr(aliases);
-
-  items[idx] = {
-    ...items[idx],
-    canonicalName: nameToCanonical(name),
-    baseUnit,
-    conversions: parseConversionsStr(conversions),
-    aliases: parsedAliases.length ? parsedAliases : items[idx].aliases,
-    costPerUnit: pv > 0 && pp > 0 ? pp / pv : items[idx].costPerUnit,
-    packageValue: pv || items[idx].packageValue,
-    packageUnit: pkgUnit,
-    packagePrice: pp || items[idx].packagePrice,
-    matchedProduct: pkgMatch || null,
-    needsCosting: !(pv > 0 && pp > 0),
-  };
-
-  writePantry(items);
-  return items;
-}
-
-/**
- * Updates the price fields of a pantry item in localStorage.
- * Works for both seed items and user-added items — both live in local_pantry.
- *
- * @param {string} itemId
- * @param {{ costPerUnit, packageValue, packageUnit, packagePrice, matchedProduct, dateLastUpdated }} data
- * @returns {Array} Updated pantry
- */
-export function priceUpdate(itemId, { costPerUnit, packageValue, packageUnit, packagePrice, matchedProduct, dateLastUpdated }) {
-  const items = readAllPantry();
-  const idx = items.findIndex(item => item.id === itemId);
-  if (idx === -1) {
-    console.error(`priceUpdate: item '${itemId}' not found in pantry`);
-    return items;
-  }
-
-  items[idx] = {
-    ...items[idx],
-    costPerUnit,
-    packageValue,
-    packageUnit,
-    packagePrice,
-    matchedProduct,
-    dateLastUpdated,
-    needsCosting: false,
-  };
-
+  items.push(newItem);
   writePantry(items);
   return items;
 }

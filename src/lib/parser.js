@@ -6,7 +6,7 @@
  */
 
 
-
+//some constants
 // Inline word-to-number converter — covers every number word that appears in
 // real recipes. Replaces the 'words-to-numbers' npm package which is a CJS
 // module incompatible with Vite's browser bundler.
@@ -28,7 +28,7 @@ function wordsToNumbers(str) {
   return trimmed !== '' && !isNaN(n) ? n : replaced
 }
 
-//some constants
+
 
 // Maps raw unit strings to their canonical form.
 // cup/tsp/tbsp are returned as-is — volumetric conversion is deferred to the matcher.
@@ -97,6 +97,14 @@ function resolveAndConnector(str) {
   const wtn = wordsToNumbers(s);
   if (typeof wtn === 'number') return null;
   s = String(wtn).trim();
+
+  // "a half" / "a quarter" — fraction word replaced, e.g. "a 0.5"
+  const aFrac = s.match(/^a\s+(\d*\.?\d+)\b/i);
+  if (aFrac) return Number(aFrac[1]);
+
+  // "N and a half" / "N and a quarter" — e.g. "1 and a 0.5" after substitution
+  const andAFrac = s.match(/^(\d*\.?\d+)\s+and\s+a\s+(\d*\.?\d+)\b/i);
+  if (andAFrac) return Number(andAFrac[1]) + Number(andAFrac[2]);
 
   const halfMatch = s.match(/^(\d*\.?\d+)\s+and\s+(\d*\.?\d+)\s+half\b/i);
   if (halfMatch) return Number(halfMatch[1]) + Number(halfMatch[2]) * 0.5;

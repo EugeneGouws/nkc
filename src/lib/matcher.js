@@ -90,9 +90,11 @@ export function matchIngredient(name, unit, pantry) {
   const gap = top.score - (candidates[1]?.score ?? 0);
   let confident = top.score >= 0.85 && gap > 0.15;
 
-  // Unit family penalty: cross-family mismatch breaks confidence
+  // Unit family penalty: cross-family mismatch breaks confidence,
+  // unless the pantry entry has an explicit conversion for this unit (e.g. cup of flour → g).
   if (confident && unitFamily(unit) !== 'other') {
-    if (unitFamily(unit) !== unitFamily(top.entry.baseUnit)) {
+    const hasConversion = top.entry.conversions?.[unit] !== undefined;
+    if (!hasConversion && unitFamily(unit) !== unitFamily(top.entry.baseUnit)) {
       confident = false;
     }
   }

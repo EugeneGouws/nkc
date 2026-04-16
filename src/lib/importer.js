@@ -5,8 +5,8 @@
 import { parseRecipeText, parseIngredientLine } from './parser.js';
 import { matchIngredient } from './matcher.js';
 import { readFileAsText } from './fileUploader.js';
-import { addIngredientToPantry } from '../io/pantryStore.js';
-import { addRecipe } from '../io/recipeStore.js';
+import { savePantryItem } from '../io/pantryStore.js';
+import { saveRecipe } from '../io/recipeStore.js';
 
 /**
  * Determines the baseUnit family from a raw unit string.
@@ -195,21 +195,27 @@ export function importFinished(recipe, opts = {}) {
   // Queue still-unmatched ingredients for user pantry / community submission.
   recipe.ingredients.forEach((ing) => {
     if (!ing.matchedIngredient) {
-      const baseUnit = unitToBaseUnit(ing.unit);
-      addIngredientToPantry(ing, baseUnit);
+      savePantryItem({
+        name:         ing.name,
+        baseUnit:     unitToBaseUnit(ing.unit),
+        pkgValue:     ing.pkgValue,
+        pkgUnit:      ing.pkgUnit,
+        pkgPrice:     ing.pkgPrice,
+        pkgMatch:     ing.pkgMatch,
+        conversions:  ing.conversions,
+        aliases:      ing.aliases,
+      });
     }
   });
 
-  const stored = {
-    id: crypto.randomUUID(),
-    title: recipe.title,
-    servings: recipe.servings,
-    rawText: recipe.rawText,
+  return saveRecipe({
+    id:          crypto.randomUUID(),
+    title:       recipe.title,
+    servings:    recipe.servings,
+    rawText:     recipe.rawText,
     ingredients: recipe.ingredients,
     favorite,
-    collection: recipe.collection ?? collection,
-    dateAdded: new Date().toISOString().split('T')[0], // YYYY-MM-DD
-  };
-
-  return addRecipe(stored);
+    collection:  recipe.collection ?? collection,
+    dateAdded:   new Date().toISOString().split('T')[0],
+  });
 }

@@ -4,14 +4,14 @@
  * StoredRecipe shape: { id, title, servings, rawText, ingredients[], favorite, collection, dateAdded }
  *
  * On first read, seeds data/recipes.json into localStorage under local_recipes.
- * Write gateway: importFinished() in src/lib/importer.js calls addRecipe() here.
+ * Write gateway: saveRecipe() — upserts by id (creates if not found).
  */
 
 import seedRecipesFile from '../data/recipes.json';
 
 const STORAGE_KEY = 'local_recipes';
 
-// Normalise a raw recipe object (seed or bakerspro-migrated) to the current StoredRecipe shape.
+// Normalise a raw recipe item to the current StoredRecipe shape.
 function normalise(r) {
   return {
     favorite:   false,
@@ -45,8 +45,7 @@ export function readRecipes() {
 }
 
 /**
- * Writes recipes array to localStorage. Internal only — not exported.
- * @param {Array} recipes — StoredRecipe[]
+ * Writes recipes array to localStorage. Internal only.
  */
 function writeRecipes(recipes) {
   try {
@@ -57,7 +56,7 @@ function writeRecipes(recipes) {
 }
 
 /**
- * Replaces the entire recipe list in localStorage. Used for batch updates (e.g. fixup pass).
+ * Replaces the entire recipe list in localStorage. Used for migration.
  * @param {Array} recipes — StoredRecipe[]
  */
 export function saveRecipes(recipes) {
@@ -65,21 +64,38 @@ export function saveRecipes(recipes) {
 }
 
 /**
- * Appends a StoredRecipe to the stored list and persists to localStorage.
- * @param {Object} recipe — StoredRecipe object
+ * Upsert a recipe by id.
+ *
+ * - If data.id exists and is found → merge data into existing record.
+ * - Otherwise → insert as a new recipe (generates id if missing).
+ *
+ * Unspecified fields keep their current values (or defaults for new recipes).
+ *
+ * @param {Object} data — Partial or full StoredRecipe fields
  * @returns {Array} Updated StoredRecipe[]
  */
-export function addRecipe(recipe) {
+export function saveRecipe(data) {
   const recipes = readRecipes();
-  recipes.push(recipe);
+  const idx     = data.id ? recipes.findIndex(r => r.id === data.id) : -1;
+
+  if (idx !== -1) {
+    recipes[idx] = normalise({ ...recipes[idx], ...data });
+  } else {
+    const newRecipe = normalise({
+      favorite:  false,
+      rawText:   '',
+      collection: '',
+      dateAdded: new Date().toISOString().split('T')[0],
+      ...data,
+      id: data.id ?? crypto.randomUUID(),
+    });
+    recipes.push(newRecipe);
+  }
+
   writeRecipes(recipes);
   return recipes;
 }
 
-/**
- * Toggles the favorite field on a stored recipe.
- * @param {string} id — StoredRecipe id
- */
 export function toggleRecipeFavourite(id) {
   const recipes = readRecipes();
   writeRecipes(recipes.map(r => r.id === id ? { ...r, favorite: !r.favorite } : r));
@@ -88,14 +104,3 @@ export function toggleRecipeFavourite(id) {
 export function deleteRecipe(id) {
   writeRecipes(readRecipes().filter(r => r.id !== id));
 }
-
-/**
- * Overwrites a stored recipe in-place by ID.
- * Called by the Edit Recipe flow in the UI.
- * @param {string} id
- * @param {Object} updatedRecipe — Partial or full StoredRecipe fields to merge
- */
-export function updateRecipe(id, updatedRecipe) {
-  writeRecipes(readRecipes().map(r => r.id === id ? { ...r, ...updatedRecipe } : r));
-}
-

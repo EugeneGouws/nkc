@@ -10,7 +10,7 @@
  * On completion the old key is removed, so this is a no-op on subsequent runs.
  */
 
-import { readPantry, priceUpdate } from './pantryStore.js';
+import { readPantry, savePantryItem } from './pantryStore.js';
 import { readRecipes, saveRecipes } from './recipeStore.js';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -58,7 +58,8 @@ function migratePantryPrices() {
 
       const { packageValue, packageUnit, packagePrice } = parsePkg(oldItem.pkg);
 
-      priceUpdate(match.id, {
+      savePantryItem({
+        id:              match.id,
         costPerUnit:     oldItem.costPerUnit     ?? match.costPerUnit,
         packageValue:    packageValue            ?? match.packageValue,
         packageUnit:     packageUnit             ?? match.packageUnit,

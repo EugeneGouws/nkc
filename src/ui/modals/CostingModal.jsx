@@ -90,7 +90,7 @@ export default function CostingModal({ recipe, pantry, layoutMode = 'wide', onSa
               style={hasSelection ? { borderColor: 'var(--green-accent)', color: 'var(--green-accent)' } : {}}
               onClick={handleUpdatePrices}
             >
-              Update selected prices
+              Search Checkers Sixty60
             </button>
           </div>
         </div>

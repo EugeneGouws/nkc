@@ -11,12 +11,15 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
   const [pkgMatch,    setPkgMatch]    = useState('')
   const [conversions, setConversions] = useState('')
   const [aliases,     setAliases]     = useState('')
-  const [editMode,    setEditMode]    = useState(false)
+  const [aiMode,      setAiMode]      = useState(false)
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) {
+      setAiMode(false)
+      return
+    }
     if (item) {
-      // Editing an existing pantry item — go straight to edit mode, populate all fields
+      // Editing an existing pantry item — populate all fields
       setName(item.canonicalName ?? '')
       setBaseUnit(item.baseUnit ?? '')
       setPkgValue(item.packageValue != null ? String(item.packageValue) : '')
@@ -29,9 +32,8 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
           : ''
       )
       setAliases(Array.isArray(item.aliases) ? item.aliases.join(', ') : '')
-      setEditMode(true)
     } else {
-      // New ingredient — AI mode, only name pre-filled
+      // New ingredient — only name pre-filled
       setName(ingredientName ?? '')
       setBaseUnit('')
       setPkgValue('')
@@ -40,25 +42,22 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
       setPkgMatch('')
       setConversions('')
       setAliases('')
-      setEditMode(false)
     }
   }, [isOpen, item, ingredientName])
 
   if (!isOpen) return null
 
-  const aiMode   = !editMode
-  const canAdd   = name.trim() !== '' && baseUnit !== ''
-  const infoText = editMode ? 'Edit mode' : 'AI ready'
+  const canAdd = name.trim() !== '' && baseUnit !== ''
 
   function handleAdd() {
     if (!canAdd) return
     onAdd({ name: name.trim(), baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases })
   }
 
-  // Read-only display helpers
-  const pkgText = pkgValue && pkgPrice
-    ? `${pkgValue} ${pkgUnit}  ·  R ${pkgPrice}`
-    : pkgValue ? `${pkgValue} ${pkgUnit}` : null
+  function formatPrice(val) {
+    const n = parseFloat(val)
+    return isNaN(n) ? '' : n.toFixed(2)
+  }
 
   return (
     <div className="add-ingredient-modal">
@@ -75,15 +74,10 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
           >
             {item ? 'Save Changes' : 'Add Ingredient'}
           </button>
-          <span className="modal-info-box">{infoText}</span>
-          {!editMode && (
-            <button
-              className="ctrl-btn"
-              onClick={() => setEditMode(true)}
-            >
-              Edit Ingredient
-            </button>
-          )}
+          {aiMode
+            ? <button className="ctrl-btn" onClick={() => setAiMode(false)}>Cancel</button>
+            : <button className="ctrl-btn" onClick={() => setAiMode(true)}>AI Check</button>
+          }
         </div>
       </div>
 
@@ -93,11 +87,11 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
         <div className="field-row">
           <span
             className="field-dot"
-            style={{ background: name.trim() === '' ? '#c0392b' : 'transparent' }}
+            style={{ background: !aiMode && name.trim() === '' ? '#c0392b' : 'transparent' }}
           />
           <span className="field-label">Name</span>
           <div className="field-value">
-            {editMode
+            {!aiMode
               ? <input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Cake Flour" />
               : <span className="field-text">{name || <em className="field-empty">—</em>}</span>
             }
@@ -108,11 +102,11 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
         <div className="field-row">
           <span
             className={`field-dot${aiMode && baseUnit === '' ? ' dot-thinking' : ''}`}
-            style={{ background: editMode && baseUnit === '' ? '#c0392b' : 'transparent' }}
+            style={{ background: !aiMode && baseUnit === '' ? '#c0392b' : 'transparent' }}
           />
           <span className="field-label">Base Unit</span>
           <div className="field-value">
-            {editMode
+            {!aiMode
               ? (
                 <select value={baseUnit} onChange={e => setBaseUnit(e.target.value)}>
                   <option value="">— select —</option>
@@ -131,44 +125,43 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
 
         {/* Package value + unit + price */}
         <div className="field-row">
-          <span className={`field-dot${aiMode ? ' dot-thinking' : ''}`} />
-          <span className="field-label">Package</span>
+          <span className="field-dot" />
+          <span className="field-label">Price</span>
           <div className="field-value">
-            {editMode
-              ? (
-                <div className="field-price-wrap">
-                  <input
-                    className="field-price-value"
-                    type="number"
-                    min="0"
-                    step="any"
-                    value={pkgValue}
-                    onChange={e => setPkgValue(e.target.value)}
-                    placeholder="1000"
-                  />
-                  <select
-                    className="field-price-unit"
-                    value={pkgUnit}
-                    onChange={e => setPkgUnit(e.target.value)}
-                  >
-                    <option value="g">g</option>
-                    <option value="ml">ml</option>
-                    <option value="each">each</option>
-                  </select>
-                  <span className="field-price-r">R</span>
-                  <input
-                    className="field-price-price"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={pkgPrice}
-                    onChange={e => setPkgPrice(e.target.value)}
-                    placeholder="28.99"
-                  />
-                </div>
-              )
-              : <span className="field-text">{pkgText ?? <em className="field-empty">—</em>}</span>
-            }
+            <div className="field-price-wrap">
+              <input
+                className="field-price-value"
+                type="number"
+                min="0"
+                step="any"
+                value={pkgValue}
+                onChange={e => setPkgValue(e.target.value)}
+                placeholder="1000"
+                readOnly={aiMode}
+              />
+              <select
+                className="field-price-unit"
+                value={pkgUnit}
+                onChange={e => setPkgUnit(e.target.value)}
+                disabled={aiMode}
+              >
+                <option value="g">g</option>
+                <option value="ml">ml</option>
+                <option value="each">each</option>
+              </select>
+              <span className="field-price-r">R</span>
+              <input
+                className="field-price-price"
+                type="number"
+                min="0"
+                step="0.01"
+                value={pkgPrice}
+                onChange={e => setPkgPrice(e.target.value)}
+                onBlur={e => setPkgPrice(formatPrice(e.target.value))}
+                placeholder="0.00"
+                readOnly={aiMode}
+              />
+            </div>
           </div>
         </div>
 
@@ -177,7 +170,7 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
           <span className={`field-dot${aiMode ? ' dot-thinking' : ''}`} />
           <span className="field-label">Product</span>
           <div className="field-value">
-            {editMode
+            {!aiMode
               ? (
                 <input
                   value={pkgMatch}
@@ -198,7 +191,7 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
           <span className={`field-dot${aiMode ? ' dot-thinking' : ''}`} />
           <span className="field-label">Conversions</span>
           <div className="field-value">
-            {editMode
+            {!aiMode
               ? (
                 <input
                   value={conversions}
@@ -216,7 +209,7 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
           <span className={`field-dot${aiMode ? ' dot-thinking' : ''}`} />
           <span className="field-label">Aliases</span>
           <div className="field-value">
-            {editMode
+            {!aiMode
               ? (
                 <input
                   value={aliases}

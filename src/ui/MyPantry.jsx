@@ -15,10 +15,12 @@ export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
   const [expandedId, setExpandedId] = useState(null)
   const [selectedIds, setSelectedIds] = useState(new Set())
 
+  //expand a panty item on click.
   function toggleExpand(id) {
     setExpandedId(prev => prev === id ? null : id)
   }
 
+  //toggle sellect on if off and vica versa.
   function toggleSelect(id, e) {
     e.stopPropagation()
     setSelectedIds(prev => {
@@ -28,6 +30,7 @@ export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
     })
   }
 
+  //keep track if anything is selected for update selection button.
   const hasSelection = selectedIds.size > 0
 
   return (
@@ -41,7 +44,7 @@ export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
             style={hasSelection ? { borderColor: 'var(--green-accent)', color: 'var(--green-accent)' } : {}}
             onClick={() => onUpdatePrices([...selectedIds])}
           >
-            Update selected prices
+            Search Checkers Sixty60
           </button>
         </div>
       </div>

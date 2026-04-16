@@ -40,11 +40,13 @@ export default function ImportBar({ pantry, onImport }) {
   }
 
   function handleImport() {
+    //check for text in textarea
     const text = textareaRef.current?.value?.trim()
     if (!text) return
     setError(null)
     try {
       const recipe = importRecipe(text, pantry)
+      //if there is text, read the text and then reset the text area to empty.
       if (textareaRef.current) {
         textareaRef.current.value = ''
         textareaRef.current.style.height = 'auto'
@@ -87,7 +89,7 @@ export default function ImportBar({ pantry, onImport }) {
           onDrop={handleDrop}
           onClick={() => !loading && fileInputRef.current?.click()}
         >
-          {loading ? 'Parsing…' : hidePaste ? '↑ Click to browse' : '↑ Drop file · click to browse'}
+          {loading ? 'Parsing…' : hidePaste ? '↑ Drop file · click to browse' : '↑ Drop file · click to browse'}
         </div>
 
         <input
