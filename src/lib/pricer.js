@@ -177,8 +177,9 @@ export async function fetchPriceOptions(pantryItem) {
     .map(product => {
       const name = product.name || product.title || '';
       const { packageValue, packageUnit } = parsePackageInfo(name);
-      const costPerUnit = (packageValue != null && product.price != null)
-        ? computeCostPerUnit(product.price, packageValue, packageUnit, pantryItem.baseUnit)
+      const priceNum = parseFloat(String(product.price ?? '').replace(/[^0-9.]/g, ''))
+      const costPerUnit = (packageValue != null && !isNaN(priceNum))
+        ? computeCostPerUnit(priceNum, packageValue, packageUnit, pantryItem.baseUnit)
         : null;
       return {
         product,

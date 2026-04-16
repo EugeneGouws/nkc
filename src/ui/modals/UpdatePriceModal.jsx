@@ -123,8 +123,9 @@ export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, 
         ) : (
           results.map((result, i) => {
             const name = result.product.name ?? result.product.title ?? '—'
+            const rawPrice = parseFloat(String(result.product.price ?? '').replace(/[^0-9.]/g, ''))
             const pkg  = result.packageValue != null
-              ? `${result.packageValue}${result.packageUnit} @ R${result.product.price?.toFixed(2) ?? '?'}`
+              ? `${result.packageValue}${result.packageUnit} @ R${isNaN(rawPrice) ? '?' : rawPrice.toFixed(2)}`
               : '—'
             return (
               <div key={i} className="price-result-row">

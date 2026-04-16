@@ -1,68 +1,39 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output (Netlify builds this from source)
+dist/
+dist-ssr/
+
+# Environment variables — add APIFY_KEY to Netlify dashboard instead
+.env
+.env.local
+.env.*.local
+
+# Local-only project folders
+docs/
+legacy/
+CLAUDE.md
+.claude/
 
 # Logs
-logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# Dependencies
-node_modules/
-.pnpm-store/
-
-# Build outputs
-dist/
-dist-ssr/
-*.local
-
-# Testing
-tests/
-
-# Environment Variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# OS Files
-.DS_Store
-Thumbs.db
-
-# Editor Folders
-.idea/
-.claude/
 *.swp
 *.swo
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Local Project Temp Files
-docs/
-legacy/
-CLAUDE.md
