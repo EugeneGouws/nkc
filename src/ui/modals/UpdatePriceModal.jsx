@@ -1,9 +1,14 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { fetchPriceOptions } from '../../lib/pricer.js'
 import './modal-base.css'
 import './UpdatePriceModal.css'
 
 export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, onClose }) {
   const [cursor, setCursor] = useState(0)
+  const [results, setResults] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [retryCount, setRetryCount] = useState(0)
 
   const pantryMap = useMemo(() => {
     const m = new Map()
@@ -11,20 +16,47 @@ export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, 
     return m
   }, [pantry])
 
-  if (!isOpen) return null
-
   const ids = selectedIds ?? []
   const done = cursor >= ids.length
-
-  const currentId   = ids[cursor]
+  const currentId = ids[cursor]
   const currentItem = pantryMap.get(currentId)
 
-  // Session 5B will replace this with: fetchPriceOptions(currentItem)
-  const results = []
+  useEffect(() => {
+    if (!isOpen || !currentItem) {
+      setResults([])
+      setLoading(false)
+      setError(null)
+      return
+    }
 
-  function handleSkip() {
+    const fetchPrices = async () => {
+      setLoading(true)
+      setError(null)
+      console.log(`[UpdatePrice] Fetching prices for: "${currentItem.canonicalName}"`)
+      try {
+        const options = await fetchPriceOptions(currentItem)
+        console.log(`[UpdatePrice] Got ${options.length} price options`)
+        setResults(options)
+      } catch (err) {
+        console.error('[UpdatePrice] Failed to fetch prices:', err)
+        setError(err.message || 'Failed to fetch prices')
+        setResults([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPrices()
+  }, [isOpen, currentItem, retryCount])
+
+  function advance() {
+    setRetryCount(0)
     if (cursor + 1 >= ids.length) onClose()
     else setCursor(c => c + 1)
+  }
+
+  function handleSkip() {
+    advance()
   }
 
   function handleSelect(result) {
@@ -37,8 +69,7 @@ export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, 
       matchedProduct: result.product.name ?? result.product.title ?? '',
       dateLastUpdated: today,
     })
-    if (cursor + 1 >= ids.length) onClose()
-    else setCursor(c => c + 1)
+    advance()
   }
 
   if (done) {
@@ -66,7 +97,7 @@ export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, 
           <button className="ctrl-btn modal-close-x" onClick={onClose} aria-label="Close">✕</button>
         </div>
         <div className="panel-controls">
-          <span className="status-dot dot-thinking" />
+          {loading && <span className="status-dot dot-thinking" />}
           <span className="price-current-name">
             {currentItem?.canonicalName ?? currentId}
           </span>
@@ -77,10 +108,18 @@ export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, 
       </div>
 
       <div className="panel-list">
-        {results.length === 0 ? (
-          <p className="price-stub-placeholder">
-            Price results will show here (Apify — Session 5B)
+        {loading ? (
+          <p className="price-loading-msg">
+            <span className="status-dot dot-thinking" /> Searching…
           </p>
+        ) : error ? (
+          <div className="price-error">
+            <p className="price-error-msg">{error}</p>
+            <button className="ctrl-btn price-error-retry" onClick={() => setRetryCount(c => c + 1)}>Retry</button>
+            <button className="ctrl-btn" onClick={handleSkip}>Skip →</button>
+          </div>
+        ) : results.length === 0 ? (
+          <p className="price-no-results">No products found</p>
         ) : (
           results.map((result, i) => {
             const name = result.product.name ?? result.product.title ?? '—'

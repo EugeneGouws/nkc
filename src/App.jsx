@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { refreshNeedsCosting } from './io/index.js'
+import { initAI } from './lib/index.js'
 import useAppState from './hooks/useAppState.js'
 import ImportBar from './ui/ImportBar.jsx'
 import MyPantry from './ui/MyPantry.jsx'
@@ -26,6 +27,7 @@ export default function App() {
   const appRef = useRef(null)
 
   useEffect(() => { refreshNeedsCosting() }, [])
+  useEffect(() => { initAI() }, [])
 
   useEffect(() => {
     const ro = new ResizeObserver(([entry]) => {

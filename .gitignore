@@ -63,8 +63,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Local Project Temp Files
-data/
 docs/
-dist/
 legacy/
 CLAUDE.md

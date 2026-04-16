@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { findCandidates } from '../../lib/index.js'
+import { findCandidates, AIMatchIngredient } from '../../lib/index.js'
 import AddIngredientModal from './AddIngredientModal.jsx'
 import './modal-base.css'
 import './ImportRecipeModal.css'
@@ -25,6 +25,8 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
   const isEditRecipe = mode === 'edit'
 
   const [aiMode,        setAiMode]        = useState(false)
+  const [aiProgress,    setAiProgress]    = useState('')
+  const [aiError,       setAiError]       = useState(null)
   const [editRows,      setEditRows]      = useState([])
   const [editTitle,     setEditTitle]     = useState('')
   const [editServings,  setEditServings]  = useState(1)
@@ -44,6 +46,8 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
   useEffect(() => {
     if (!isOpen) {
       setAiMode(false)
+      setAiProgress('')
+      setAiError(null)
       setEditRows([])
       setEditTitle('')
       setEditServings(1)
@@ -127,6 +131,54 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
     }
   }
 
+  // ── AI Check ────────────────────────────────────────────────────────────────
+
+  async function handleAICheck() {
+    setAiMode(true)
+    setAiProgress('Starting AI check…')
+    setAiError(null)
+
+    try {
+      const unmatchedCount = editRows.filter(r => !r.matchedId).length
+      console.log(`[ImportRecipe] Starting AI check for ${unmatchedCount} unmatched ingredients`);
+
+      // Build pseudo-recipe with confident flags driven by editRows' matchedId
+      const pseudoRecipe = {
+        ...recipe,
+        ingredients: recipe.ingredients.map((ing, i) => ({
+          ...ing,
+          confident: !!editRows[i]?.matchedId,
+          matchedIngredient: editRows[i]?.matchedId ?? null,
+        }))
+      }
+
+      setAiProgress(`Processing ${unmatchedCount} ingredients…`)
+      const updated = await AIMatchIngredient(pseudoRecipe, pantryList)
+      const aiResolved = updated.ingredients.filter(ing => ing.aiResolved).length
+      console.log(`[ImportRecipe] AI resolved ${aiResolved}/${unmatchedCount} ingredients`);
+
+      // Map AI-resolved results back to editRows
+      setEditRows(prev => prev.map((row, i) => {
+        if (row.matchedId) return row // already matched — don't touch
+        const ing = updated.ingredients[i]
+        if (ing?.aiResolved && ing.matchedIngredient) {
+          const matched = pantryList.find(p => p.id === ing.matchedIngredient)
+          console.log(`[ImportRecipe] AI matched row ${i}: "${row.nameInput}" → "${matched?.canonicalName}"`);
+          return { ...row, nameInput: matched?.canonicalName ?? row.nameInput, matchedId: ing.matchedIngredient }
+        }
+        return row
+      }))
+
+      setAiProgress('')
+      setAiMode(false) // always exit aiMode when AI completes (matched or not)
+    } catch (err) {
+      console.error('[ImportRecipe] AI check failed:', err);
+      setAiError(err.message || 'AI check failed. Please try manual matching.');
+      setAiProgress('')
+      setAiMode(false)
+    }
+  }
+
   // ── Derived state ──────────────────────────────────────────────────────────
 
   const canImport   = recipe != null && editRows.every(r => r.matchedId)
@@ -151,11 +203,19 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
             {isEditRecipe ? 'Save Recipe' : 'Import Recipe'}
           </button>
           {aiMode && <span className="status-dot dot-thinking" />}
-          <span className="modal-info-box">{infoText}</span>
+          <span className="modal-info-box">
+            {aiError ? (
+              <span style={{ color: '#c0392b' }}>Error: {aiError}</span>
+            ) : aiProgress ? (
+              <span style={{ color: '#f39c12' }}>{aiProgress}</span>
+            ) : (
+              infoText
+            )}
+          </span>
           {recipe && editRows.some(r => !r.matchedId) && (
             aiMode
               ? <button className="ctrl-btn" onClick={() => setAiMode(false)}>Cancel</button>
-              : <button className="ctrl-btn" onClick={() => setAiMode(true)}>AI Check</button>
+              : <button className="ctrl-btn" onClick={handleAICheck}>AI Check</button>
           )}
         </div>
       </div>

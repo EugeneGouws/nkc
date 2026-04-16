@@ -139,32 +139,38 @@ function scoreCandidate(pantryItem, product) {
 // ─── Apify fetch ──────────────────────────────────────────────────────────────
 
 /**
- * Fetches price candidates from the Apify Checkers scraper for a pantry item.
- * Returns candidates sorted by score, each with a computed costPerUnit.
+ * Fetches price candidates from the Apify Checkers scraper via Netlify proxy.
+ * The proxy (netlify/functions/fetch-prices.js) handles the API key and Apify call.
+ * This function handles scoring, ranking, and costPerUnit computation.
  *
  * @param {Object} pantryItem — PantryItem (from readPantry)
  * @returns {Promise<Array<{ product, score, packageValue, packageUnit, costPerUnit }>>}
  */
 export async function fetchPriceOptions(pantryItem) {
-  const apiKey = import.meta.env.VITE_APIFY_KEY;
-  if (!apiKey) throw new Error('Apify API key not set. Add VITE_APIFY_KEY to .env');
-
-  const hint       = pantryItem.searchHints?.[0] ?? '';
+  const hint = pantryItem.searchHints?.[0] ?? '';
   const searchTerm = hint ? `${pantryItem.canonicalName} ${hint}` : pantryItem.canonicalName;
-  const maxItems   = pantryItem.priceOptionCount ?? 5;
-  const searchUrl  = `https://www.checkers.co.za/search?Search=${encodeURIComponent(searchTerm)}`;
 
-  const resp = await fetch(
-    `https://api.apify.com/v2/acts/tXYgrsQcGx4ReKqdW/run-sync-get-dataset-items?token=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ maxItems, startUrl: searchUrl }),
-    }
-  );
-  if (!resp.ok) throw new Error(`Apify HTTP ${resp.status}`);
+  console.log(`%c[Apify] Searching Checkers for: "${searchTerm}"`, 'color: #3498db; font-weight: bold');
+  console.log('[Apify] Item details:', { canonicalName: pantryItem.canonicalName, baseUnit: pantryItem.baseUnit, searchHints: pantryItem.searchHints, priceOptionCount: pantryItem.priceOptionCount });
+
+  const resp = await fetch('/api/fetch-prices', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ pantryItem }),
+  });
+
+  console.log(`[Apify] Response status: ${resp.status}`);
+
+  if (!resp.ok) {
+    const errorText = await resp.text();
+    console.error(`%c[Apify] ERROR ${resp.status}: ${resp.statusText}`, 'color: #e74c3c; font-weight: bold');
+    console.error('[Apify] Error body:', errorText);
+    throw new Error(`Price fetch failed: ${resp.status} ${resp.statusText} — ${errorText}`);
+  }
 
   const products = await resp.json();
+  console.log(`%c[Apify] ✓ Received ${products.length} products`, 'color: #27ae60');
+  console.log('[Apify] First 3 results:', products.slice(0, 3));
   if (!Array.isArray(products)) return [];
 
   return products
@@ -182,6 +188,5 @@ export async function fetchPriceOptions(pantryItem) {
         costPerUnit,
       };
     })
-    .sort((a, b) => b.score - a.score)
-    .slice(0, maxItems);
+    .sort((a, b) => b.score - a.score);
 }
