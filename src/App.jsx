@@ -103,6 +103,7 @@ export default function App() {
         isOpen
         recipe={modalState.context}
         pantry={pantry}
+        collections={collections}
         onImport={recipe => { addRecipeToState(recipe, {}); closeModal() }}
         onAddIngredient={(ingredient, baseUnit) => addIngredient(ingredient, baseUnit)}
         onClose={closeModal}
@@ -115,6 +116,7 @@ export default function App() {
         mode="edit"
         recipe={modalState.context}
         pantry={pantry}
+        collections={collections}
         onSave={recipe => { editRecipeInState(recipe.id, recipe); closeModal() }}
         onAddIngredient={(ingredient, baseUnit) => addIngredient(ingredient, baseUnit)}
         onClose={closeModal}
@@ -124,7 +126,7 @@ export default function App() {
     if (modalState.type === 'openCosting') return (
       <CostingModal
         recipe={modalState.context}
-        pantry={visiblePantryItems}
+        pantry={pantry}
         layoutMode={mode}
         onSave={(id, data) => updateItemPrice(id, data)}
         onClose={closeModal}

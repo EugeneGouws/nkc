@@ -6,9 +6,16 @@ function formatPkg(item) {
 }
 
 function formatCostPerUnit(item) {
+  if (!item.costPerUnit) return '—'
   if (item.baseUnit === 'each') return `R${item.costPerUnit.toFixed(2)}/each`
   if (item.baseUnit === 'ml')   return `R${(item.costPerUnit * 100).toFixed(2)}/100ml`
   return `R${(item.costPerUnit * 100).toFixed(2)}/100g`
+}
+
+function dotClass(item) {
+  if (!item.packagePrice || !item.costPerUnit) return 'red'
+  if (item.needsCosting) return 'amber'
+  return 'green'
 }
 
 export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
@@ -60,10 +67,10 @@ export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
                 onClick={e => e.stopPropagation()}
               />
               <span className="item-name">{item.canonicalName}</span>
-              {item.needsCosting && <span className="stale-dot" />}
-              {item.needsCosting
-                ? <span className="item-pkg needs-costing">needs costing</span>
-                : <span className="item-pkg">{formatPkg(item)}</span>
+              <span className={`status-dot ${dotClass(item)}`} />
+              {dotClass(item) === 'red'
+                ? <span className="item-pkg no-price">no price information</span>
+                : <span className={`item-pkg${dotClass(item) === 'amber' ? ' needs-costing' : ''}`}>{formatPkg(item)}</span>
               }
               <span className="chevron">{expandedId === item.id ? '▲' : '▼'}</span>
             </div>

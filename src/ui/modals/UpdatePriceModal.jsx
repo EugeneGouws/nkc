@@ -49,6 +49,8 @@ export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, 
     fetchPrices()
   }, [isOpen, currentItem, retryCount])
 
+  if (!isOpen) return null
+
   function advance() {
     setRetryCount(0)
     if (cursor + 1 >= ids.length) onClose()
@@ -61,11 +63,12 @@ export default function UpdatePriceModal({ isOpen, selectedIds, pantry, onSave, 
 
   function handleSelect(result) {
     const today = new Date().toISOString().split('T')[0]
+    const priceNum = parseFloat(String(result.product.price ?? '').replace(/[^0-9.]/g, ''))
     onSave?.(currentId, {
       costPerUnit:    result.costPerUnit,
       packageValue:   result.packageValue,
       packageUnit:    result.packageUnit,
-      packagePrice:   result.product.price,
+      packagePrice:   isNaN(priceNum) ? null : priceNum,
       matchedProduct: result.product.name ?? result.product.title ?? '',
       dateLastUpdated: today,
     })

@@ -165,10 +165,16 @@ export async function fetchPriceOptions(pantryItem) {
     const errorText = await resp.text();
     console.error(`%c[Apify] ERROR ${resp.status}: ${resp.statusText}`, 'color: #e74c3c; font-weight: bold');
     console.error('[Apify] Error body:', errorText);
-    throw new Error(`Price fetch failed: ${resp.status} ${resp.statusText} — ${errorText}`);
+    throw new Error(`Checkers API: ${resp.status} ${resp.statusText}`);
   }
 
-  const products = await resp.json();
+  let products;
+  try {
+    products = await resp.json();
+  } catch (err) {
+    console.error('[Apify] JSON parse failed:', err);
+    throw new Error('Could not parse Checkers response');
+  }
   console.log(`%c[Apify] ✓ Received ${products.length} products`, 'color: #27ae60');
   console.log('[Apify] First 3 results:', products.slice(0, 3));
   if (!Array.isArray(products)) return [];

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { findCandidates, AIMatchIngredient } from '../../lib/index.js'
+import { findCandidates, AIMatchIngredient, AISuggestRecipeMeta } from '../../lib/index.js'
 import AddIngredientModal from './AddIngredientModal.jsx'
 import './modal-base.css'
 import './ImportRecipeModal.css'
@@ -21,7 +21,7 @@ function computeSuggestions(value, pantryList) {
   return findCandidates(value, pantryList)
 }
 
-export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImport, onSave, onAddIngredient, onClose }) {
+export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collections, onImport, onSave, onAddIngredient, onClose }) {
   const isEditRecipe = mode === 'edit'
 
   const [aiMode,        setAiMode]        = useState(false)
@@ -153,9 +153,13 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
       }
 
       setAiProgress(`Processing ${unmatchedCount} ingredients…`)
-      const updated = await AIMatchIngredient(pseudoRecipe, pantryList)
+      const [updated, meta] = await Promise.all([
+        AIMatchIngredient(pseudoRecipe, pantryList),
+        AISuggestRecipeMeta(pseudoRecipe, collections ?? []),
+      ])
       const aiResolved = updated.ingredients.filter(ing => ing.aiResolved).length
       console.log(`[ImportRecipe] AI resolved ${aiResolved}/${unmatchedCount} ingredients`);
+      console.log(`[ImportRecipe] AI meta suggestion:`, meta);
 
       // Map AI-resolved results back to editRows
       setEditRows(prev => prev.map((row, i) => {
@@ -168,6 +172,10 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, onImpo
         }
         return row
       }))
+
+      // Apply meta non-destructively — only fill empty / default fields so user input is never overwritten
+      if (meta.collection) setEditCollection(prev => prev.trim() ? prev : meta.collection)
+      if (meta.servings)   setEditServings(prev => prev > 1 ? prev : meta.servings)
 
       setAiProgress('')
       setAiMode(false) // always exit aiMode when AI completes (matched or not)

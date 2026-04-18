@@ -4,11 +4,27 @@
 const PROMPT = (rawLine) =>
   `You are a recipe parsing assistant. Rewrite the following ingredient line \
 using standard English names and common baking units (g, ml, cup, tsp, tbsp, kg, l). \
-Return ONLY the reformatted ingredient line — no explanation, no punctuation. \ 
+Return ONLY the reformatted ingredient line — no explanation, no punctuation. \
 Don't halucinate numbers or units. keep to the origional units
 
 
 Ingredient: ${rawLine}`;
+
+// Meta-suggestion prompt: pick a collection (prefer existing) and a servings count.
+// Returns strict 2-line format so we can parse without an LLM JSON gamble.
+const META_PROMPT = (title, ingredientLines, knownCollections) =>
+  `You are a baking recipe classifier. Given a recipe, return:
+1. A collection name (one or two words, e.g. "Cakes", "Cupcakes", "Pies", "Breads", "Cookies", "Tarts", "Frostings"). \
+${knownCollections.length > 0 ? `Prefer one of these existing collections if it fits: ${knownCollections.join(', ')}.` : ''}
+2. The number of servings the recipe makes (a single integer). If unclear, give your best estimate based on ingredient quantities.
+
+Return EXACTLY two lines, no extra text:
+COLLECTION: <name>
+SERVINGS: <integer>
+
+Recipe title: ${title || '(untitled)'}
+Ingredients:
+${ingredientLines.join('\n')}`;
 // ────────────────────────────────────────────────────────────────────────────────
 
 // src/lib/aiMatcher.js
@@ -289,4 +305,72 @@ export async function AIMatchIngredient(recipe, pantry) {
   resolved.forEach(({ i, updated }) => { mergedIngredients[i] = updated; });
 
   return { ...recipe, ingredients: mergedIngredients };
+}
+
+/**
+ * Asks the AI to suggest a collection name and servings count for a recipe.
+ * Non-blocking — caller decides whether to apply (e.g. only fill empty fields).
+ *
+ * @param {Object} recipe — { title, ingredients: [{ raw, name, amount, unit }] }
+ * @param {string[]} knownCollections — existing collection names; AI prefers reusing one
+ * @returns {Promise<{ collection: string|null, servings: number|null }>}
+ */
+export async function AISuggestRecipeMeta(recipe, knownCollections = []) {
+  const backend = await detectAIBackend();
+  if (!backend) return { collection: null, servings: null };
+
+  if (backend === 'gemini-nano' && !aiWarmupDone) {
+    await warmupAI(backend);
+  }
+
+  const ingredientLines = (recipe?.ingredients ?? [])
+    .map(ing => ing.raw || `${ing.amount ?? ''} ${ing.unit ?? ''} ${ing.name ?? ''}`.trim())
+    .filter(Boolean);
+
+  const promptText = META_PROMPT(recipe?.title ?? '', ingredientLines, knownCollections);
+
+  let raw;
+  try {
+    if (backend === 'gemini-nano') {
+      console.log('[AI] Meta — requesting collection + servings');
+      const langModel = getLangModelAPI();
+      const session = await langModel.create();
+      raw = await Promise.race([
+        session.prompt(promptText),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), AI_TIMEOUT_MS)),
+      ]);
+      session.destroy();
+    } else if (backend === 'ollama') {
+      console.log('[AI] Meta — requesting collection + servings (Ollama)');
+      const signal = AbortSignal.timeout(AI_TIMEOUT_MS);
+      const res = await fetch(OLLAMA_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: OLLAMA_MODEL, prompt: promptText, stream: false }),
+        signal,
+      });
+      const json = await res.json();
+      raw = json.response;
+    }
+  } catch (err) {
+    console.error('[AI] Meta suggestion failed:', err.message);
+    return { collection: null, servings: null };
+  }
+
+  const text = (raw || '').trim();
+  console.log('[AI] Meta — response:', text);
+
+  const collMatch = text.match(/COLLECTION:\s*(.+?)\s*$/im);
+  const servMatch = text.match(/SERVINGS:\s*(\d+)/i);
+
+  let collection = collMatch?.[1]?.trim() || null;
+  const servings = servMatch ? parseInt(servMatch[1], 10) : null;
+
+  // If AI's suggested collection matches an existing one (case-insensitive), reuse the existing capitalization
+  if (collection && knownCollections.length > 0) {
+    const existing = knownCollections.find(c => c.toLowerCase() === collection.toLowerCase());
+    if (existing) collection = existing;
+  }
+
+  return { collection, servings: Number.isFinite(servings) && servings > 0 ? servings : null };
 }

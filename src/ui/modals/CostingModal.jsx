@@ -8,7 +8,7 @@ function formatR(value) {
 }
 
 function formatCostPerUnit(item) {
-  if (!item || item.costPerUnit === 0) return '—'
+  if (!item || !item.costPerUnit) return '—'
   if (item.baseUnit === 'each') return `R${item.costPerUnit.toFixed(2)}/each`
   if (item.baseUnit === 'ml')   return `R${(item.costPerUnit * 100).toFixed(2)}/100ml`
   return `R${(item.costPerUnit * 100).toFixed(2)}/100g`

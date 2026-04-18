@@ -35,14 +35,6 @@
   min-width: 0;
 }
 
-.stale-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--dot-stale);
-  flex-shrink: 0;
-}
-
 .item-pkg {
   font-size: 11px;
   color: var(--tx-secondary);
@@ -51,6 +43,11 @@
 
 .item-pkg.needs-costing {
   color: var(--dot-stale);
+}
+
+.item-pkg.no-price {
+  color: #c0392b;
+  font-style: italic;
 }
 
 .chevron {
