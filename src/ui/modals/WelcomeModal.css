@@ -1,0 +1,233 @@
+/* Overlay anchored to .book-wrap — covers the full brown shape */
+.welcome-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  border-radius: 6px 6px 4px 4px;
+  overflow: hidden;
+}
+
+/* Book wrapper fills the full .book-wrap area */
+.welcome-book {
+  flex: 1;
+  position: relative;
+  background: #7b5c3a;
+  border-radius: 6px 6px 4px 4px;
+  padding: 14px 18px 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Page-edge grain strips — matches .book-wrap::before / ::after */
+.welcome-book::before,
+.welcome-book::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  bottom: 20px;
+  width: 4px;
+  background: repeating-linear-gradient(
+    to right,
+    #f8f4ed 0px, #f8f4ed 3px,
+    #e8e2d8 3px, #e8e2d8 4px
+  );
+  z-index: 0;
+}
+.welcome-book::before { left: 14px; }
+.welcome-book::after  { right: 14px; }
+
+/* Panel row — same as .nkc-panels */
+.welcome-panels {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+}
+
+/* Each page */
+.welcome-page {
+  flex: 1;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.welcome-page.left {
+  border-radius: 2px 0 0 2px;
+  box-shadow: inset -10px 0 18px -6px rgba(0, 0, 0, 0.1);
+}
+.welcome-page.right {
+  border-radius: 0 2px 2px 0;
+  box-shadow: inset 10px 0 18px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* Spine — matches .book-spine */
+.welcome-spine {
+  flex-shrink: 0;
+  width: 5px;
+  background:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.28) 0px,
+      rgba(0, 0, 0, 0)    15px,
+      rgba(0, 0, 0, 0)    20px,
+      rgba(0, 0, 0, 0.28) 35px
+    ),
+    #ffffff;
+}
+
+/* Stacked page-edges at the bottom — matches .book-page-stack */
+.welcome-page-stack {
+  position: relative;
+  height: 10px;
+  margin: 0 -4px -4px;
+  border-radius: 0 0 2px 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f8f4ed 0px,  #f8f4ed 2px,
+    #cfc8b8 2px,  #cfc8b8 3px,
+    #f0ebe0 3px,  #f0ebe0 5px,
+    #c8c0ae 5px,  #c8c0ae 6px,
+    #e8e2d5 6px,  #e8e2d5 8px,
+    #c0b8a6 8px,  #c0b8a6 9px,
+    #e0dace 9px,  #e0dace 10px
+  );
+}
+
+/* Scrollable body inside each page */
+.welcome-body {
+  padding: 14px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* Feature tiles grid (left page) */
+.welcome-feat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.welcome-feat {
+  background: var(--tag-bg);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.welcome-feat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green-accent);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.welcome-feat-desc {
+  font-size: 11px;
+  color: var(--tx-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Section label (right page) */
+.welcome-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--tx-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+}
+
+/* Numbered steps (right page) */
+.welcome-step {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+
+.welcome-step-num {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.welcome-step-text {
+  font-size: 12px;
+  color: var(--tx-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.welcome-step-text strong {
+  color: var(--tx-primary);
+  font-weight: 600;
+}
+
+/* Legend box */
+.welcome-legend-box {
+  background: var(--tag-bg);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 4px;
+}
+
+.welcome-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.welcome-legend-row:last-child { margin-bottom: 0; }
+
+.welcome-legend-text {
+  font-size: 11px;
+  color: var(--tx-secondary);
+  line-height: 1.45;
+}
+
+.welcome-legend-text strong {
+  color: var(--tx-primary);
+  font-weight: 600;
+}
+
+/* Small italic note at the bottom */
+.welcome-note {
+  font-size: 11px;
+  color: var(--tx-muted);
+  font-style: italic;
+  margin: 12px 0 0;
+  line-height: 1.5;
+}
+
+/* Narrow layout — stack pages vertically */
+@media (max-width: 500px) {
+  .welcome-panels {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .welcome-page.left,
+  .welcome-page.right {
+    border-radius: 2px;
+    box-shadow: none;
+  }
+  .welcome-spine { display: none; }
+  .welcome-feat-grid { grid-template-columns: 1fr; }
+}

@@ -2,9 +2,52 @@
   position: absolute;
   inset: 0;
   z-index: 50;
+  display: flex;
+  gap: 25px;
+  pointer-events: none;
+}
+
+.import-recipe-left,
+.import-recipe-right {
+  flex: 1;
   background: var(--surface);
   display: flex;
   flex-direction: column;
+  pointer-events: all;
+  overflow: hidden;
+  position: relative;
+}
+
+.import-recipe-left  { border-radius: 2px 0 0 2px; }
+.import-recipe-right { border-radius: 0 2px 2px 0; }
+
+.import-raw-text {
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--tx-secondary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  padding: 12px 14px;
+}
+
+/* narrow: stack vertically */
+.narrow .import-recipe-modal {
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+}
+
+.narrow .import-recipe-left,
+.narrow .import-recipe-right {
+  flex: none;
+  border-radius: 0;
+}
+
+.narrow .import-recipe-left {
+  max-height: 200px;
+  border-bottom: 2px solid var(--border);
 }
 
 .modal-title-row {
@@ -122,6 +165,64 @@
 
 .ing-edit-qty  { width: 58px; text-align: right; }
 .ing-edit-unit { width: 46px; }
+
+/* ── Tag pill input ── */
+.tag-input-wrap {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 6px;
+  background: var(--surface);
+  box-sizing: border-box;
+}
+
+.tag-pill {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--tag-bg);
+  color: var(--tag-tx);
+  font-size: 10px;
+  padding: 2px 4px 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  color: var(--tag-tx);
+  font-size: 9px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.65;
+}
+
+.tag-remove:hover {
+  opacity: 1;
+}
+
+.tag-input {
+  flex: 1;
+  min-width: 80px;
+  height: 20px;
+  border: none;
+  outline: none;
+  font-size: 11px;
+  font-family: inherit;
+  color: var(--tx-primary);
+  background: transparent;
+}
+
+.tag-input::placeholder {
+  color: var(--tx-muted);
+}
 
 /* ── Title / servings meta row ── */
 .ing-row--meta {

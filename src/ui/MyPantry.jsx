@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './MyPantry.css'
 
 function formatPkg(item) {
@@ -18,13 +18,17 @@ function dotClass(item) {
   return 'green'
 }
 
-export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
+export default function MyPantry({ items, processingIds = new Set(), onEditIngredient, onSearchPrices }) {
   const [expandedId, setExpandedId] = useState(null)
   const [selectedIds, setSelectedIds] = useState(new Set())
+  const itemRefs = useRef({})
 
-  //expand a panty item on click.
   function toggleExpand(id) {
-    setExpandedId(prev => prev === id ? null : id)
+    const next = expandedId === id ? null : id
+    setExpandedId(next)
+    if (next !== null) {
+      setTimeout(() => itemRefs.current[next]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 0)
+    }
   }
 
   //toggle sellect on if off and vica versa.
@@ -37,19 +41,37 @@ export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
     })
   }
 
-  //keep track if anything is selected for update selection button.
   const hasSelection = selectedIds.size > 0
+  const allSelected  = items.length > 0 && items.every(item => selectedIds.has(item.id))
+
+  function handleSelectAll() {
+    setSelectedIds(allSelected ? new Set() : new Set(items.map(i => i.id)))
+  }
+
+  function handleSearch() {
+    onSearchPrices([...selectedIds])
+    setSelectedIds(new Set())
+  }
 
   return (
     <div className="nkc-panel nkc-card">
       <div className="panel-header">
         <p className="panel-heading">My Pantry</p>
         <div className="panel-controls">
+          {items.length > 0 && (
+            <input
+              type="checkbox"
+              checked={allSelected}
+              ref={el => { if (el) el.indeterminate = hasSelection && !allSelected }}
+              onChange={handleSelectAll}
+              style={{ accentColor: 'var(--green-accent)', width: 13, height: 13, cursor: 'pointer', flexShrink: 0 }}
+            />
+          )}
           <button
             className="ctrl-btn"
             disabled={!hasSelection}
             style={hasSelection ? { borderColor: 'var(--green-accent)', color: 'var(--green-accent)' } : {}}
-            onClick={() => onUpdatePrices([...selectedIds])}
+            onClick={handleSearch}
           >
             Search Checkers Sixty60
           </button>
@@ -57,8 +79,11 @@ export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
       </div>
 
       <div className="panel-list">
+        {items.length === 0 && (
+          <p className="pantry-empty">Select a recipe to see ingredient prices</p>
+        )}
         {items.map(item => (
-          <div key={item.id} className="pantry-item">
+          <div key={item.id} className="pantry-item" ref={el => { itemRefs.current[item.id] = el }}>
             <div className="pantry-row" onClick={() => toggleExpand(item.id)}>
               <input
                 type="checkbox"
@@ -82,7 +107,12 @@ export default function MyPantry({ items, onEditIngredient, onUpdatePrices }) {
                   {item.matchedProduct || 'No product matched yet'}
                 </span>
                 <span className="cost-per-unit">{formatCostPerUnit(item)}</span>
-                <button className="edit-btn" onClick={() => onEditIngredient(item)}>
+                <button
+                  className="edit-btn"
+                  onClick={() => onEditIngredient(item)}
+                  disabled={processingIds.has(item.id)}
+                  style={processingIds.has(item.id) ? { opacity: 0.4, cursor: 'not-allowed' } : {}}
+                >
                   Edit
                 </button>
               </div>

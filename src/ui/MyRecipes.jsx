@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import './MyRecipes.css'
 
 function recipeStatus(recipe, pantryMap) {
@@ -24,6 +24,8 @@ export default function MyRecipes({
   recipes,
   collections,
   pantry,
+  expandedId,
+  onExpandRecipe,
   onToggleFavourite,
   onOpenCosting,
   onEditRecipe,
@@ -31,11 +33,14 @@ export default function MyRecipes({
   onFavFilterChange,
   onCollectionChange,
 }) {
-  const [favActive,           setFavActive]           = useState(false)
-  const [selectedCollection,  setSelectedCollection]  = useState('')
-  const [expandedId,          setExpandedId]          = useState(null)
-  const [searchQuery,         setSearchQuery]         = useState('')
-  const searchRef = useRef(null)
+  const [favActive,          setFavActive]          = useState(false)
+  const [selectedCollections, setSelectedCollections] = useState([])
+  const [collectionsOpen,    setCollectionsOpen]    = useState(false)
+  const [searchQuery,        setSearchQuery]        = useState('')
+
+  const searchRef      = useRef(null)
+  const collectionsRef = useRef(null)
+  const itemRefs       = useRef({})
 
   const pantryMap = useMemo(() => {
     const m = new Map()
@@ -49,29 +54,50 @@ export default function MyRecipes({
     return recipes.filter(r => r.title.toLowerCase().includes(q))
   }, [recipes, searchQuery])
 
+  useEffect(() => {
+    if (!collectionsOpen) return
+    function handleOutside(e) {
+      if (!collectionsRef.current?.contains(e.target)) setCollectionsOpen(false)
+    }
+    document.addEventListener('mousedown', handleOutside)
+    return () => document.removeEventListener('mousedown', handleOutside)
+  }, [collectionsOpen])
+
   function handleFavClick() {
     const next = !favActive
     setFavActive(next)
     onFavFilterChange(next)
   }
 
-  function handleCollectionChange(e) {
-    const val = e.target.value
-    setSelectedCollection(val)
-    onCollectionChange(val)
+  function toggleCollection(c) {
+    const next = selectedCollections.includes(c)
+      ? selectedCollections.filter(x => x !== c)
+      : [...selectedCollections, c]
+    setSelectedCollections(next)
+    onCollectionChange(next)
   }
 
   function handleRowClick(id) {
-    setExpandedId(prev => prev === id ? null : id)
+    const next = expandedId === id ? null : id
+    onExpandRecipe(next)
+    if (next !== null) {
+      setTimeout(() => itemRefs.current[next]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 0)
+    }
   }
 
   function handleDelete(e, id) {
     e.stopPropagation()
     if (window.confirm('Delete recipe. Are you sure?')) {
       onDeleteRecipe(id)
-      if (expandedId === id) setExpandedId(null)
+      if (expandedId === id) onExpandRecipe(null)
     }
   }
+
+  const collectionLabel = selectedCollections.length === 0
+    ? 'All collections'
+    : selectedCollections.length === 1
+    ? selectedCollections[0]
+    : `${selectedCollections.length} selected`
 
   return (
     <div className="nkc-panel nkc-card">
@@ -84,17 +110,30 @@ export default function MyRecipes({
           >
             ★ Favourites
           </button>
-          <select
-            className="ctrl-select"
-            value={selectedCollection}
-            onChange={handleCollectionChange}
-            style={{ fontSize: '10px' }}
-          >
-            <option value="">All collections</option>
-            {collections.map(c => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+          {collections.length > 0 && (
+            <div className="coll-dropdown" ref={collectionsRef}>
+              <button
+                className={`ctrl-btn${selectedCollections.length ? ' active' : ''}`}
+                onClick={() => setCollectionsOpen(o => !o)}
+              >
+                {collectionLabel} ▾
+              </button>
+              {collectionsOpen && (
+                <div className="coll-menu">
+                  {collections.map(c => (
+                    <label key={c} className="coll-option">
+                      <input
+                        type="checkbox"
+                        checked={selectedCollections.includes(c)}
+                        onChange={() => toggleCollection(c)}
+                      />
+                      {c}
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <div className="search-row">
           <input
@@ -122,7 +161,11 @@ export default function MyRecipes({
           const isExpanded = expandedId === recipe.id
           const { status, total } = recipeStatus(recipe, pantryMap)
           return (
-            <div key={recipe.id} className="recipe-item">
+            <div
+              key={recipe.id}
+              className="recipe-item"
+              ref={el => { itemRefs.current[recipe.id] = el }}
+            >
               <div
                 className={`recipe-row${isExpanded ? ' expanded' : ''}`}
                 onClick={() => handleRowClick(recipe.id)}
@@ -135,7 +178,11 @@ export default function MyRecipes({
                   ★
                 </button>
                 <span className="recipe-title">{recipe.title}</span>
-                {recipe.collection && <span className="coll-pill">{recipe.collection}</span>}
+                {recipe.collection && (
+                  <span className="coll-pill">
+                    {recipe.collection.split(',')[0].trim()}
+                  </span>
+                )}
               </div>
 
               {isExpanded && (

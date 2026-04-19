@@ -30,7 +30,8 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
   const [editRows,      setEditRows]      = useState([])
   const [editTitle,     setEditTitle]     = useState('')
   const [editServings,  setEditServings]  = useState(1)
-  const [editCollection,setEditCollection]= useState('')
+  const [editTags,      setEditTags]      = useState([])
+  const [tagInput,      setTagInput]      = useState('')
   const [suggestions,   setSuggestions]   = useState({})  // { rowIndex: [{entry}] }
   const [openDropdown,  setOpenDropdown]  = useState(null) // rowIndex | null
   const [addIngOpen,    setAddIngOpen]    = useState(false)
@@ -51,7 +52,8 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
       setEditRows([])
       setEditTitle('')
       setEditServings(1)
-      setEditCollection('')
+      setEditTags([])
+      setTagInput('')
       setSuggestions({})
       setOpenDropdown(null)
       setAddIngOpen(false)
@@ -61,7 +63,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
       setEditRows(buildEditRows(recipe, pantry ?? []))
       setEditTitle(recipe.title ?? '')
       setEditServings(recipe.servings ?? 1)
-      setEditCollection(recipe.collection ?? '')
+      setEditTags(recipe.collection ? recipe.collection.split(',').map(t => t.trim()).filter(Boolean) : [])
     }
   }, [isOpen])
 
@@ -123,7 +125,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
         convertedUnit:     row.unit,
       }
     })
-    const updated = { ...recipe, title: editTitle, servings: editServings, collection: editCollection, ingredients: updatedIngredients }
+    const updated = { ...recipe, title: editTitle, servings: editServings, collection: editTags.join(','), ingredients: updatedIngredients }
     if (isEditRecipe) {
       onSave?.(updated)
     } else {
@@ -174,7 +176,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
       }))
 
       // Apply meta non-destructively — only fill empty / default fields so user input is never overwritten
-      if (meta.collection) setEditCollection(prev => prev.trim() ? prev : meta.collection)
+      if (meta.collection) setEditTags(prev => prev.length ? prev : [meta.collection])
       if (meta.servings)   setEditServings(prev => prev > 1 ? prev : meta.servings)
 
       setAiProgress('')
@@ -197,153 +199,196 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
 
   return (
     <div className="import-recipe-modal">
-      <div className="panel-header">
-        <div className="modal-title-row">
-          <p className="panel-heading">{recipe?.title ?? 'Import Recipe'}</p>
-          <button className="ctrl-btn modal-close-x" onClick={onClose} aria-label="Close">✕</button>
+
+      {/* LEFT: raw text preview */}
+      <div className="import-recipe-left">
+        <div className="panel-header">
+          <p className="panel-heading">Recipe Text</p>
         </div>
-        <div className="panel-controls">
-          <button
-            className="ctrl-btn"
-            disabled={!canImport}
-            onClick={handleImport}
-          >
-            {isEditRecipe ? 'Save Recipe' : 'Import Recipe'}
-          </button>
-          {aiMode && <span className="status-dot dot-thinking" />}
-          <span className="modal-info-box">
-            {aiError ? (
-              <span style={{ color: '#c0392b' }}>Error: {aiError}</span>
-            ) : aiProgress ? (
-              <span style={{ color: '#f39c12' }}>{aiProgress}</span>
-            ) : (
-              infoText
-            )}
-          </span>
-          {recipe && editRows.some(r => !r.matchedId) && (
-            aiMode
-              ? <button className="ctrl-btn" onClick={() => setAiMode(false)}>Cancel</button>
-              : <button className="ctrl-btn" onClick={handleAICheck}>AI Check</button>
-          )}
+        <div className="panel-list">
+          {recipe?.rawText
+            ? <pre className="import-raw-text">{recipe.rawText}</pre>
+            : <p className="ing-empty">No source text available</p>
+          }
         </div>
       </div>
 
-      <div className="panel-list">
-        {!recipe ? (
-          <p className="ing-empty">Drop or paste a recipe above to get started</p>
-        ) : (
-          <>
-            <div className="ing-row ing-row--meta">
-              <span className="ing-meta-label">Title</span>
-              <input
-                className="ing-edit-name"
-                style={{ flex: 1 }}
-                value={editTitle}
-                onChange={e => setEditTitle(e.target.value)}
-                placeholder="Recipe title"
-              />
-              <span className="ing-meta-label">Servings</span>
-              <input
-                className="ing-edit-qty"
-                type="number"
-                min="1"
-                value={editServings}
-                onChange={e => setEditServings(Math.max(1, parseInt(e.target.value) || 1))}
-              />
-            </div>
-            <div className="ing-row ing-row--meta">
-              <span className="ing-meta-label">Collection</span>
-              <input
-                className="ing-edit-name"
-                style={{ flex: 1 }}
-                value={editCollection}
-                onChange={e => setEditCollection(e.target.value)}
-                placeholder="e.g. Cakes, Breads…"
-              />
-            </div>
-            {editRows.map((row, i) => (
-            <div key={i} className="ing-row">
-              <span className={`status-dot ${row.matchedId ? 'green' : 'red'}`} />
-              <div className="ing-edit-name-wrap">
+      {/* RIGHT: import controls */}
+      <div className="import-recipe-right">
+        <div className="panel-header">
+          <div className="modal-title-row">
+            <p className="panel-heading">{recipe?.title ?? 'Import Recipe'}</p>
+            <button className="ctrl-btn modal-close-x" onClick={onClose} aria-label="Close">✕</button>
+          </div>
+          <div className="panel-controls">
+            <button
+              className="ctrl-btn"
+              disabled={!canImport}
+              onClick={handleImport}
+            >
+              {isEditRecipe ? 'Save Recipe' : 'Import Recipe'}
+            </button>
+            {aiMode && <span className="status-dot dot-thinking" />}
+            <span className="modal-info-box">
+              {aiError ? (
+                <span style={{ color: '#c0392b' }}>Error: {aiError}</span>
+              ) : aiProgress ? (
+                <span style={{ color: '#f39c12' }}>{aiProgress}</span>
+              ) : (
+                infoText
+              )}
+            </span>
+            {recipe && editRows.some(r => !r.matchedId) && (
+              aiMode
+                ? <button className="ctrl-btn" onClick={() => setAiMode(false)}>Cancel</button>
+                : <button className="ctrl-btn" onClick={handleAICheck}>AI Check</button>
+            )}
+          </div>
+        </div>
+
+        <div className="panel-list">
+          {!recipe ? (
+            <p className="ing-empty">Drop or paste a recipe above to get started</p>
+          ) : (
+            <>
+              <div className="ing-row ing-row--meta">
+                <span className="ing-meta-label">Title</span>
                 <input
                   className="ing-edit-name"
-                  value={row.nameInput}
-                  onChange={e => !aiMode && handleNameChange(i, e.target.value)}
-                  onFocus={() => {
-                    if (aiMode) return
-                    const suggs = computeSuggestions(row.nameInput, pantryList)
-                    if (suggs.length > 0) { setSuggestions(prev => ({ ...prev, [i]: suggs })); setOpenDropdown(i) }
-                  }}
-                  onBlur={() => setTimeout(() => setOpenDropdown(null), 150)}
-                  placeholder="Search pantry…"
-                  readOnly={aiMode}
+                  style={{ flex: 1 }}
+                  value={editTitle}
+                  onChange={e => setEditTitle(e.target.value)}
+                  placeholder="Recipe title"
                 />
-                {!aiMode && openDropdown === i && (suggestions[i]?.length > 0 || row.nameInput.length >= 2) && (
-                  <div className="ing-dropdown">
-                    {(suggestions[i] ?? []).map(({ entry }) => (
-                      <div
-                        key={entry.id}
-                        className="ing-dropdown-item"
-                        onMouseDown={e => { e.preventDefault(); selectSuggestion(i, entry) }}
-                      >
-                        {entry.canonicalName}
-                      </div>
-                    ))}
-                    <div
-                      className="ing-dropdown-item ing-dropdown-add"
-                      onMouseDown={e => {
-                        e.preventDefault()
-                        setAddIngName(row.nameInput)
-                        setAddIngOpen(true)
-                        setOpenDropdown(null)
-                      }}
-                    >
-                      + Add new ingredient
-                    </div>
-                  </div>
-                )}
+                <span className="ing-meta-label">Servings</span>
+                <input
+                  className="ing-edit-qty"
+                  type="number"
+                  min="1"
+                  value={editServings}
+                  onChange={e => setEditServings(Math.max(1, parseInt(e.target.value) || 1))}
+                />
               </div>
-              <input
-                className="ing-edit-qty"
-                type="number"
-                min="0"
-                step="any"
-                value={row.amount}
-                onChange={e => updateRow(i, { amount: e.target.value })}
-                placeholder="qty"
-                readOnly={aiMode}
-              />
-              <input
-                className="ing-edit-unit"
-                value={row.unit}
-                onChange={e => updateRow(i, { unit: e.target.value })}
-                placeholder="unit"
-                readOnly={aiMode}
-              />
-            </div>
-          ))}
-          </>
+              <div className="ing-row ing-row--meta">
+                <span className="ing-meta-label">Tags</span>
+                <div className="tag-input-wrap">
+                  {editTags.map(tag => (
+                    <span key={tag} className="tag-pill">
+                      {tag}
+                      <button
+                        className="tag-remove"
+                        onClick={() => setEditTags(prev => prev.filter(t => t !== tag))}
+                        aria-label={`Remove ${tag}`}
+                      >✕</button>
+                    </span>
+                  ))}
+                  <input
+                    className="tag-input"
+                    value={tagInput}
+                    onChange={e => setTagInput(e.target.value)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ',') {
+                        e.preventDefault()
+                        const t = tagInput.trim().replace(/,$/, '')
+                        if (t && !editTags.includes(t)) setEditTags(prev => [...prev, t])
+                        setTagInput('')
+                      }
+                    }}
+                    placeholder={editTags.length ? '' : 'Add tag, press Enter…'}
+                    list="tag-suggestions"
+                  />
+                  <datalist id="tag-suggestions">
+                    {(collections ?? []).filter(c => !editTags.includes(c)).map(c => (
+                      <option key={c} value={c} />
+                    ))}
+                  </datalist>
+                </div>
+              </div>
+              {editRows.map((row, i) => (
+                <div key={i} className="ing-row">
+                  <span className={`status-dot ${row.matchedId ? 'green' : 'red'}`} />
+                  <div className="ing-edit-name-wrap">
+                    <input
+                      className="ing-edit-name"
+                      value={row.nameInput}
+                      onChange={e => !aiMode && handleNameChange(i, e.target.value)}
+                      onFocus={() => {
+                        if (aiMode) return
+                        const suggs = computeSuggestions(row.nameInput, pantryList)
+                        if (suggs.length > 0) { setSuggestions(prev => ({ ...prev, [i]: suggs })); setOpenDropdown(i) }
+                      }}
+                      onBlur={() => setTimeout(() => setOpenDropdown(null), 150)}
+                      placeholder="Search pantry…"
+                      readOnly={aiMode}
+                    />
+                    {!aiMode && openDropdown === i && (suggestions[i]?.length > 0 || row.nameInput.length >= 2) && (
+                      <div className="ing-dropdown">
+                        {(suggestions[i] ?? []).map(({ entry }) => (
+                          <div
+                            key={entry.id}
+                            className="ing-dropdown-item"
+                            onMouseDown={e => { e.preventDefault(); selectSuggestion(i, entry) }}
+                          >
+                            {entry.canonicalName}
+                          </div>
+                        ))}
+                        <div
+                          className="ing-dropdown-item ing-dropdown-add"
+                          onMouseDown={e => {
+                            e.preventDefault()
+                            setAddIngName(row.nameInput)
+                            setAddIngOpen(true)
+                            setOpenDropdown(null)
+                          }}
+                        >
+                          + Add new ingredient
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    className="ing-edit-qty"
+                    type="number"
+                    min="0"
+                    step="any"
+                    value={row.amount}
+                    onChange={e => updateRow(i, { amount: e.target.value })}
+                    placeholder="qty"
+                    readOnly={aiMode}
+                  />
+                  <input
+                    className="ing-edit-unit"
+                    value={row.unit}
+                    onChange={e => updateRow(i, { unit: e.target.value })}
+                    placeholder="unit"
+                    readOnly={aiMode}
+                  />
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+
+        {addIngOpen && (
+          <div style={{ position: 'absolute', inset: 0, zIndex: 60 }}>
+            <AddIngredientModal
+              isOpen
+              ingredientName={addIngName}
+              onAdd={(data) => {
+                onAddIngredient?.(
+                  { name: data.name, pkgValue: data.pkgValue, pkgUnit: data.pkgUnit,
+                    pkgPrice: data.pkgPrice, pkgMatch: data.pkgMatch,
+                    conversions: data.conversions, aliases: data.aliases },
+                  data.baseUnit
+                )
+                setAddIngOpen(false)
+              }}
+              onClose={() => setAddIngOpen(false)}
+            />
+          </div>
         )}
       </div>
 
-      {addIngOpen && (
-        <div style={{ position: 'absolute', inset: 0, zIndex: 60 }}>
-          <AddIngredientModal
-            isOpen
-            ingredientName={addIngName}
-            onAdd={(data) => {
-              onAddIngredient?.(
-                { name: data.name, pkgValue: data.pkgValue, pkgUnit: data.pkgUnit,
-                  pkgPrice: data.pkgPrice, pkgMatch: data.pkgMatch,
-                  conversions: data.conversions, aliases: data.aliases },
-                data.baseUnit
-              )
-              setAddIngOpen(false)
-            }}
-            onClose={() => setAddIngOpen(false)}
-          />
-        </div>
-      )}
     </div>
   )
 }

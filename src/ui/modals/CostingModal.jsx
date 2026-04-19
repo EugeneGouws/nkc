@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react'
-import UpdatePriceModal from './UpdatePriceModal.jsx'
 import './modal-base.css'
 import './CostingModal.css'
 
@@ -20,13 +19,11 @@ function dotClass(pantryItem) {
   return 'green'
 }
 
-export default function CostingModal({ recipe, pantry, layoutMode = 'wide', onSave, onClose }) {
-  const [selectedIds,    setSelectedIds]    = useState(new Set())
-  const [servings,       setServings]       = useState(recipe?.servings ?? 1)
-  const [markupPct,      setMarkupPct]      = useState(150)
-  const [packaging,      setPackaging]      = useState(20)
-  const [priceModalOpen, setPriceModalOpen] = useState(false)
-  const [priceModalIds,  setPriceModalIds]  = useState([])
+export default function CostingModal({ recipe, pantry, layoutMode = 'wide', onSearchPrices, onClose }) {
+  const [selectedIds, setSelectedIds] = useState(new Set())
+  const [servings,    setServings]    = useState(recipe?.servings ?? 1)
+  const [markupPct,   setMarkupPct]   = useState(150)
+  const [packaging,   setPackaging]   = useState(20)
 
   const pantryMap = useMemo(() => {
     const m = new Map()
@@ -67,11 +64,17 @@ export default function CostingModal({ recipe, pantry, layoutMode = 'wide', onSa
   }
 
   function handleUpdatePrices() {
-    setPriceModalIds([...selectedIds])
-    setPriceModalOpen(true)
+    onSearchPrices?.([...selectedIds])
+    setSelectedIds(new Set())
   }
 
-  const hasSelection = selectedIds.size > 0
+  const selectableIds = ingredientRows.map(r => r.ing.matchedIngredient).filter(Boolean)
+  const hasSelection  = selectedIds.size > 0
+  const allSelected   = selectableIds.length > 0 && selectableIds.every(id => selectedIds.has(id))
+
+  function handleSelectAll() {
+    setSelectedIds(allSelected ? new Set() : new Set(selectableIds))
+  }
 
   return (
     <div className={`costing-modal${layoutMode === 'narrow' ? ' narrow' : ''}`}>
@@ -84,6 +87,15 @@ export default function CostingModal({ recipe, pantry, layoutMode = 'wide', onSa
             <button className="ctrl-btn modal-close-x" onClick={onClose} aria-label="Close">✕</button>
           </div>
           <div className="panel-controls">
+            {selectableIds.length > 0 && (
+              <input
+                type="checkbox"
+                checked={allSelected}
+                ref={el => { if (el) el.indeterminate = hasSelection && !allSelected }}
+                onChange={handleSelectAll}
+                style={{ accentColor: 'var(--green-accent)', width: 13, height: 13, cursor: 'pointer', flexShrink: 0 }}
+              />
+            )}
             <button
               className="ctrl-btn"
               disabled={!hasSelection}
@@ -200,13 +212,6 @@ export default function CostingModal({ recipe, pantry, layoutMode = 'wide', onSa
           </div>
         </div>
 
-        <UpdatePriceModal
-          isOpen={priceModalOpen}
-          selectedIds={priceModalIds}
-          pantry={pantry}
-          onSave={onSave}
-          onClose={() => setPriceModalOpen(false)}
-        />
       </div>
 
     </div>

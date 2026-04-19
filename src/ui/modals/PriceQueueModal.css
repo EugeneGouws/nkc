@@ -1,0 +1,207 @@
+/* ── Outer wrapper — sits in normal document flow below the book ── */
+.price-queue-overlay {
+  display: flex;
+}
+
+/* ── Modal card ── */
+.price-queue-modal {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  max-height: 55vh;
+  overflow: hidden;
+}
+
+/* ── Shared column head ── */
+.price-queue-col-head {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--tx-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 7px 12px 6px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── LEFT column: queue list ── */
+.price-queue-left {
+  width: 190px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  min-height: 0;
+}
+
+.price-queue-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.price-queue-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--tx-secondary);
+}
+
+.price-queue-row.pq-active {
+  background: var(--import-hover);
+  color: var(--tx-primary);
+  font-weight: 600;
+}
+
+.price-queue-row.pq-searching {
+  background: var(--import-hover);
+  color: var(--tx-secondary);
+}
+
+.price-queue-row.pq-done {
+  color: var(--tx-muted);
+}
+
+.price-queue-row.pq-skipped {
+  color: var(--tx-muted);
+  font-style: italic;
+}
+
+.price-queue-row.pq-pending {
+  color: var(--tx-muted);
+}
+
+.price-queue-icon {
+  flex-shrink: 0;
+  width: 14px;
+  font-size: 10px;
+  text-align: center;
+  color: var(--green-accent);
+}
+
+.price-queue-row.pq-pending .price-queue-icon,
+.price-queue-row.pq-skipped .price-queue-icon {
+  color: var(--tx-muted);
+}
+
+.price-queue-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price-queue-all-done {
+  font-size: 11px;
+  color: var(--green-accent);
+  font-style: italic;
+  padding: 10px 12px;
+  margin: 0;
+}
+
+/* ── MIDDLE column: results ── */
+.price-queue-middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  min-height: 0;
+}
+
+.price-queue-results {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.price-queue-state-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  font-size: 12px;
+  color: var(--tx-secondary);
+}
+
+.price-queue-error {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+}
+
+.price-queue-error-msg {
+  font-size: 12px;
+  color: #c0392b;
+  margin: 0;
+}
+
+/* ── Result rows (reused from old UpdatePriceModal) ── */
+.price-result-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.price-result-row:hover {
+  background: var(--import-hover);
+}
+
+.price-result-name {
+  flex: 1;
+  color: var(--tx-primary);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price-result-pkg {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--tx-secondary);
+  white-space: nowrap;
+}
+
+.price-result-select {
+  flex-shrink: 0;
+}
+
+/* ── RIGHT column: controls ── */
+.price-queue-right {
+  width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+}
+
+.price-queue-progress {
+  font-size: 10px;
+  color: var(--tx-muted);
+  margin-top: auto;
+}
+
+/* ── Narrow mode: compress columns ── */
+.narrow .price-queue-left {
+  width: 120px;
+}
+
+.narrow .price-queue-right {
+  width: 60px;
+}

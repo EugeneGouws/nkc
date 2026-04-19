@@ -5,8 +5,9 @@ import useAppState from './hooks/useAppState.js'
 import ImportBar from './ui/ImportBar.jsx'
 import MyPantry from './ui/MyPantry.jsx'
 import MyRecipes from './ui/MyRecipes.jsx'
+import WelcomeModal from './ui/modals/WelcomeModal.jsx'
 import AddIngredientModal from './ui/modals/AddIngredientModal.jsx'
-import UpdatePriceModal from './ui/modals/UpdatePriceModal.jsx'
+import PriceQueueModal from './ui/modals/PriceQueueModal.jsx'
 import ImportRecipeModal from './ui/modals/ImportRecipeModal.jsx'
 import CostingModal from './ui/modals/CostingModal.jsx'
 import './styles/tokens.css'
@@ -18,11 +19,13 @@ import './styles/panel-shared.css'
 export default function App() {
   const { pantry, recipes, addRecipeToState, editRecipeInState, updateItemPrice, addIngredient, updateIngredient, toggleFavourite, deleteRecipe } = useAppState()
 
+  const [pricingIds, setPricingIds]             = useState([])
   const [favFilterOn, setFavFilterOn]           = useState(false)
-  const [collectionFilter, setCollectionFilter] = useState('')
-  const [activeTab, setActiveTab]               = useState('pantry')
+  const [collectionFilters, setCollectionFilters] = useState([])
+  const [selectedRecipeId, setSelectedRecipeId] = useState(null)
   const [layoutMode, setLayoutMode]             = useState('wide')
   const [modalState, setModalState]             = useState({ open: false, type: null, context: null })
+  const [showWelcome, setShowWelcome]           = useState(() => !localStorage.getItem('kitchen_welcomed'))
 
   const appRef = useRef(null)
 
@@ -37,20 +40,48 @@ export default function App() {
     return () => ro.disconnect()
   }, [])
 
+  const processingIds = new Set(pricingIds)
+
+  function openPricingSession(newIds) {
+    setPricingIds(prev => {
+      if (prev.length === 0) return newIds
+      const existing = new Set(prev)
+      return [...prev, ...newIds.filter(id => !existing.has(id))]
+    })
+  }
+
+  function closePricingSession() {
+    setPricingIds([])
+  }
+
+  function dismissWelcome() {
+    localStorage.setItem('kitchen_welcomed', '1')
+    setShowWelcome(false)
+  }
+
   const visibleRecipes = useMemo(() =>
-    recipes.filter(r => (!favFilterOn || r.favorite) && (!collectionFilter || r.collection === collectionFilter)),
-    [recipes, favFilterOn, collectionFilter]
+    recipes.filter(r => {
+      if (favFilterOn && !r.favorite) return false
+      if (!collectionFilters.length) return true
+      const tags = r.collection ? r.collection.split(',').map(t => t.trim()).filter(Boolean) : []
+      return collectionFilters.some(f => tags.includes(f))
+    }),
+    [recipes, favFilterOn, collectionFilters]
   )
 
   const visiblePantryItems = useMemo(() => {
-    const ids = new Set(visibleRecipes.flatMap(r => r.ingredients.map(i => i.matchedIngredient)))
+    const selected = selectedRecipeId ? recipes.find(r => r.id === selectedRecipeId) : null
+    if (!selected) return []
+    const ids = new Set(selected.ingredients.map(i => i.matchedIngredient).filter(Boolean))
     return pantry
       .filter(p => ids.has(p.id))
       .sort((a, b) => a.canonicalName.localeCompare(b.canonicalName))
-  }, [pantry, visibleRecipes])
+  }, [pantry, recipes, selectedRecipeId])
 
   const collections = useMemo(() =>
-    [...new Set(recipes.map(r => r.collection).filter(Boolean))].sort(),
+    [...new Set(
+      recipes.flatMap(r => r.collection ? r.collection.split(',').map(t => t.trim()).filter(Boolean) : [])
+    )].sort(),
     [recipes]
   )
 
@@ -62,8 +93,6 @@ export default function App() {
     setModalState({ open: false, type: null, context: null })
   }
 
-  // Renders the active modal into the appropriate wrapper div.
-  // mode='wide': left/right half wrappers; mode='narrow': full-panel overlay.
   function renderModals(mode) {
     if (!modalState.open) return null
 
@@ -88,17 +117,7 @@ export default function App() {
       />
     )
 
-    if (modalState.type === 'updatePrices') return wrap('right',
-      <UpdatePriceModal
-        isOpen
-        selectedIds={modalState.context ?? []}
-        pantry={visiblePantryItems}
-        onSave={(id, data) => updateItemPrice(id, data)}
-        onClose={closeModal}
-      />
-    )
-
-    if (modalState.type === 'import') return wrap('right',
+    if (modalState.type === 'import') return (
       <ImportRecipeModal
         isOpen
         recipe={modalState.context}
@@ -110,7 +129,7 @@ export default function App() {
       />
     )
 
-    if (modalState.type === 'editRecipe') return wrap('right',
+    if (modalState.type === 'editRecipe') return (
       <ImportRecipeModal
         isOpen
         mode="edit"
@@ -128,7 +147,7 @@ export default function App() {
         recipe={modalState.context}
         pantry={pantry}
         layoutMode={mode}
-        onSave={(id, data) => updateItemPrice(id, data)}
+        onSearchPrices={openPricingSession}
         onClose={closeModal}
       />
     )
@@ -139,8 +158,9 @@ export default function App() {
   const pantryPanel = (
     <MyPantry
       items={visiblePantryItems}
+      processingIds={processingIds}
       onEditIngredient={item => openModal('editIngredient', item)}
-      onUpdatePrices={ids => openModal('updatePrices', ids)}
+      onSearchPrices={openPricingSession}
     />
   )
 
@@ -148,13 +168,15 @@ export default function App() {
     <MyRecipes
       recipes={visibleRecipes}
       collections={collections}
-      pantry={pantry} //used for recipe status and totals
+      pantry={pantry}
+      expandedId={selectedRecipeId}
+      onExpandRecipe={setSelectedRecipeId}
       onToggleFavourite={toggleFavourite}
       onOpenCosting={recipe => openModal('openCosting', recipe)}
       onEditRecipe={recipe => openModal('editRecipe', recipe)}
       onDeleteRecipe={deleteRecipe}
       onFavFilterChange={setFavFilterOn}
-      onCollectionChange={setCollectionFilter}
+      onCollectionChange={setCollectionFilters}
     />
   )
 
@@ -163,20 +185,15 @@ export default function App() {
 
       <header className="app-header nkc-card">
         <span className="app-title">Kitchen Costings</span>
-        <span className="app-brand">Recipe costing tool</span>
+        <button className="ctrl-btn" onClick={() => setShowWelcome(true)}>Info</button>
       </header>
-
-      <ImportBar
-        pantry={pantry}
-        onImport={recipe => openModal('import', recipe)}
-      />
 
       {layoutMode === 'wide' ? (
         <div className="book-wrap">
           <div className="nkc-panels">
-            {pantryPanel}
-            <div className="book-spine" aria-hidden="true" />
             {recipesPanel}
+            <div className="book-spine" aria-hidden="true" />
+            {pantryPanel}
             {renderModals('wide')}
             <svg
               aria-hidden="true"
@@ -199,6 +216,7 @@ export default function App() {
               <path d="M0,0 C4,0 9,3.5 12.5,5 C16,3.5 21,0 25,0 Z" fill="url(#spine-bottom-grad)" />
             </svg>
           </div>
+          {showWelcome && <WelcomeModal onClose={dismissWelcome} />}
           <div className="book-page-stack" aria-hidden="true">
             <svg
               aria-hidden="true"
@@ -217,26 +235,28 @@ export default function App() {
         </div>
       ) : (
         <div className="book-wrap">
-          <div className="panel-tab-bar">
-            <button
-              className={`tab-btn${activeTab === 'pantry' ? ' active' : ''}`}
-              onClick={() => setActiveTab('pantry')}
-            >
-              My Pantry
-            </button>
-            <button
-              className={`tab-btn${activeTab === 'recipes' ? ' active' : ''}`}
-              onClick={() => setActiveTab('recipes')}
-            >
-              My Recipes
-            </button>
-          </div>
-          <div className="narrow-panel-wrap">
-            {activeTab === 'pantry' ? pantryPanel : recipesPanel}
+          <div className="narrow-stack">
+            {recipesPanel}
+            {pantryPanel}
             {renderModals('narrow')}
           </div>
+          {showWelcome && <WelcomeModal onClose={dismissWelcome} />}
         </div>
       )}
+
+      {pricingIds.length > 0 && (
+        <PriceQueueModal
+          sessionIds={pricingIds}
+          pantry={pantry}
+          onSave={(id, data) => updateItemPrice(id, data)}
+          onClose={closePricingSession}
+        />
+      )}
+
+      <ImportBar
+        pantry={pantry}
+        onImport={recipe => openModal('import', recipe)}
+      />
 
     </div>
   )
