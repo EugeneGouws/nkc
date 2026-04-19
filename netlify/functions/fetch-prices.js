@@ -48,7 +48,7 @@ exports.handler = async (event) => {
     console.log(`[Netlify] API key set: ${!!apiKey}`);
 
     const resp = await fetch(
-      `https://api.apify.com/v2/acts/tXYgrsQcGx4ReKqdW/run-sync-get-dataset-items?token=${apiKey}`,
+      `https://api.apify.com/v2/acts/tXYgrsQcGx4ReKqdW/run-sync-get-dataset-items?token=${apiKey}&timeout=20&memory=256`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

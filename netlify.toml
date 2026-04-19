@@ -5,6 +5,9 @@
 [functions]
   directory = "netlify/functions"
 
+  [functions.fetch-prices]
+    timeout = 26
+
 # Local dev: `netlify dev` starts Vite on 5173, proxies through 8888
 # Functions available at localhost:8888/.netlify/functions/<name>
 # /api/* redirects below work automatically through the proxy

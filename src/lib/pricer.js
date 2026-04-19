@@ -165,7 +165,13 @@ export async function fetchPriceOptions(pantryItem) {
     const errorText = await resp.text();
     console.error(`%c[Apify] ERROR ${resp.status}: ${resp.statusText}`, 'color: #e74c3c; font-weight: bold');
     console.error('[Apify] Error body:', errorText);
-    throw new Error(`Checkers API: ${resp.status} ${resp.statusText}`);
+    let errorMsg = `Checkers API: ${resp.status}`;
+    try {
+      const errJson = JSON.parse(errorText);
+      if (errJson.error === 'usage_exceeded') errorMsg = 'Apify usage limit reached. Try again later.';
+      else if (errJson.message) errorMsg = errJson.message;
+    } catch {}
+    throw new Error(errorMsg);
   }
 
   let products;
