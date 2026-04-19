@@ -10,6 +10,25 @@ Don't halucinate numbers or units. keep to the origional units
 
 Ingredient: ${rawLine}`;
 
+// Prompt used by AIFillIngredient — fills pantry metadata for a new ingredient.
+const FILL_PROMPT = (name) =>
+  `You are a baking ingredient database assistant. Given the ingredient name below, return metadata for a South African home baker's pantry.
+
+Rules:
+- BASE_UNIT must be exactly one of: g  ml  each
+  Use g for dry ingredients (flour, sugar, butter, cocoa, etc.)
+  Use ml for liquids (milk, oil, water, vanilla, etc.)
+  Use each for countable items (eggs, apples, bananas, etc.)
+- ALIASES: comma-separated common alternative names (lowercase). Include abbreviations and Afrikaans names where relevant.
+- CONVERSIONS: volume-to-mass conversions as key:value pairs (e.g. cup:120, tbsp:8, tsp:2.5). Only include if the ingredient is measured by volume in recipes. Use "none" if not applicable.
+
+Return EXACTLY three lines, no extra text:
+BASE_UNIT: <g|ml|each>
+ALIASES: <comma-separated names>
+CONVERSIONS: <key:value pairs or none>
+
+Ingredient: ${name}`;
+
 // Meta-suggestion prompt: pick a collection (prefer existing) and a servings count.
 // Returns strict 2-line format so we can parse without an LLM JSON gamble.
 const META_PROMPT = (title, ingredientLines, knownCollections) =>
@@ -305,6 +324,69 @@ export async function AIMatchIngredient(recipe, pantry) {
   resolved.forEach(({ i, updated }) => { mergedIngredients[i] = updated; });
 
   return { ...recipe, ingredients: mergedIngredients };
+}
+
+/**
+ * Asks the AI to suggest pantry metadata for a new ingredient (AddIngredientModal AI Check).
+ * Returns baseUnit, aliases (comma string), conversions (comma string) for the modal fields.
+ *
+ * @param {string} name — ingredient canonical name as typed by user
+ * @returns {Promise<{ baseUnit: string, aliases: string, conversions: string }>}
+ */
+export async function AIFillIngredient(name) {
+  const empty = { baseUnit: '', aliases: '', conversions: '' };
+  if (!name?.trim()) return empty;
+
+  const backend = await detectAIBackend();
+  if (!backend) return empty;
+
+  if (backend === 'gemini-nano' && !aiWarmupDone) {
+    await warmupAI(backend);
+  }
+
+  const promptText = FILL_PROMPT(name.trim());
+  let raw;
+
+  try {
+    if (backend === 'gemini-nano') {
+      console.log(`[AI] AIFillIngredient — prompt for: "${name}"`);
+      const langModel = getLangModelAPI();
+      const session = await langModel.create();
+      raw = await Promise.race([
+        session.prompt(promptText),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), AI_TIMEOUT_MS)),
+      ]);
+      session.destroy();
+    } else if (backend === 'ollama') {
+      console.log(`[AI] AIFillIngredient (Ollama) — prompt for: "${name}"`);
+      const signal = AbortSignal.timeout(AI_TIMEOUT_MS);
+      const res = await fetch(OLLAMA_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: OLLAMA_MODEL, prompt: promptText, stream: false }),
+        signal,
+      });
+      const json = await res.json();
+      raw = json.response;
+    }
+  } catch (err) {
+    console.error('[AI] AIFillIngredient failed:', err.message);
+    return empty;
+  }
+
+  const text = (raw || '').trim();
+  console.log('[AI] AIFillIngredient — response:', text);
+
+  const unitMatch  = text.match(/BASE_UNIT:\s*(g|ml|each)/i);
+  const aliasMatch = text.match(/ALIASES:\s*(.+?)(?:\n|$)/i);
+  const convMatch  = text.match(/CONVERSIONS:\s*(.+?)(?:\n|$)/i);
+
+  const baseUnit   = unitMatch?.[1]?.toLowerCase().trim() ?? '';
+  const aliases    = aliasMatch?.[1]?.trim() ?? '';
+  const rawConv    = convMatch?.[1]?.trim() ?? '';
+  const conversions = rawConv.toLowerCase() === 'none' ? '' : rawConv;
+
+  return { baseUnit, aliases, conversions };
 }
 
 /**

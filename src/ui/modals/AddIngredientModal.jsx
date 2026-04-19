@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { AIFillIngredient } from '../../lib/index.js'
 import './modal-base.css'
 import './AddIngredientModal.css'
 
@@ -12,6 +13,7 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
   const [conversions, setConversions] = useState('')
   const [aliases,     setAliases]     = useState('')
   const [aiMode,      setAiMode]      = useState(false)
+  const [aiLoading,   setAiLoading]   = useState(false)
 
   useEffect(() => {
     if (!isOpen) {
@@ -54,6 +56,17 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
     onAdd({ name: name.trim(), baseUnit, pkgValue, pkgUnit, pkgPrice, pkgMatch, conversions, aliases })
   }
 
+  async function handleAiCheck() {
+    setAiMode(true)
+    setAiLoading(true)
+    const result = await AIFillIngredient(name)
+    if (result.baseUnit)    setBaseUnit(result.baseUnit)
+    if (result.aliases)     setAliases(result.aliases)
+    if (result.conversions) setConversions(result.conversions)
+    setAiLoading(false)
+    setAiMode(false)
+  }
+
   function formatPrice(val) {
     const n = parseFloat(val)
     return isNaN(n) ? '' : n.toFixed(2)
@@ -74,9 +87,9 @@ export default function AddIngredientModal({ isOpen, item, ingredientName, onAdd
           >
             {item ? 'Save Changes' : 'Add Ingredient'}
           </button>
-          {aiMode
-            ? <button className="ctrl-btn" onClick={() => setAiMode(false)}>Cancel</button>
-            : <button className="ctrl-btn" onClick={() => setAiMode(true)}>AI Check</button>
+          {aiLoading
+            ? <button className="ctrl-btn" disabled>Thinking…</button>
+            : <button className="ctrl-btn" onClick={handleAiCheck} disabled={!name.trim()}>AI Check</button>
           }
         </div>
       </div>
