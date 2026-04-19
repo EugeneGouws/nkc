@@ -238,11 +238,21 @@
   flex-shrink: 0;
 }
 
-/* ── Confirm buttons ── */
-.ing-name--guess { font-size: 12px; flex: 1; }
-
-.ing-confirm-btn {
-  padding: 2px 8px !important;
+/* ── Row delete button ── */
+.ing-row-delete {
+  padding: 0 5px !important;
   font-size: 10px !important;
   flex-shrink: 0;
+  opacity: 0.45;
+  order: -1;
+}
+
+.ing-row-delete:hover {
+  opacity: 1;
+}
+
+/* ── Add ingredient row ── */
+.ing-row--add {
+  border-bottom: none;
+  padding-top: 10px;
 }

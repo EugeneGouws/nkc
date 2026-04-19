@@ -94,6 +94,14 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
     setEditRows(prev => prev.map((r, idx) => idx === i ? { ...r, ...changes } : r))
   }
 
+  function handleAddRow() {
+    setEditRows(prev => [...prev, { nameInput: '', matchedId: null, amount: '', unit: '' }])
+  }
+
+  function handleDeleteRow(i) {
+    setEditRows(prev => prev.filter((_, idx) => idx !== i))
+  }
+
   function handleNameChange(i, value) {
     const exact = pantryByName.get(value.toLowerCase())
     updateRow(i, { nameInput: value, matchedId: exact?.id ?? null })
@@ -111,10 +119,11 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
 
   function handleImport() {
     if (!recipe) return
-    const updatedIngredients = ingredients.map((ing, i) => {
-      const row = editRows[i]
+    const updatedIngredients = editRows.map((row, i) => {
+      const orig = ingredients[i] ?? {}
       return {
-        ...ing,
+        ...orig,
+        id:                orig.id ?? i,
         name:              row.nameInput,
         matchedIngredient: row.matchedId,
         confident:         !!row.matchedId,
@@ -194,7 +203,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
   const canImport   = recipe != null && editRows.every(r => r.matchedId)
   const matchedCount = editRows.filter(r => r.matchedId).length
   const infoText     = recipe
-    ? `${matchedCount} / ${ingredients.length} matched`
+    ? `${matchedCount} / ${editRows.length} matched`
     : 'Awaiting import…'
 
   return (
@@ -307,6 +316,14 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
               {editRows.map((row, i) => (
                 <div key={i} className="ing-row">
                   <span className={`status-dot ${row.matchedId ? 'green' : 'red'}`} />
+                  {!aiMode && (
+                    <button
+                      className="ctrl-btn ing-row-delete"
+                      onClick={() => handleDeleteRow(i)}
+                      aria-label="Remove ingredient"
+                      title="Remove"
+                    >✕</button>
+                  )}
                   <div className="ing-edit-name-wrap">
                     <input
                       className="ing-edit-name"
@@ -365,6 +382,11 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
                   />
                 </div>
               ))}
+              {!aiMode && (
+                <div className="ing-row ing-row--add">
+                  <button className="ctrl-btn" onClick={handleAddRow}>+ Add ingredient</button>
+                </div>
+              )}
             </>
           )}
         </div>

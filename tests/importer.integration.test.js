@@ -49,67 +49,110 @@ async function importRecipeSummaries() {
 }
 
 describe('importer integration across recipeFiles txt/docx fixtures', () => {
-  it('returns the recipe summaries with title, servings, confidence, and parsed/matched amounts', async () => {
-    await expect(importRecipeSummaries()).resolves.toEqual([
-      {
-        source: 'Chicken soup.txt',
-        title: 'water to cover',
-        servings: 10,
-        ingredients: [
-          { name: 'chicken', amount: 1, unit: 'each', matchedIngredient: null, confident: false, convertedAmount: 1, convertedUnit: 'each' },
-          { name: 'carrots', amount: 4, unit: 'each', matchedIngredient: 'carrots', confident: false, convertedAmount: 4, convertedUnit: 'each' },
-          { name: 'stalks celery', amount: 4, unit: 'each', matchedIngredient: null, confident: false, convertedAmount: 4, convertedUnit: 'each' },
-          { name: 'large onion', amount: 1, unit: 'each', matchedIngredient: 'eggs', confident: false, convertedAmount: 1, convertedUnit: 'each' },
-          { name: 'chicken bouillon granules', amount: 1, unit: 'tsp', matchedIngredient: null, confident: false, convertedAmount: 1, convertedUnit: 'tsp' },
-        ],
-      },
-      {
-        source: 'Crazy Easy Cupcakes.docx',
-        title: 'Crazy Easy Cupcakes',
-        servings: 0,
-        ingredients: [
-          { name: 'sugar', amount: 1, unit: 'cup', matchedIngredient: 'white-sugar', confident: false, convertedAmount: 200, convertedUnit: 'g' },
-          { name: 'margarine or butter', amount: 1, unit: 'cup', matchedIngredient: 'butter', confident: false, convertedAmount: 227, convertedUnit: 'g' },
-          { name: 'extra large eggs', amount: 4, unit: 'each', matchedIngredient: 'eggs', confident: true, convertedAmount: 4, convertedUnit: 'each' },
-          { name: 'cake flour', amount: 2, unit: 'cup', matchedIngredient: 'cake-flour', confident: false, convertedAmount: 240, convertedUnit: 'g' },
-          { name: 'baking powder', amount: 1, unit: 'tsp', matchedIngredient: 'baking-powder', confident: true, convertedAmount: 1, convertedUnit: 'ml' },
-          { name: 'salt', amount: 0.25, unit: 'tsp', matchedIngredient: 'salt', confident: false, convertedAmount: 1.5, convertedUnit: 'g' },
-          { name: 'milk', amount: 2, unit: 'tbsp', matchedIngredient: 'milk', confident: true, convertedAmount: 30, convertedUnit: 'ml' },
-          { name: 'vanilla', amount: 1, unit: 'tsp', matchedIngredient: 'vanilla-extract', confident: true, convertedAmount: 1, convertedUnit: 'ml' },
-        ],
-      },
-      {
-        source: 'Homemade Oreos.docx',
-        title: 'Homemade Oreos',
-        servings: 0,
-        ingredients: [
-          { name: 'baking soda', amount: 1, unit: 'tsp', matchedIngredient: 'bicarbonate-of-soda', confident: true, convertedAmount: 1, convertedUnit: 'ml' },
-          { name: 'salt', amount: 0.125, unit: 'tsp', matchedIngredient: 'salt', confident: false, convertedAmount: 0.75, convertedUnit: 'g' },
-          { name: 'unsalted butter', amount: 0.5, unit: 'cup', matchedIngredient: 'butter', confident: false, convertedAmount: 113.5, convertedUnit: 'g' },
-          { name: 'granulated sugar', amount: 0.75, unit: 'cup', matchedIngredient: 'white-sugar', confident: false, convertedAmount: 150, convertedUnit: 'g' },
-          { name: 'packed light brown sugar', amount: 0.25, unit: 'cup', matchedIngredient: 'brown-sugar', confident: false, convertedAmount: 55, convertedUnit: 'g' },
-          { name: 'large egg', amount: 1, unit: 'each', matchedIngredient: 'eggs', confident: true, convertedAmount: 1, convertedUnit: 'each' },
-          { name: 'pure vanilla extract', amount: 1, unit: 'tsp', matchedIngredient: 'vanilla-extract', confident: false, convertedAmount: 1, convertedUnit: 'ml' },
-          { name: 'unsalted butter', amount: 0.25, unit: 'cup', matchedIngredient: 'butter', confident: false, convertedAmount: 56.75, convertedUnit: 'g' },
-          { name: 'vegetable shortening', amount: 0.25, unit: 'cup', matchedIngredient: 'vegetable-shortening', confident: true, convertedAmount: 51.25, convertedUnit: 'ml' },
-          { name: 'pure vanilla extract', amount: 1, unit: 'tsp', matchedIngredient: 'vanilla-extract', confident: false, convertedAmount: 1, convertedUnit: 'ml' },
-        ],
-      },
-      {
-        source: 'Soft and chewy cookies.txt',
-        title: 'Soetkoekies',
-        servings: 0,
-        ingredients: [
-          { name: 'botter of rama of stork bake', amount: 115, unit: 'g', matchedIngredient: null, confident: false, convertedAmount: 115, convertedUnit: 'g' },
-          { name: 'wit suiker', amount: 200, unit: 'g', matchedIngredient: null, confident: false, convertedAmount: 200, convertedUnit: 'g' },
-          { name: 'eier', amount: 1, unit: 'each', matchedIngredient: null, confident: false, convertedAmount: 1, convertedUnit: 'each' },
-          { name: 'melk', amount: 30, unit: 'ml', matchedIngredient: 'condensed-milk', confident: false, convertedAmount: 30, convertedUnit: 'ml' },
-          { name: 'geursel: karamel', amount: 5, unit: 'ml', matchedIngredient: 'caramel-treat', confident: false, convertedAmount: 5, convertedUnit: 'ml' },
-          { name: 'koekmeel', amount: 350, unit: 'g', matchedIngredient: 'cake-flour', confident: true, convertedAmount: 350, convertedUnit: 'g' },
-          { name: 'bakpoeier', amount: 10, unit: 'ml', matchedIngredient: null, confident: false, convertedAmount: 10, convertedUnit: 'ml' },
-          { name: 'sout', amount: 2, unit: 'ml', matchedIngredient: null, confident: false, convertedAmount: 2, convertedUnit: 'ml' },
-        ],
-      },
+  it('returns summaries for the current txt/docx fixture set', async () => {
+    const summaries = await importRecipeSummaries();
+
+    expect(summaries.map((recipe) => recipe.source)).toEqual([
+      'Chicken and Leek Casserole.docx',
+      'Chicken soup.txt',
+      'Crazy Easy Cupcakes.docx',
+      'Homemade Oreos.docx',
+      'ONION SOUP.docx',
+      'Ottolenghi’s Ricotta and Oregano.docx',
+      'Slow Braised Red Wine Oxtail.docx',
+      'Soft and chewy cookies.txt',
+      'Traditional South African Pickled Fish.docx',
     ]);
+
+    const bySource = Object.fromEntries(summaries.map((recipe) => [recipe.source, recipe]));
+
+    expect(bySource['Chicken and Leek Casserole.docx']).toMatchObject({
+      title: 'Chicken and Leek Casserole',
+      servings: 4,
+    });
+    expect(bySource['Chicken and Leek Casserole.docx'].ingredients).toHaveLength(7);
+    expect(bySource['Chicken and Leek Casserole.docx'].ingredients[0]).toMatchObject({
+      name: 'chicken thighs',
+      matchedIngredient: 'chicken-stock',
+      confident: false,
+    });
+
+    expect(bySource['Chicken soup.txt']).toMatchObject({
+      title: 'water to cover',
+      servings: 10,
+    });
+    expect(bySource['Chicken soup.txt'].ingredients).toHaveLength(5);
+
+    expect(bySource['Crazy Easy Cupcakes.docx']).toMatchObject({
+      title: 'Crazy Easy Cupcakes',
+      servings: 0,
+    });
+    expect(bySource['Crazy Easy Cupcakes.docx'].ingredients).toHaveLength(8);
+    expect(bySource['Crazy Easy Cupcakes.docx'].ingredients[0]).toMatchObject({
+      name: 'sugar',
+      matchedIngredient: 'white-sugar',
+      confident: true,
+      convertedAmount: 200,
+      convertedUnit: 'g',
+    });
+
+    expect(bySource['Homemade Oreos.docx']).toMatchObject({
+      title: 'Homemade Oreos',
+      servings: 0,
+    });
+    expect(bySource['Homemade Oreos.docx'].ingredients).toHaveLength(10);
+    expect(bySource['Homemade Oreos.docx'].ingredients[0]).toMatchObject({
+      name: 'baking soda',
+      matchedIngredient: 'bicarbonate-of-soda',
+      confident: true,
+      convertedAmount: 5,
+      convertedUnit: 'ml',
+    });
+
+    expect(bySource['ONION SOUP.docx']).toMatchObject({
+      title: 'ONION SOUP',
+      servings: 0,
+    });
+    expect(bySource['ONION SOUP.docx'].ingredients).toHaveLength(7);
+    expect(bySource['ONION SOUP.docx'].ingredients[0]).toMatchObject({
+      name: '/ 3.5oz unsalted butter',
+      matchedIngredient: 'butter',
+      confident: false,
+    });
+
+    expect(bySource['Ottolenghi’s Ricotta and Oregano.docx']).toMatchObject({
+      title: 'Top of Form',
+      servings: 0,
+    });
+    expect(bySource['Ottolenghi’s Ricotta and Oregano.docx'].ingredients).toHaveLength(12);
+
+    expect(bySource['Slow Braised Red Wine Oxtail.docx']).toMatchObject({
+      title: 'Slow Braised Red Wine Oxtail',
+      servings: 6,
+    });
+    expect(bySource['Slow Braised Red Wine Oxtail.docx'].ingredients).toHaveLength(1);
+    expect(bySource['Slow Braised Red Wine Oxtail.docx'].ingredients[0]).toMatchObject({
+      name: 'olive oil1.8 kg oxtail',
+      matchedIngredient: 'olive-oil',
+    });
+
+    expect(bySource['Soft and chewy cookies.txt']).toMatchObject({
+      title: 'Soetkoekies',
+      servings: 0,
+    });
+    expect(bySource['Soft and chewy cookies.txt'].ingredients).toHaveLength(8);
+
+    expect(bySource['Traditional South African Pickled Fish.docx']).toMatchObject({
+      title: 'Traditional South African Pickled Fish',
+      servings: 6,
+    });
+    expect(bySource['Traditional South African Pickled Fish.docx'].ingredients).toHaveLength(13);
+    expect(bySource['Traditional South African Pickled Fish.docx'].ingredients.at(-1)).toMatchObject({
+      name: 'white wine vinegar',
+      matchedIngredient: 'white-vinegar',
+      confident: true,
+      convertedAmount: 375,
+      convertedUnit: 'ml',
+    });
   });
 });

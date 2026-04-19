@@ -702,4 +702,29 @@ describe('parseRecipeText — servings detection', () => {
     expect(r.title).toBe('');
     expect(r.ingredients).toHaveLength(2);
   });
+
+  it('currently uses "water to cover" as the title in this import shape', () => {
+    const text = 'Ingredients\n1 cup chicken\nwater to cover\nMethod\nBoil';
+    const r = parseRecipeText(text);
+    expect(r.title).toBe('water to cover');
+  });
+
+  it('currently keeps "Top of Form" as the first title candidate', () => {
+    const text = 'Top of Form\nBottom of Form\nActual Title\n1 cup flour';
+    const r = parseRecipeText(text);
+    expect(r.title).toBe('Top of Form');
+  });
+});
+
+describe('parseIngredientLine — regression cases', () => {
+  it('currently preserves the slash-delimited alternative unit text: "100g / 3.5oz butter"', () => {
+    const r = parseIngredientLine('100g / 3.5oz butter');
+    expect(r.amount).toBe(100);
+    expect(r.unit).toBe('g');
+    expect(r.name).toBe('/ 3.5oz butter');
+  });
+
+  it('strips "Top of Form" noise', () => {
+    expect(parseIngredientLine('Top of Form')).toBeNull();
+  });
 });

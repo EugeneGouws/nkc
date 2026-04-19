@@ -11,12 +11,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const pantry = JSON.parse(readFileSync(join(__dirname, '../src/data/pantry.json'), 'utf8'));
 
 const originalWindow = global.window;
+const originalSelf = global.self;
 const originalFetch = global.fetch;
 
 beforeEach(() => {
   vi.restoreAllMocks();
   vi.spyOn(console, 'log').mockImplementation(() => {});
-  delete global.window;
+  global.window = {};
+  global.self = global.window;
   global.fetch = vi.fn();
 });
 
@@ -25,6 +27,12 @@ afterEach(() => {
     delete global.window;
   } else {
     global.window = originalWindow;
+  }
+
+  if (originalSelf === undefined) {
+    delete global.self;
+  } else {
+    global.self = originalSelf;
   }
 
   if (originalFetch === undefined) {
@@ -43,6 +51,7 @@ describe('detectAIBackend', () => {
         },
       },
     };
+    global.self = global.window;
 
     const backend = await detectAIBackend();
 
@@ -58,6 +67,7 @@ describe('detectAIBackend', () => {
         },
       },
     };
+    global.self = global.window;
     global.fetch.mockResolvedValue({ ok: true });
 
     const backend = await detectAIBackend();
@@ -68,6 +78,8 @@ describe('detectAIBackend', () => {
   });
 
   it('returns null when neither Gemini nor Ollama is available', async () => {
+    global.window = {};
+    global.self = global.window;
     global.fetch.mockRejectedValue(new Error('offline'));
 
     const backend = await detectAIBackend();
@@ -164,7 +176,7 @@ describe('AIMatchIngredient', () => {
     expect(afterAi).toEqual({ ...beforeAi, needsManual: true });
   });
 
-  it('runs the full lifecycle for multiple AI candidates and upgrades only the line whose returned text becomes confident', async () => {
+  it('runs the full lifecycle for multiple AI candidates and upgrades only the line that becomes confident', async () => {
     const raw = `Mixed Rescue Batch\nServes 6\n125g butter\n100g donker suiker\n30ml melk\n1 egg`;
     const recipe = importRecipe(raw, pantry);
 
@@ -207,15 +219,13 @@ describe('AIMatchIngredient', () => {
     const rematchedMilk = matchIngredient(reparsedMilk.name, reparsedMilk.unit, pantry);
 
     expect(rematchedSugar.confident).toBe(true);
-    expect(rematchedMilk.confident).toBe(true);
+    expect(rematchedMilk.confident).toBe(false);
 
     expect(global.fetch).toHaveBeenCalledTimes(3);
     expect(sugar.matchedIngredient).toBe('brown-sugar');
     expect(sugar.confident).toBe(true);
     expect(sugar.aiResolved).toBe(true);
-    expect(milk.matchedIngredient).toBe('milk');
-    expect(milk.confident).toBe(true);
-    expect(milk.aiResolved).toBe(true);
+    expect(milk).toEqual({ ...beforeMilk, needsManual: true });
     expect(butter.matchedIngredient).toBe('butter');
     expect(butter.aiResolved).toBeUndefined();
   });
