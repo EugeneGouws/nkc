@@ -2,20 +2,22 @@
 node_modules/
 .pnpm-store/
 
-# Build output (Netlify builds this from source)
+# Build output
 dist/
 dist-ssr/
 
-# Environment variables — add APIFY_KEY to Netlify dashboard instead
+# Environment variables
 .env
 .env.local
 .env.*.local
 
 # Local-only project folders
+recipeParser/
 docs/
 legacy/
 CLAUDE.md
 .claude/
+tests/
 
 # Logs
 *.log
