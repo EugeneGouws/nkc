@@ -153,7 +153,7 @@ export async function fetchPriceOptions(pantryItem) {
   console.log(`%c[Apify] Searching Checkers for: "${searchTerm}"`, 'color: #3498db; font-weight: bold');
   console.log('[Apify] Item details:', { canonicalName: pantryItem.canonicalName, baseUnit: pantryItem.baseUnit, searchHints: pantryItem.searchHints, priceOptionCount: pantryItem.priceOptionCount });
 
-  const resp = await fetch('/api/fetch-prices', {
+  const resp = await fetch('https://nkc-fetch-prices-production.egouws-music.workers.dev', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ pantryItem }),
