@@ -10,6 +10,7 @@ import AddIngredientModal from './ui/modals/AddIngredientModal.jsx'
 import PriceQueueModal from './ui/modals/PriceQueueModal.jsx'
 import ImportRecipeModal from './ui/modals/ImportRecipeModal.jsx'
 import CostingModal from './ui/modals/CostingModal.jsx'
+import XlsxImportQueue from './ui/XlsxImportQueue.jsx'
 import './styles/tokens.css'
 import './styles/base.css'
 import './styles/app-shell.css'
@@ -142,6 +143,18 @@ export default function App() {
       />
     )
 
+    if (modalState.type === 'xlsxQueue') return (
+      <XlsxImportQueue
+        sheets={modalState.context.sheets}
+        filename={modalState.context.filename}
+        pantry={pantry}
+        collections={collections}
+        onImport={recipe => addRecipeToState(recipe, {})}
+        onAddIngredient={(ingredient, baseUnit) => addIngredient(ingredient, baseUnit)}
+        onClose={closeModal}
+      />
+    )
+
     if (modalState.type === 'openCosting') return (
       <CostingModal
         recipe={modalState.context}
@@ -175,6 +188,7 @@ export default function App() {
       onOpenCosting={recipe => openModal('openCosting', recipe)}
       onEditRecipe={recipe => openModal('editRecipe', recipe)}
       onDeleteRecipe={deleteRecipe}
+      onSaveRecipeTags={(id, tags) => editRecipeInState(id, { collection: tags.join(',') })}
       onFavFilterChange={setFavFilterOn}
       onCollectionChange={setCollectionFilters}
     />
@@ -249,6 +263,7 @@ export default function App() {
           sessionIds={pricingIds}
           pantry={pantry}
           onSave={(id, data) => updateItemPrice(id, data)}
+          onComplete={id => setPricingIds(prev => prev.filter(x => x !== id))}
           onClose={closePricingSession}
         />
       )}
@@ -256,6 +271,7 @@ export default function App() {
       <ImportBar
         pantry={pantry}
         onImport={recipe => openModal('import', recipe)}
+        onXlsxSheets={(sheets, filename) => openModal('xlsxQueue', { sheets, filename })}
       />
 
     </div>

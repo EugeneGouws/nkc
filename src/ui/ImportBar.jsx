@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
-import { importRecipe, importFromFile } from '../lib/index.js'
+import { importRecipe, importFromFile, parseXlsx } from '../lib/index.js'
 import './ImportBar.css'
 
-export default function ImportBar({ pantry, onImport }) {
+export default function ImportBar({ pantry, onImport, onXlsxSheets }) {
   const [dragOver,  setDragOver]  = useState(false)
   const [hidePaste, setHidePaste] = useState(false)
   const [loading,   setLoading]   = useState(false)
@@ -30,6 +30,16 @@ export default function ImportBar({ pantry, onImport }) {
     setError(null)
     setLoading(true)
     try {
+      if (file.name.toLowerCase().endsWith('.xlsx')) {
+        const buffer = await file.arrayBuffer()
+        const sheets = parseXlsx(buffer)
+        if (sheets.length === 0) {
+          setError('No recipes found in this file')
+        } else {
+          onXlsxSheets?.(sheets, file.name)
+        }
+        return
+      }
       const recipe = await importFromFile(file, pantry)
       onImport(recipe)
     } catch (err) {
@@ -95,7 +105,7 @@ export default function ImportBar({ pantry, onImport }) {
         <input
           ref={fileInputRef}
           type="file"
-          accept=".txt,.docx,.pdf"
+          accept=".txt,.docx,.pdf,.xlsx"
           style={{ display: 'none' }}
           onChange={handleFileInput}
         />

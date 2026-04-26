@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { readPantry, readRecipes, saveRecipes, savePantryItem, saveRecipe, toggleRecipeFavourite, deleteRecipe as _deleteRecipe } from '../io/index.js'
-import { migrateFromBakersPro } from '../io/migration.js'
+import { readPantry, readRecipes, saveRecipes, savePantryItem, saveRecipe, toggleRecipeFavourite, deleteRecipe as _deleteRecipe, migratePantryIfNeeded } from '../io/index.js'
 import { importFinished, resolveIngredients } from '../lib/index.js'
 
 export default function useAppState() {
@@ -8,13 +7,12 @@ export default function useAppState() {
   const [recipes, setRecipes] = useState([])
 
   useEffect(() => {
-    migrateFromBakersPro()   // no-op once old keys are gone
+    migratePantryIfNeeded()
     const loadedPantry   = readPantry()
     const loadedRecipes  = readRecipes()
 
-    // bakerspro-migrated recipes arrive without matchedIngredient/convertedAmount.
-    // Run matching once and persist so this fixup never reruns after.
-    // Seed data (recipes.json) is pre-resolved and will not trigger this.
+    // Defensive: any stored recipes lacking matchedIngredient/convertedAmount get matched once
+    // and persisted so this fixup never reruns. Seed data is pre-resolved and won't trigger this.
     const needsFixup = loadedRecipes.some(r =>
       r.ingredients?.some(i => i.convertedAmount === undefined)
     )

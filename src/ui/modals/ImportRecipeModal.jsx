@@ -36,6 +36,19 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
   const [openDropdown,  setOpenDropdown]  = useState(null) // rowIndex | null
   const [addIngOpen,    setAddIngOpen]    = useState(false)
   const [addIngName,    setAddIngName]    = useState('')
+  const [addIngRowIndex, setAddIngRowIndex] = useState(null)
+  const [pendingFill,   setPendingFill]   = useState(null)
+
+  // After adding a new pantry ingredient, auto-fill the row that triggered it
+  useEffect(() => {
+    if (!pendingFill) return
+    const match = (pantry ?? []).find(p => p.canonicalName.toLowerCase() === pendingFill.name.toLowerCase())
+    if (!match) return
+    setEditRows(prev => prev.map((r, idx) =>
+      idx === pendingFill.rowIndex ? { ...r, nameInput: match.canonicalName, matchedId: match.id } : r
+    ))
+    setPendingFill(null)
+  }, [pantry, pendingFill])
 
   // Auto-exit AI mode when all ingredients become matched
   useEffect(() => {
@@ -294,7 +307,16 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
                   <input
                     className="tag-input"
                     value={tagInput}
-                    onChange={e => setTagInput(e.target.value)}
+                    onChange={e => {
+                      const val = e.target.value
+                      const isExactMatch = (collections ?? []).some(c => c === val && !editTags.includes(c))
+                      if (isExactMatch) {
+                        setEditTags(prev => [...prev, val])
+                        setTagInput('')
+                      } else {
+                        setTagInput(val)
+                      }
+                    }}
                     onKeyDown={e => {
                       if (e.key === 'Enter' || e.key === ',') {
                         e.preventDefault()
@@ -334,7 +356,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
                         const suggs = computeSuggestions(row.nameInput, pantryList)
                         if (suggs.length > 0) { setSuggestions(prev => ({ ...prev, [i]: suggs })); setOpenDropdown(i) }
                       }}
-                      onBlur={() => setTimeout(() => setOpenDropdown(null), 150)}
+                      onBlur={() => setTimeout(() => setOpenDropdown(null), 250)}
                       placeholder="Search pantry…"
                       readOnly={aiMode}
                     />
@@ -354,6 +376,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
                           onMouseDown={e => {
                             e.preventDefault()
                             setAddIngName(row.nameInput)
+                            setAddIngRowIndex(i)
                             setAddIngOpen(true)
                             setOpenDropdown(null)
                           }}
@@ -403,6 +426,7 @@ export default function ImportRecipeModal({ isOpen, mode, recipe, pantry, collec
                     conversions: data.conversions, aliases: data.aliases },
                   data.baseUnit
                 )
+                setPendingFill({ rowIndex: addIngRowIndex, name: data.name.trim() })
                 setAddIngOpen(false)
               }}
               onClose={() => setAddIngOpen(false)}

@@ -44,12 +44,18 @@
 
 .recipe-preview {
   display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.recipe-preview-row {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 8px 14px 8px 14px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
 }
 
 .recipe-preview-cost {
@@ -72,6 +78,52 @@
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
+}
+
+.recipe-preview-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.tag-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--tx-muted);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.tag-add-btn:hover {
+  border-color: var(--tx-primary);
+  color: var(--tx-primary);
+}
+
+.tag-input--inline {
+  width: 80px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 5px;
+  background: var(--surface);
+  color: var(--tx-primary);
+  outline: none;
+}
+
+.tag-input--inline:focus {
+  border-color: var(--green-accent);
 }
 
 .recipe-delete-btn {

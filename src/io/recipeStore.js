@@ -13,13 +13,17 @@ const STORAGE_KEY = 'local_recipes';
 
 // Normalise a raw recipe item to the current StoredRecipe shape.
 function normalise(r) {
+  // Prefer existing collection string; fall back to tags[0] only if legacy tags[] array exists.
+  const collection = r.collection != null && r.collection !== ''
+    ? r.collection
+    : (Array.isArray(r.tags) ? (r.tags[0] ?? '') : '')
+  const { tags, ...rest } = r
   return {
     favorite:   false,
     rawText:    '',
     dateAdded:  r.importedAt?.split('T')[0] ?? r.dateAdded ?? '',
-    ...r,
-    // Unify: bakerspro uses tags[] array; nkc uses collection string
-    collection: Array.isArray(r.tags) ? (r.tags[0] ?? '') : (r.collection ?? ''),
+    ...rest,
+    collection,
   }
 }
 

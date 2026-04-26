@@ -947,11 +947,11 @@
   },
   {
     "id": "creme-fraiche",
-    "canonicalName": "Cr\u00c3\u00a8me Fra\u00c3\u00aeche",
+    "canonicalName": "CrÃ¨me FraÃ®che",
     "category": "dairy",
     "aliases": [
       "creme fraiche",
-      "cr\u00c3\u00a8me fra\u00c3\u00aeche",
+      "crÃ¨me fraÃ®che",
       "crime fresh"
     ],
     "baseUnit": "ml",
@@ -2785,11 +2785,11 @@
   },
   {
     "id": "glace-cherries",
-    "canonicalName": "Glac\u00c3\u00a9 Cherries",
+    "canonicalName": "GlacÃ© Cherries",
     "category": "fruit",
     "aliases": [
       "glace cherries",
-      "glac\u00c3\u00a9 cherries",
+      "glacÃ© cherries",
       "cherries",
       "maraschino cherries",
       "candied cherries"
@@ -2809,7 +2809,7 @@
     "priceOptionCount": 3,
     "searchHints": [
       "glace cherries",
-      "glac\u00c3\u00a9 cherries baking"
+      "glacÃ© cherries baking"
     ]
   },
   {
@@ -3793,6 +3793,8235 @@
     "priceOptionCount": null,
     "searchHints": [
       "worcestershire sauce"
+    ]
+  },
+  {
+    "id": "aperol-liquor",
+    "canonicalName": "Aperol Liquor",
+    "category": "beverage",
+    "aliases": [
+      "aperol liquor",
+      "liquor aperol"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.4,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 400,
+    "matchedProduct": "Aperol Liquor",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "aperol",
+      "liquor"
+    ]
+  },
+  {
+    "id": "liquor-brandy",
+    "canonicalName": "Liquor Brandy",
+    "category": "beverage",
+    "aliases": [
+      "liquor brandy",
+      "brandy liquor"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.21324,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 213.24,
+    "matchedProduct": "Liquor Brandy",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "liquor",
+      "brandy"
+    ]
+  },
+  {
+    "id": "mcc",
+    "canonicalName": "Mcc",
+    "category": "beverage",
+    "aliases": [
+      "mcc"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.2,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 200,
+    "matchedProduct": "Mcc",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mcc"
+    ]
+  },
+  {
+    "id": "orange-juice",
+    "canonicalName": "Orange Juice",
+    "category": "beverage",
+    "aliases": [
+      "orange juice",
+      "juice orange"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.02975,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 29.75,
+    "matchedProduct": "Orange Juice",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "orange",
+      "juice"
+    ]
+  },
+  {
+    "id": "tanqueray-gin",
+    "canonicalName": "Tanqueray Gin",
+    "category": "beverage",
+    "aliases": [
+      "tanqueray gin",
+      "gin tanqueray"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.38,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 380,
+    "matchedProduct": "Tanqueray Gin",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tanqueray",
+      "gin"
+    ]
+  },
+  {
+    "id": "water",
+    "canonicalName": "Water",
+    "category": "beverage",
+    "aliases": [
+      "water"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 0,
+    "matchedProduct": "Water",
+    "dateLastUpdated": null,
+    "needsCosting": true,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "water"
+    ]
+  },
+  {
+    "id": "white-wine",
+    "canonicalName": "White Wine",
+    "category": "beverage",
+    "aliases": [
+      "white wine",
+      "wine white"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.09972,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 99.72,
+    "matchedProduct": "White Wine",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "white",
+      "wine"
+    ]
+  },
+  {
+    "id": "wine-red",
+    "canonicalName": "Wine Red",
+    "category": "beverage",
+    "aliases": [
+      "wine red",
+      "red wine"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.104,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 104,
+    "matchedProduct": "Wine Red",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "wine",
+      "red"
+    ]
+  },
+  {
+    "id": "monin-strawberry-syrup",
+    "canonicalName": "Monin Strawberry Syrup",
+    "category": "beverage",
+    "aliases": [
+      "monin strawberry syrup"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.174,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 174,
+    "matchedProduct": "Monin Strawberry Syrup",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "monin",
+      "strawberry",
+      "syrup"
+    ]
+  },
+  {
+    "id": "gordons-gin",
+    "canonicalName": "Gordons Gin",
+    "category": "beverage",
+    "aliases": [
+      "gordons gin",
+      "gin gordons"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.23861000000000002,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 238.61,
+    "matchedProduct": "Gordons Gin",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "gordons",
+      "gin"
+    ]
+  },
+  {
+    "id": "smirnof-1818-vodka",
+    "canonicalName": "Smirnof 1818 Vodka",
+    "category": "beverage",
+    "aliases": [
+      "smirnof 1818 vodka"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.18857,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 188.57,
+    "matchedProduct": "Smirnof 1818 Vodka",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "smirnof",
+      "1818",
+      "vodka"
+    ]
+  },
+  {
+    "id": "roses-passion-fruit",
+    "canonicalName": "Roses Passion Fruit",
+    "category": "beverage",
+    "aliases": [
+      "roses passion fruit"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.07164,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 71.64,
+    "matchedProduct": "Roses Passion Fruit",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "roses",
+      "passion",
+      "fruit"
+    ]
+  },
+  {
+    "id": "schweppes-tonic-water",
+    "canonicalName": "Schweppes Tonic Water",
+    "category": "beverage",
+    "aliases": [
+      "schweppes tonic water"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.038799999999999994,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 38.8,
+    "matchedProduct": "Schweppes Tonic Water",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "schweppes",
+      "tonic",
+      "water"
+    ]
+  },
+  {
+    "id": "beer",
+    "canonicalName": "Beer",
+    "category": "beverage",
+    "aliases": [
+      "beer"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.028329999999999998,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 28.33,
+    "matchedProduct": "Beer",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beer"
+    ]
+  },
+  {
+    "id": "butter-marvello",
+    "canonicalName": "Butter Marvello",
+    "category": "dairy",
+    "aliases": [
+      "butter marvello",
+      "marvello butter"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 227,
+      "tbsp": 14,
+      "tsp": 5
+    },
+    "costPerUnit": 0.049280000000000004,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 49.28,
+    "matchedProduct": "Butter Marvello",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "butter",
+      "marvello"
+    ]
+  },
+  {
+    "id": "cheese-blue",
+    "canonicalName": "Cheese Blue",
+    "category": "dairy",
+    "aliases": [
+      "cheese blue",
+      "blue cheese"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.339,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 339,
+    "matchedProduct": "Cheese Blue",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "blue"
+    ]
+  },
+  {
+    "id": "cheese-brie",
+    "canonicalName": "Cheese Brie",
+    "category": "dairy",
+    "aliases": [
+      "cheese brie",
+      "brie cheese"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.39992,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 399.92,
+    "matchedProduct": "Cheese Brie",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "brie"
+    ]
+  },
+  {
+    "id": "cheese-camembert",
+    "canonicalName": "Cheese Camembert",
+    "category": "dairy",
+    "aliases": [
+      "cheese camembert",
+      "camembert cheese"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.35992,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 359.92,
+    "matchedProduct": "Cheese Camembert",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "camembert"
+    ]
+  },
+  {
+    "id": "cheese-cheddar-mature",
+    "canonicalName": "Cheese Cheddar Mature",
+    "category": "dairy",
+    "aliases": [
+      "cheese cheddar mature"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.11040000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 110.4,
+    "matchedProduct": "Cheese Cheddar Mature",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "cheddar",
+      "mature"
+    ]
+  },
+  {
+    "id": "cheese-feta",
+    "canonicalName": "Cheese Feta",
+    "category": "dairy",
+    "aliases": [
+      "cheese feta",
+      "feta cheese"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.066484375,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 66.484375,
+    "matchedProduct": "Cheese Feta",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "feta"
+    ]
+  },
+  {
+    "id": "cheese-goats",
+    "canonicalName": "Cheese Goats",
+    "category": "dairy",
+    "aliases": [
+      "cheese goats",
+      "goats cheese"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.31692000000000004,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 316.92,
+    "matchedProduct": "Cheese Goats",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "goats"
+    ]
+  },
+  {
+    "id": "cheese-mozzarella",
+    "canonicalName": "Cheese Mozzarella",
+    "category": "dairy",
+    "aliases": [
+      "cheese mozzarella",
+      "mozzarella cheese"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.10386,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 103.86,
+    "matchedProduct": "Cheese Mozzarella",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "mozzarella"
+    ]
+  },
+  {
+    "id": "cream-immitation",
+    "canonicalName": "Cream Immitation",
+    "category": "dairy",
+    "aliases": [
+      "cream immitation",
+      "immitation cream"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.06128,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 61.28,
+    "matchedProduct": "Cream Immitation",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cream",
+      "immitation"
+    ]
+  },
+  {
+    "id": "yoghurt-dc-plain",
+    "canonicalName": "Yoghurt Dc Plain",
+    "category": "dairy",
+    "aliases": [
+      "yoghurt dc plain"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.046,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 46,
+    "matchedProduct": "Yoghurt Dc Plain",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "yoghurt",
+      "plain"
+    ]
+  },
+  {
+    "id": "marvello",
+    "canonicalName": "Marvello",
+    "category": "dairy",
+    "aliases": [
+      "marvello"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 227,
+      "tbsp": 14,
+      "tsp": 5
+    },
+    "costPerUnit": 0.05136,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 51.36,
+    "matchedProduct": "Marvello",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "marvello"
+    ]
+  },
+  {
+    "id": "stork-country-spread",
+    "canonicalName": "Stork Country Spread",
+    "category": "dairy",
+    "aliases": [
+      "stork country spread"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04938,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 49.38,
+    "matchedProduct": "Stork Country Spread",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "stork",
+      "country",
+      "spread"
+    ]
+  },
+  {
+    "id": "parmesan-wedge",
+    "canonicalName": "Parmesan Wedge",
+    "category": "dairy",
+    "aliases": [
+      "parmesan wedge",
+      "wedge parmesan"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.23175,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 231.75,
+    "matchedProduct": "Parmesan Wedge",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "parmesan",
+      "wedge"
+    ]
+  },
+  {
+    "id": "milk-almond",
+    "canonicalName": "Milk Almond",
+    "category": "dairy",
+    "aliases": [
+      "milk almond",
+      "almond milk"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.03613,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 36.13,
+    "matchedProduct": "Milk Almond",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "milk",
+      "almond"
+    ]
+  },
+  {
+    "id": "milk-low-fat",
+    "canonicalName": "Milk Low Fat",
+    "category": "dairy",
+    "aliases": [
+      "milk low fat"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.019850000000000003,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 19.85,
+    "matchedProduct": "Milk Low Fat",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "milk",
+      "low",
+      "fat"
+    ]
+  },
+  {
+    "id": "milk-oat",
+    "canonicalName": "Milk Oat",
+    "category": "dairy",
+    "aliases": [
+      "milk oat",
+      "oat milk"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.03311,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 33.11,
+    "matchedProduct": "Milk Oat",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "milk",
+      "oat"
+    ]
+  },
+  {
+    "id": "anchovy-fillets",
+    "canonicalName": "Anchovy Fillets",
+    "category": "dry-goods",
+    "aliases": [
+      "anchovy fillets",
+      "fillets anchovy"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 200,
+    "matchedProduct": "Anchovy Fillets",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "anchovy",
+      "fillets"
+    ]
+  },
+  {
+    "id": "apricot-dried",
+    "canonicalName": "Apricot Dried",
+    "category": "dry-goods",
+    "aliases": [
+      "apricot dried",
+      "dried apricot"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.155,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 155,
+    "matchedProduct": "Apricot Dried",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "apricot",
+      "dried"
+    ]
+  },
+  {
+    "id": "baked-beans",
+    "canonicalName": "Baked Beans",
+    "category": "dry-goods",
+    "aliases": [
+      "baked beans",
+      "beans baked"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04108,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 41.08,
+    "matchedProduct": "Baked Beans",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "baked",
+      "beans"
+    ]
+  },
+  {
+    "id": "beef-stock-powder",
+    "canonicalName": "Beef Stock Powder",
+    "category": "dry-goods",
+    "aliases": [
+      "beef stock powder"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.1426,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 142.6,
+    "matchedProduct": "Beef Stock Powder",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "stock",
+      "powder"
+    ]
+  },
+  {
+    "id": "bicarb",
+    "canonicalName": "Bicarb",
+    "category": "dry-goods",
+    "aliases": [
+      "bicarb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.03,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 30,
+    "matchedProduct": "Bicarb",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bicarb"
+    ]
+  },
+  {
+    "id": "blue-pea-flowers",
+    "canonicalName": "Blue Pea Flowers",
+    "category": "dry-goods",
+    "aliases": [
+      "blue pea flowers"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 1.5,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 1500,
+    "matchedProduct": "Blue Pea Flowers",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "blue",
+      "pea",
+      "flowers"
+    ]
+  },
+  {
+    "id": "breadcrumbs-panko",
+    "canonicalName": "Breadcrumbs Panko",
+    "category": "dry-goods",
+    "aliases": [
+      "breadcrumbs panko",
+      "panko breadcrumbs"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.076,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 76,
+    "matchedProduct": "Breadcrumbs Panko",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "breadcrumbs",
+      "panko"
+    ]
+  },
+  {
+    "id": "camomile-flowers",
+    "canonicalName": "Camomile Flowers",
+    "category": "dry-goods",
+    "aliases": [
+      "camomile flowers",
+      "flowers camomile"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.9,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 900,
+    "matchedProduct": "Camomile Flowers",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "camomile",
+      "flowers"
+    ]
+  },
+  {
+    "id": "chicken-stock-powder",
+    "canonicalName": "Chicken Stock Powder",
+    "category": "dry-goods",
+    "aliases": [
+      "chicken stock powder"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.14428,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 144.28,
+    "matchedProduct": "Chicken Stock Powder",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chicken",
+      "stock",
+      "powder"
+    ]
+  },
+  {
+    "id": "chilli-sauce-scoville-og",
+    "canonicalName": "Chilli Sauce Scoville Og",
+    "category": "dry-goods",
+    "aliases": [
+      "chilli sauce scoville og"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.325,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 325,
+    "matchedProduct": "Chilli Sauce Scoville Og",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chilli",
+      "sauce",
+      "scoville"
+    ]
+  },
+  {
+    "id": "chocolate-dark-calleb",
+    "canonicalName": "Chocolate Dark Calleb",
+    "category": "dry-goods",
+    "aliases": [
+      "chocolate dark calleb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2928,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 292.8,
+    "matchedProduct": "Chocolate Dark Calleb",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chocolate",
+      "dark",
+      "calleb"
+    ]
+  },
+  {
+    "id": "chocolate-milk-calleb",
+    "canonicalName": "Chocolate Milk Calleb",
+    "category": "dry-goods",
+    "aliases": [
+      "chocolate milk calleb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.278,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 278,
+    "matchedProduct": "Chocolate Milk Calleb",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chocolate",
+      "milk",
+      "calleb"
+    ]
+  },
+  {
+    "id": "chocolate-white-calleb",
+    "canonicalName": "Chocolate White Calleb",
+    "category": "dry-goods",
+    "aliases": [
+      "chocolate white calleb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.329,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 329,
+    "matchedProduct": "Chocolate White Calleb",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chocolate",
+      "white",
+      "calleb"
+    ]
+  },
+  {
+    "id": "coca-cola-2l",
+    "canonicalName": "Coca Cola 2l",
+    "category": "dry-goods",
+    "aliases": [
+      "coca cola 2l"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.035,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 35,
+    "matchedProduct": "Coca Cola 2l",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coca",
+      "cola"
+    ]
+  },
+  {
+    "id": "coco-powder",
+    "canonicalName": "Coco Powder",
+    "category": "dry-goods",
+    "aliases": [
+      "coco powder",
+      "powder coco"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.1149,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 114.9,
+    "matchedProduct": "Coco Powder",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coco",
+      "powder"
+    ]
+  },
+  {
+    "id": "coconut-descicated",
+    "canonicalName": "Coconut Descicated",
+    "category": "dry-goods",
+    "aliases": [
+      "coconut descicated",
+      "descicated coconut"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.057909999999999996,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 57.91,
+    "matchedProduct": "Coconut Descicated",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coconut",
+      "descicated"
+    ]
+  },
+  {
+    "id": "coffee-instant-nescafe",
+    "canonicalName": "Coffee Instant Nescafe",
+    "category": "dry-goods",
+    "aliases": [
+      "coffee instant nescafe"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 1.05,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 1.05,
+    "matchedProduct": "Coffee Instant Nescafe",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coffee",
+      "instant",
+      "nescafe"
+    ]
+  },
+  {
+    "id": "cous-cous",
+    "canonicalName": "Cous Cous",
+    "category": "dry-goods",
+    "aliases": [
+      "cous cous"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0569,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 56.9,
+    "matchedProduct": "Cous Cous",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cous",
+      "cous"
+    ]
+  },
+  {
+    "id": "cranberries-dried",
+    "canonicalName": "Cranberries Dried",
+    "category": "dry-goods",
+    "aliases": [
+      "cranberries dried",
+      "dried cranberries"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.14755000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 147.55,
+    "matchedProduct": "Cranberries Dried",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cranberries",
+      "dried"
+    ]
+  },
+  {
+    "id": "cranberry-sauce",
+    "canonicalName": "Cranberry Sauce",
+    "category": "dry-goods",
+    "aliases": [
+      "cranberry sauce",
+      "sauce cranberry"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.37,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 370,
+    "matchedProduct": "Cranberry Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cranberry",
+      "sauce"
+    ]
+  },
+  {
+    "id": "egg-noodles",
+    "canonicalName": "Egg Noodles",
+    "category": "dry-goods",
+    "aliases": [
+      "egg noodles",
+      "noodles egg"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.053619999999999994,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 53.62,
+    "matchedProduct": "Egg Noodles",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "egg",
+      "noodles"
+    ]
+  },
+  {
+    "id": "fish-sauce",
+    "canonicalName": "Fish Sauce",
+    "category": "dry-goods",
+    "aliases": [
+      "fish sauce",
+      "sauce fish"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.12,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 120,
+    "matchedProduct": "Fish Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "fish",
+      "sauce"
+    ]
+  },
+  {
+    "id": "flour-00",
+    "canonicalName": "Flour \"00\"",
+    "category": "dry-goods",
+    "aliases": [
+      "flour \"00\"",
+      "\"00\" flour"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 120,
+      "tbsp": 8,
+      "tsp": 2.5
+    },
+    "costPerUnit": 0.02264,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 22.64,
+    "matchedProduct": "Flour \"00\"",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "flour",
+      "\"00\""
+    ]
+  },
+  {
+    "id": "flour-cake",
+    "canonicalName": "Flour Cake",
+    "category": "dry-goods",
+    "aliases": [
+      "flour cake",
+      "cake flour"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 120,
+      "tbsp": 8,
+      "tsp": 2.5
+    },
+    "costPerUnit": 0.01952,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 19.52,
+    "matchedProduct": "Flour Cake",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "flour",
+      "cake"
+    ]
+  },
+  {
+    "id": "flour-white-bread",
+    "canonicalName": "Flour White Bread",
+    "category": "dry-goods",
+    "aliases": [
+      "flour white bread"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 120,
+      "tbsp": 8,
+      "tsp": 2.5
+    },
+    "costPerUnit": 0.020239999999999998,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 20.24,
+    "matchedProduct": "Flour White Bread",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "flour",
+      "white",
+      "bread"
+    ]
+  },
+  {
+    "id": "fruit-pearls",
+    "canonicalName": "Fruit Pearls",
+    "category": "dry-goods",
+    "aliases": [
+      "fruit pearls",
+      "pearls fruit"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 3.2,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 3200,
+    "matchedProduct": "Fruit Pearls",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "fruit",
+      "pearls"
+    ]
+  },
+  {
+    "id": "gelatine-powder",
+    "canonicalName": "Gelatine Powder",
+    "category": "dry-goods",
+    "aliases": [
+      "gelatine powder",
+      "powder gelatine"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.26494,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 264.94,
+    "matchedProduct": "Gelatine Powder",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "gelatine",
+      "powder"
+    ]
+  },
+  {
+    "id": "gherkins-pickled",
+    "canonicalName": "Gherkins Pickled",
+    "category": "dry-goods",
+    "aliases": [
+      "gherkins pickled",
+      "pickled gherkins"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.05693,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 56.93,
+    "matchedProduct": "Gherkins Pickled",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "gherkins",
+      "pickled"
+    ]
+  },
+  {
+    "id": "ginger-pickled",
+    "canonicalName": "Ginger Pickled",
+    "category": "dry-goods",
+    "aliases": [
+      "ginger pickled",
+      "pickled ginger"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.07386,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 73.86,
+    "matchedProduct": "Ginger Pickled",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "ginger",
+      "pickled"
+    ]
+  },
+  {
+    "id": "glucose-liquid",
+    "canonicalName": "Glucose Liquid",
+    "category": "dry-goods",
+    "aliases": [
+      "glucose liquid",
+      "liquid glucose"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0458,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 45.8,
+    "matchedProduct": "Glucose Liquid",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "glucose",
+      "liquid"
+    ]
+  },
+  {
+    "id": "granola",
+    "canonicalName": "Granola",
+    "category": "dry-goods",
+    "aliases": [
+      "granola"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09129000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 91.29,
+    "matchedProduct": "Granola",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "granola"
+    ]
+  },
+  {
+    "id": "herbs-mixed-dried",
+    "canonicalName": "Herbs Mixed Dried",
+    "category": "dry-goods",
+    "aliases": [
+      "herbs mixed dried"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 1.2222222222222223,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 1222.2222222222224,
+    "matchedProduct": "Herbs Mixed Dried",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "herbs",
+      "mixed",
+      "dried"
+    ]
+  },
+  {
+    "id": "hoisin-sauce",
+    "canonicalName": "Hoisin Sauce",
+    "category": "dry-goods",
+    "aliases": [
+      "hoisin sauce",
+      "sauce hoisin"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2031,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 203.1,
+    "matchedProduct": "Hoisin Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "hoisin",
+      "sauce"
+    ]
+  },
+  {
+    "id": "jam-apricot",
+    "canonicalName": "Jam Apricot",
+    "category": "dry-goods",
+    "aliases": [
+      "jam apricot",
+      "apricot jam"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.10506,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 105.06,
+    "matchedProduct": "Jam Apricot",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "jam",
+      "apricot"
+    ]
+  },
+  {
+    "id": "jasmin-flowers",
+    "canonicalName": "Jasmin Flowers",
+    "category": "dry-goods",
+    "aliases": [
+      "jasmin flowers",
+      "flowers jasmin"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 1.3,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 1300,
+    "matchedProduct": "Jasmin Flowers",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "jasmin",
+      "flowers"
+    ]
+  },
+  {
+    "id": "juice-apple",
+    "canonicalName": "Juice Apple",
+    "category": "dry-goods",
+    "aliases": [
+      "juice apple",
+      "apple juice"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.0316,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 31.6,
+    "matchedProduct": "Juice Apple",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "juice",
+      "apple"
+    ]
+  },
+  {
+    "id": "lentils-brown",
+    "canonicalName": "Lentils Brown",
+    "category": "dry-goods",
+    "aliases": [
+      "lentils brown",
+      "brown lentils"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08116,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 81.16,
+    "matchedProduct": "Lentils Brown",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lentils",
+      "brown"
+    ]
+  },
+  {
+    "id": "maize-meal",
+    "canonicalName": "Maize Meal",
+    "category": "dry-goods",
+    "aliases": [
+      "maize meal",
+      "meal maize"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01559,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 15.59,
+    "matchedProduct": "Maize Meal",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "maize",
+      "meal"
+    ]
+  },
+  {
+    "id": "mayo-nola",
+    "canonicalName": "Mayo Nola",
+    "category": "dry-goods",
+    "aliases": [
+      "mayo nola",
+      "nola mayo"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04884,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 48.84,
+    "matchedProduct": "Mayo Nola",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mayo",
+      "nola"
+    ]
+  },
+  {
+    "id": "mayo-sushi",
+    "canonicalName": "Mayo Sushi",
+    "category": "dry-goods",
+    "aliases": [
+      "mayo sushi",
+      "sushi mayo"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.202,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 202,
+    "matchedProduct": "Mayo Sushi",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mayo",
+      "sushi"
+    ]
+  },
+  {
+    "id": "mirin",
+    "canonicalName": "Mirin",
+    "category": "dry-goods",
+    "aliases": [
+      "mirin"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.18,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 180,
+    "matchedProduct": "Mirin",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mirin"
+    ]
+  },
+  {
+    "id": "mustard-dijon",
+    "canonicalName": "Mustard Dijon",
+    "category": "dry-goods",
+    "aliases": [
+      "mustard dijon",
+      "dijon mustard"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.25272,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 252.72,
+    "matchedProduct": "Mustard Dijon",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mustard",
+      "dijon"
+    ]
+  },
+  {
+    "id": "mustard-hot-english",
+    "canonicalName": "Mustard Hot English",
+    "category": "dry-goods",
+    "aliases": [
+      "mustard hot english"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.19635,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 196.35,
+    "matchedProduct": "Mustard Hot English",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mustard",
+      "hot",
+      "english"
+    ]
+  },
+  {
+    "id": "mustard-wholegrain",
+    "canonicalName": "Mustard Wholegrain",
+    "category": "dry-goods",
+    "aliases": [
+      "mustard wholegrain",
+      "wholegrain mustard"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.2,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 200,
+    "matchedProduct": "Mustard Wholegrain",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mustard",
+      "wholegrain"
+    ]
+  },
+  {
+    "id": "nori-sheets",
+    "canonicalName": "Nori Sheets",
+    "category": "dry-goods",
+    "aliases": [
+      "nori sheets",
+      "sheets nori"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 3.18,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 3.18,
+    "matchedProduct": "Nori Sheets",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "nori",
+      "sheets"
+    ]
+  },
+  {
+    "id": "oil-olive",
+    "canonicalName": "Oil Olive",
+    "category": "dry-goods",
+    "aliases": [
+      "oil olive",
+      "olive oil"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.26912,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 269.12,
+    "matchedProduct": "Oil Olive",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "oil",
+      "olive"
+    ]
+  },
+  {
+    "id": "oil-sesame",
+    "canonicalName": "Oil Sesame",
+    "category": "dry-goods",
+    "aliases": [
+      "oil sesame",
+      "sesame oil"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 1.379,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 1379,
+    "matchedProduct": "Oil Sesame",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "oil",
+      "sesame"
+    ]
+  },
+  {
+    "id": "oil-sunflower",
+    "canonicalName": "Oil Sunflower",
+    "category": "dry-goods",
+    "aliases": [
+      "oil sunflower",
+      "sunflower oil"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.04,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 40,
+    "matchedProduct": "Oil Sunflower",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "oil",
+      "sunflower"
+    ]
+  },
+  {
+    "id": "olives-in-brine-black",
+    "canonicalName": "Olives In Brine Black",
+    "category": "dry-goods",
+    "aliases": [
+      "olives in brine black"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.11443,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 114.43,
+    "matchedProduct": "Olives In Brine Black",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "olives",
+      "brine",
+      "black"
+    ]
+  },
+  {
+    "id": "pasta-lasagna-sheets",
+    "canonicalName": "Pasta Lasagna Sheets",
+    "category": "dry-goods",
+    "aliases": [
+      "pasta lasagna sheets"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.14,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 140,
+    "matchedProduct": "Pasta Lasagna Sheets",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pasta",
+      "lasagna",
+      "sheets"
+    ]
+  },
+  {
+    "id": "pasta-macaroni",
+    "canonicalName": "Pasta Macaroni",
+    "category": "dry-goods",
+    "aliases": [
+      "pasta macaroni",
+      "macaroni pasta"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.029983333333333334,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 29.983333333333334,
+    "matchedProduct": "Pasta Macaroni",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pasta",
+      "macaroni"
+    ]
+  },
+  {
+    "id": "pasta-spaghetti",
+    "canonicalName": "Pasta Spaghetti",
+    "category": "dry-goods",
+    "aliases": [
+      "pasta spaghetti",
+      "spaghetti pasta"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.034,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 34,
+    "matchedProduct": "Pasta Spaghetti",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pasta",
+      "spaghetti"
+    ]
+  },
+  {
+    "id": "pearl-barley",
+    "canonicalName": "Pearl Barley",
+    "category": "dry-goods",
+    "aliases": [
+      "pearl barley",
+      "barley pearl"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.023719999999999998,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 23.72,
+    "matchedProduct": "Pearl Barley",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pearl",
+      "barley"
+    ]
+  },
+  {
+    "id": "pesto-princess-basil",
+    "canonicalName": "Pesto Princess Basil",
+    "category": "dry-goods",
+    "aliases": [
+      "pesto princess basil"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.174,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 174,
+    "matchedProduct": "Pesto Princess Basil",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pesto",
+      "princess",
+      "basil"
+    ]
+  },
+  {
+    "id": "pesto-princess-red-pepper",
+    "canonicalName": "Pesto Princess Red Pepper",
+    "category": "dry-goods",
+    "aliases": [
+      "pesto princess red pepper"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.166,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 166,
+    "matchedProduct": "Pesto Princess Red Pepper",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pesto",
+      "princess",
+      "red",
+      "pepper"
+    ]
+  },
+  {
+    "id": "quinoa-white",
+    "canonicalName": "Quinoa White",
+    "category": "dry-goods",
+    "aliases": [
+      "quinoa white",
+      "white quinoa"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.166,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 166,
+    "matchedProduct": "Quinoa White",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "quinoa",
+      "white"
+    ]
+  },
+  {
+    "id": "rice-black",
+    "canonicalName": "Rice Black",
+    "category": "dry-goods",
+    "aliases": [
+      "rice black",
+      "black rice"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.069,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 69,
+    "matchedProduct": "Rice Black",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rice",
+      "black"
+    ]
+  },
+  {
+    "id": "rice-crispies",
+    "canonicalName": "Rice Crispies",
+    "category": "dry-goods",
+    "aliases": [
+      "rice crispies",
+      "crispies rice"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.18618,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 186.18,
+    "matchedProduct": "Rice Crispies",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rice",
+      "crispies"
+    ]
+  },
+  {
+    "id": "rice-jasmine",
+    "canonicalName": "Rice Jasmine",
+    "category": "dry-goods",
+    "aliases": [
+      "rice jasmine",
+      "jasmine rice"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.034,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 34,
+    "matchedProduct": "Rice Jasmine",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rice",
+      "jasmine"
+    ]
+  },
+  {
+    "id": "rice-risotto",
+    "canonicalName": "Rice Risotto",
+    "category": "dry-goods",
+    "aliases": [
+      "rice risotto",
+      "risotto rice"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.09709000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 97.09,
+    "matchedProduct": "Rice Risotto",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rice",
+      "risotto"
+    ]
+  },
+  {
+    "id": "rice-sushi",
+    "canonicalName": "Rice Sushi",
+    "category": "dry-goods",
+    "aliases": [
+      "rice sushi",
+      "sushi rice"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.0466,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 46.6,
+    "matchedProduct": "Rice Sushi",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rice",
+      "sushi"
+    ]
+  },
+  {
+    "id": "rice-tastic",
+    "canonicalName": "Rice Tastic",
+    "category": "dry-goods",
+    "aliases": [
+      "rice tastic",
+      "tastic rice"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.019579999999999997,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 19.58,
+    "matchedProduct": "Rice Tastic",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rice",
+      "tastic"
+    ]
+  },
+  {
+    "id": "sago",
+    "canonicalName": "Sago",
+    "category": "dry-goods",
+    "aliases": [
+      "sago"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04282,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 42.82,
+    "matchedProduct": "Sago",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sago"
+    ]
+  },
+  {
+    "id": "seeds-chia",
+    "canonicalName": "Seeds Chia",
+    "category": "dry-goods",
+    "aliases": [
+      "seeds chia",
+      "chia seeds"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 9,
+      "tsp": 3
+    },
+    "costPerUnit": 0.472,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 472,
+    "matchedProduct": "Seeds Chia",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "seeds",
+      "chia"
+    ]
+  },
+  {
+    "id": "seeds-poppy",
+    "canonicalName": "Seeds Poppy",
+    "category": "dry-goods",
+    "aliases": [
+      "seeds poppy",
+      "poppy seeds"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 9,
+      "tsp": 3
+    },
+    "costPerUnit": 0.0308,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 30.8,
+    "matchedProduct": "Seeds Poppy",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "seeds",
+      "poppy"
+    ]
+  },
+  {
+    "id": "seeds-sesame",
+    "canonicalName": "Seeds Sesame",
+    "category": "dry-goods",
+    "aliases": [
+      "seeds sesame",
+      "sesame seeds"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 9,
+      "tsp": 3
+    },
+    "costPerUnit": 0.09,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 90,
+    "matchedProduct": "Seeds Sesame",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "seeds",
+      "sesame"
+    ]
+  },
+  {
+    "id": "seeds-sesame-black",
+    "canonicalName": "Seeds Sesame Black",
+    "category": "dry-goods",
+    "aliases": [
+      "seeds sesame black"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 9,
+      "tsp": 3
+    },
+    "costPerUnit": 0.0878,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 87.8,
+    "matchedProduct": "Seeds Sesame Black",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "seeds",
+      "sesame",
+      "black"
+    ]
+  },
+  {
+    "id": "seeds-sunflower",
+    "canonicalName": "Seeds Sunflower",
+    "category": "dry-goods",
+    "aliases": [
+      "seeds sunflower",
+      "sunflower seeds"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 9,
+      "tsp": 3
+    },
+    "costPerUnit": 0.054990000000000004,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 54.99,
+    "matchedProduct": "Seeds Sunflower",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "seeds",
+      "sunflower"
+    ]
+  },
+  {
+    "id": "sesame-oil",
+    "canonicalName": "Sesame Oil",
+    "category": "dry-goods",
+    "aliases": [
+      "sesame oil",
+      "oil sesame"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.528,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 528,
+    "matchedProduct": "Sesame Oil",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sesame",
+      "oil"
+    ]
+  },
+  {
+    "id": "skewer-wood-cocktail",
+    "canonicalName": "Skewer Wood Cocktail",
+    "category": "dry-goods",
+    "aliases": [
+      "skewer wood cocktail"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 0.025,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 0.025,
+    "matchedProduct": "Skewer Wood Cocktail",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "skewer",
+      "wood",
+      "cocktail"
+    ]
+  },
+  {
+    "id": "soy-sauce-kikkoman",
+    "canonicalName": "Soy Sauce Kikkoman",
+    "category": "dry-goods",
+    "aliases": [
+      "soy sauce kikkoman"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.12375,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 123.75,
+    "matchedProduct": "Soy Sauce Kikkoman",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "soy",
+      "sauce",
+      "kikkoman"
+    ]
+  },
+  {
+    "id": "stock-powder-chicken",
+    "canonicalName": "Stock Powder Chicken",
+    "category": "dry-goods",
+    "aliases": [
+      "stock powder chicken"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 5.2,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 5.2,
+    "matchedProduct": "Stock Powder Chicken",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "stock",
+      "powder",
+      "chicken"
+    ]
+  },
+  {
+    "id": "sugar-brown",
+    "canonicalName": "Sugar Brown",
+    "category": "dry-goods",
+    "aliases": [
+      "sugar brown",
+      "brown sugar"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200,
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.022109999999999998,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 22.11,
+    "matchedProduct": "Sugar Brown",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sugar",
+      "brown"
+    ]
+  },
+  {
+    "id": "sugar-caster",
+    "canonicalName": "Sugar Caster",
+    "category": "dry-goods",
+    "aliases": [
+      "sugar caster",
+      "caster sugar"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200,
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.03321,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 33.21,
+    "matchedProduct": "Sugar Caster",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sugar",
+      "caster"
+    ]
+  },
+  {
+    "id": "sugar-icing",
+    "canonicalName": "Sugar Icing",
+    "category": "dry-goods",
+    "aliases": [
+      "sugar icing",
+      "icing sugar"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200,
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.03071,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 30.71,
+    "matchedProduct": "Sugar Icing",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sugar",
+      "icing"
+    ]
+  },
+  {
+    "id": "sugar-white",
+    "canonicalName": "Sugar White",
+    "category": "dry-goods",
+    "aliases": [
+      "sugar white",
+      "white sugar"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200,
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.024399999999999998,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 24.4,
+    "matchedProduct": "Sugar White",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sugar",
+      "white"
+    ]
+  },
+  {
+    "id": "sumac",
+    "canonicalName": "Sumac",
+    "category": "dry-goods",
+    "aliases": [
+      "sumac"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.688,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 688,
+    "matchedProduct": "Sumac",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sumac"
+    ]
+  },
+  {
+    "id": "sunbake-brown-bread",
+    "canonicalName": "Sunbake Brown Bread",
+    "category": "dry-goods",
+    "aliases": [
+      "sunbake brown bread"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 17.2,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 17.2,
+    "matchedProduct": "Sunbake Brown Bread",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sunbake",
+      "brown",
+      "bread"
+    ]
+  },
+  {
+    "id": "syrup-maple-flavoured",
+    "canonicalName": "Syrup Maple Flavoured",
+    "category": "dry-goods",
+    "aliases": [
+      "syrup maple flavoured"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 340,
+      "tbsp": 21,
+      "tsp": 7
+    },
+    "costPerUnit": 0.07740000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 77.4,
+    "matchedProduct": "Syrup Maple Flavoured",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "syrup",
+      "maple",
+      "flavoured"
+    ]
+  },
+  {
+    "id": "syrup-maple-organic",
+    "canonicalName": "Syrup Maple Organic",
+    "category": "dry-goods",
+    "aliases": [
+      "syrup maple organic"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.576,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 576,
+    "matchedProduct": "Syrup Maple Organic",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "syrup",
+      "maple",
+      "organic"
+    ]
+  },
+  {
+    "id": "teriaki-sauce",
+    "canonicalName": "Teriaki Sauce",
+    "category": "dry-goods",
+    "aliases": [
+      "teriaki sauce",
+      "sauce teriaki"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.37595999999999996,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 375.96,
+    "matchedProduct": "Teriaki Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "teriaki",
+      "sauce"
+    ]
+  },
+  {
+    "id": "vegetable-stock-powder",
+    "canonicalName": "Vegetable Stock Powder",
+    "category": "dry-goods",
+    "aliases": [
+      "vegetable stock powder"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.13601,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 136.01,
+    "matchedProduct": "Vegetable Stock Powder",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vegetable",
+      "stock",
+      "powder"
+    ]
+  },
+  {
+    "id": "vinegar-balsamic",
+    "canonicalName": "Vinegar Balsamic",
+    "category": "dry-goods",
+    "aliases": [
+      "vinegar balsamic",
+      "balsamic vinegar"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.12546,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 125.46,
+    "matchedProduct": "Vinegar Balsamic",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vinegar",
+      "balsamic"
+    ]
+  },
+  {
+    "id": "vinegar-rice",
+    "canonicalName": "Vinegar Rice",
+    "category": "dry-goods",
+    "aliases": [
+      "vinegar rice",
+      "rice vinegar"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.094,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 94,
+    "matchedProduct": "Vinegar Rice",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vinegar",
+      "rice"
+    ]
+  },
+  {
+    "id": "vinegar-spirit-white",
+    "canonicalName": "Vinegar Spirit White",
+    "category": "dry-goods",
+    "aliases": [
+      "vinegar spirit white"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.0064,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 6.4,
+    "matchedProduct": "Vinegar Spirit White",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vinegar",
+      "spirit",
+      "white"
+    ]
+  },
+  {
+    "id": "vinegar-white-wine",
+    "canonicalName": "Vinegar White Wine",
+    "category": "dry-goods",
+    "aliases": [
+      "vinegar white wine"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.02414,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 24.14,
+    "matchedProduct": "Vinegar White Wine",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vinegar",
+      "white",
+      "wine"
+    ]
+  },
+  {
+    "id": "wasabi-powder",
+    "canonicalName": "Wasabi Powder",
+    "category": "dry-goods",
+    "aliases": [
+      "wasabi powder",
+      "powder wasabi"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.295,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 295,
+    "matchedProduct": "Wasabi Powder",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "wasabi",
+      "powder"
+    ]
+  },
+  {
+    "id": "wood-smoking-chips",
+    "canonicalName": "Wood Smoking Chips",
+    "category": "dry-goods",
+    "aliases": [
+      "wood smoking chips"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.035,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 35,
+    "matchedProduct": "Wood Smoking Chips",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "wood",
+      "smoking",
+      "chips"
+    ]
+  },
+  {
+    "id": "yeast",
+    "canonicalName": "Yeast",
+    "category": "dry-goods",
+    "aliases": [
+      "yeast"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.3655208333333333,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 365.5208333333333,
+    "matchedProduct": "Yeast",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "yeast"
+    ]
+  },
+  {
+    "id": "chickpeas-tinned",
+    "canonicalName": "Chickpeas Tinned",
+    "category": "dry-goods",
+    "aliases": [
+      "chickpeas tinned",
+      "tinned chickpeas"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 17.28,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 17.28,
+    "matchedProduct": "Chickpeas Tinned",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chickpeas",
+      "tinned"
+    ]
+  },
+  {
+    "id": "coconut-cream",
+    "canonicalName": "Coconut Cream",
+    "category": "dry-goods",
+    "aliases": [
+      "coconut cream",
+      "cream coconut"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.07497,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 74.97,
+    "matchedProduct": "Coconut Cream",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coconut",
+      "cream"
+    ]
+  },
+  {
+    "id": "coconut-milk",
+    "canonicalName": "Coconut Milk",
+    "category": "dry-goods",
+    "aliases": [
+      "coconut milk",
+      "milk coconut"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.037,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 37,
+    "matchedProduct": "Coconut Milk",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coconut",
+      "milk"
+    ]
+  },
+  {
+    "id": "tomatoes-whole-peeled",
+    "canonicalName": "Tomatoes Whole Peeled",
+    "category": "dry-goods",
+    "aliases": [
+      "tomatoes whole peeled"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.07098,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 70.98,
+    "matchedProduct": "Tomatoes Whole Peeled",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tomatoes",
+      "whole",
+      "peeled"
+    ]
+  },
+  {
+    "id": "sweet-chilli-sauce",
+    "canonicalName": "Sweet Chilli Sauce",
+    "category": "dry-goods",
+    "aliases": [
+      "sweet chilli sauce"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.05067,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 50.67,
+    "matchedProduct": "Sweet Chilli Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sweet",
+      "chilli",
+      "sauce"
+    ]
+  },
+  {
+    "id": "samp",
+    "canonicalName": "Samp",
+    "category": "dry-goods",
+    "aliases": [
+      "samp"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01933,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 19.33,
+    "matchedProduct": "Samp",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "samp"
+    ]
+  },
+  {
+    "id": "nutritional-yeast",
+    "canonicalName": "Nutritional Yeast",
+    "category": "dry-goods",
+    "aliases": [
+      "nutritional yeast",
+      "yeast nutritional"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.64995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 649.95,
+    "matchedProduct": "Nutritional Yeast",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "nutritional",
+      "yeast"
+    ]
+  },
+  {
+    "id": "miso-paste",
+    "canonicalName": "Miso Paste",
+    "category": "dry-goods",
+    "aliases": [
+      "miso paste",
+      "paste miso"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2331,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 233.1,
+    "matchedProduct": "Miso Paste",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "miso",
+      "paste"
+    ]
+  },
+  {
+    "id": "artichoke-tinned",
+    "canonicalName": "Artichoke Tinned",
+    "category": "dry-goods",
+    "aliases": [
+      "artichoke tinned",
+      "tinned artichoke"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1308,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 130.8,
+    "matchedProduct": "Artichoke Tinned",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "artichoke",
+      "tinned"
+    ]
+  },
+  {
+    "id": "kombu",
+    "canonicalName": "Kombu",
+    "category": "dry-goods",
+    "aliases": [
+      "kombu"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.65,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 650,
+    "matchedProduct": "Kombu",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "kombu"
+    ]
+  },
+  {
+    "id": "rice-paper",
+    "canonicalName": "Rice Paper",
+    "category": "dry-goods",
+    "aliases": [
+      "rice paper",
+      "paper rice"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200
+    },
+    "costPerUnit": 0.205,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 205,
+    "matchedProduct": "Rice Paper",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rice",
+      "paper"
+    ]
+  },
+  {
+    "id": "seeds-pumpkin",
+    "canonicalName": "Seeds Pumpkin",
+    "category": "dry-goods",
+    "aliases": [
+      "seeds pumpkin",
+      "pumpkin seeds"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "tbsp": 9,
+      "tsp": 3
+    },
+    "costPerUnit": 0.123,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 123,
+    "matchedProduct": "Seeds Pumpkin",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "seeds",
+      "pumpkin"
+    ]
+  },
+  {
+    "id": "coconut-flakes",
+    "canonicalName": "Coconut Flakes",
+    "category": "dry-goods",
+    "aliases": [
+      "coconut flakes",
+      "flakes coconut"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.092,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 92,
+    "matchedProduct": "Coconut Flakes",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coconut",
+      "flakes"
+    ]
+  },
+  {
+    "id": "mabele",
+    "canonicalName": "Mabele",
+    "category": "dry-goods",
+    "aliases": [
+      "mabele"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01952,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 19.52,
+    "matchedProduct": "Mabele",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mabele"
+    ]
+  },
+  {
+    "id": "sunbake-white-bread",
+    "canonicalName": "Sunbake White Bread",
+    "category": "dry-goods",
+    "aliases": [
+      "sunbake white bread"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 17.2,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 17.2,
+    "matchedProduct": "Sunbake White Bread",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sunbake",
+      "white",
+      "bread"
+    ]
+  },
+  {
+    "id": "vanilla-essence",
+    "canonicalName": "Vanilla Essence",
+    "category": "dry-goods",
+    "aliases": [
+      "vanilla essence",
+      "essence vanilla"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.09592,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 95.92,
+    "matchedProduct": "Vanilla Essence",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vanilla",
+      "essence"
+    ]
+  },
+  {
+    "id": "coriander-dried",
+    "canonicalName": "Coriander Dried",
+    "category": "dry-goods",
+    "aliases": [
+      "coriander dried",
+      "dried coriander"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.12015,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 120.15,
+    "matchedProduct": "Coriander Dried",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coriander",
+      "dried"
+    ]
+  },
+  {
+    "id": "truffle-oil",
+    "canonicalName": "Truffle Oil",
+    "category": "dry-goods",
+    "aliases": [
+      "truffle oil",
+      "oil truffle"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 1.0999,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 1099.9,
+    "matchedProduct": "Truffle Oil",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "truffle",
+      "oil"
+    ]
+  },
+  {
+    "id": "sosa-procrema",
+    "canonicalName": "Sosa Procrema",
+    "category": "dry-goods",
+    "aliases": [
+      "sosa procrema",
+      "procrema sosa"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.51033,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 510.33,
+    "matchedProduct": "Sosa Procrema",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sosa",
+      "procrema"
+    ]
+  },
+  {
+    "id": "sosa-prosorbet",
+    "canonicalName": "Sosa Prosorbet",
+    "category": "dry-goods",
+    "aliases": [
+      "sosa prosorbet",
+      "prosorbet sosa"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.51033,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 510.33,
+    "matchedProduct": "Sosa Prosorbet",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sosa",
+      "prosorbet"
+    ]
+  },
+  {
+    "id": "strawberry-cake-filling",
+    "canonicalName": "Strawberry Cake Filling",
+    "category": "dry-goods",
+    "aliases": [
+      "strawberry cake filling"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.05872,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 58.72,
+    "matchedProduct": "Strawberry Cake Filling",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "strawberry",
+      "cake",
+      "filling"
+    ]
+  },
+  {
+    "id": "all-gold-tomato-sauce",
+    "canonicalName": "All Gold Tomato Sauce",
+    "category": "dry-goods",
+    "aliases": [
+      "all gold tomato sauce"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.06006,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 60.06,
+    "matchedProduct": "All Gold Tomato Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "all",
+      "gold",
+      "tomato",
+      "sauce"
+    ]
+  },
+  {
+    "id": "chutney",
+    "canonicalName": "Chutney",
+    "category": "dry-goods",
+    "aliases": [
+      "chutney"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.06273,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 62.73,
+    "matchedProduct": "Chutney",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chutney"
+    ]
+  },
+  {
+    "id": "almonds-flaked",
+    "canonicalName": "Almonds Flaked",
+    "category": "dry-goods",
+    "aliases": [
+      "almonds flaked",
+      "flaked almonds"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.22516,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 225.16,
+    "matchedProduct": "Almonds Flaked",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "almonds",
+      "flaked"
+    ]
+  },
+  {
+    "id": "vinegar-red-wine",
+    "canonicalName": "Vinegar Red Wine",
+    "category": "dry-goods",
+    "aliases": [
+      "vinegar red wine"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.03839,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 38.39,
+    "matchedProduct": "Vinegar Red Wine",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vinegar",
+      "red",
+      "wine"
+    ]
+  },
+  {
+    "id": "vinegar-spirit-brown",
+    "canonicalName": "Vinegar Spirit Brown",
+    "category": "dry-goods",
+    "aliases": [
+      "vinegar spirit brown"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.009269999999999999,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 9.27,
+    "matchedProduct": "Vinegar Spirit Brown",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vinegar",
+      "spirit",
+      "brown"
+    ]
+  },
+  {
+    "id": "salmon-fresh-whole",
+    "canonicalName": "Salmon Fresh Whole",
+    "category": "fish",
+    "aliases": [
+      "salmon fresh whole"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.205,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 205,
+    "matchedProduct": "Salmon Fresh Whole",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "salmon",
+      "fresh",
+      "whole"
+    ]
+  },
+  {
+    "id": "seabass",
+    "canonicalName": "Seabass",
+    "category": "fish",
+    "aliases": [
+      "seabass"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.43,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 430,
+    "matchedProduct": "Seabass",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "seabass"
+    ]
+  },
+  {
+    "id": "snoek-braai",
+    "canonicalName": "Snoek Braai",
+    "category": "fish",
+    "aliases": [
+      "snoek braai",
+      "braai snoek"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.076,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 76,
+    "matchedProduct": "Snoek Braai",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "snoek",
+      "braai"
+    ]
+  },
+  {
+    "id": "calamari-tubes",
+    "canonicalName": "Calamari Tubes",
+    "category": "frozen",
+    "aliases": [
+      "calamari tubes",
+      "tubes calamari"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.207,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 207,
+    "matchedProduct": "Calamari Tubes",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "calamari",
+      "tubes"
+    ]
+  },
+  {
+    "id": "caviart-black",
+    "canonicalName": "Caviart Black",
+    "category": "frozen",
+    "aliases": [
+      "caviart black",
+      "black caviart"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.64,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 640,
+    "matchedProduct": "Caviart Black",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "caviart",
+      "black"
+    ]
+  },
+  {
+    "id": "caviart-red",
+    "canonicalName": "Caviart Red",
+    "category": "frozen",
+    "aliases": [
+      "caviart red",
+      "red caviart"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.63,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 630,
+    "matchedProduct": "Caviart Red",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "caviart",
+      "red"
+    ]
+  },
+  {
+    "id": "english-muffin",
+    "canonicalName": "English Muffin",
+    "category": "frozen",
+    "aliases": [
+      "english muffin",
+      "muffin english"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 6.55,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 6.55,
+    "matchedProduct": "English Muffin",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "english",
+      "muffin"
+    ]
+  },
+  {
+    "id": "hake-frozen",
+    "canonicalName": "Hake Frozen",
+    "category": "frozen",
+    "aliases": [
+      "hake frozen",
+      "frozen hake"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.12,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 120,
+    "matchedProduct": "Hake Frozen",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "hake",
+      "frozen"
+    ]
+  },
+  {
+    "id": "ham-hickory",
+    "canonicalName": "Ham Hickory",
+    "category": "frozen",
+    "aliases": [
+      "ham hickory",
+      "hickory ham"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.89352,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 893.52,
+    "matchedProduct": "Ham Hickory",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "ham",
+      "hickory"
+    ]
+  },
+  {
+    "id": "hashbrown",
+    "canonicalName": "Hashbrown",
+    "category": "frozen",
+    "aliases": [
+      "hashbrown"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.055479999999999995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 55.48,
+    "matchedProduct": "Hashbrown",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "hashbrown"
+    ]
+  },
+  {
+    "id": "muffin-mix",
+    "canonicalName": "Muffin Mix",
+    "category": "frozen",
+    "aliases": [
+      "muffin mix",
+      "mix muffin"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.72426,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 724.26,
+    "matchedProduct": "Muffin Mix",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "muffin",
+      "mix"
+    ]
+  },
+  {
+    "id": "mussels-halfshell",
+    "canonicalName": "Mussels Halfshell",
+    "category": "frozen",
+    "aliases": [
+      "mussels halfshell",
+      "halfshell mussels"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1425,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 142.5,
+    "matchedProduct": "Mussels Halfshell",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mussels",
+      "halfshell"
+    ]
+  },
+  {
+    "id": "parmesan-grated",
+    "canonicalName": "Parmesan Grated",
+    "category": "frozen",
+    "aliases": [
+      "parmesan grated",
+      "grated parmesan"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.24481,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 244.81,
+    "matchedProduct": "Parmesan Grated",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "parmesan",
+      "grated"
+    ]
+  },
+  {
+    "id": "pastrami",
+    "canonicalName": "Pastrami",
+    "category": "frozen",
+    "aliases": [
+      "pastrami"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 1.3332,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 1333.2,
+    "matchedProduct": "Pastrami",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pastrami"
+    ]
+  },
+  {
+    "id": "peas-frozen",
+    "canonicalName": "Peas Frozen",
+    "category": "frozen",
+    "aliases": [
+      "peas frozen",
+      "frozen peas"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 49.95,
+    "matchedProduct": "Peas Frozen",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "peas",
+      "frozen"
+    ]
+  },
+  {
+    "id": "potato-fries-frozen",
+    "canonicalName": "Potato Fries Frozen",
+    "category": "frozen",
+    "aliases": [
+      "potato fries frozen"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.03175,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 31.75,
+    "matchedProduct": "Potato Fries Frozen",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "potato",
+      "fries",
+      "frozen"
+    ]
+  },
+  {
+    "id": "prawns-1620",
+    "canonicalName": "Prawns 16/20",
+    "category": "frozen",
+    "aliases": [
+      "prawns 16/20",
+      "16/20 prawns"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.37,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 370,
+    "matchedProduct": "Prawns 16/20",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "prawns",
+      "16/20"
+    ]
+  },
+  {
+    "id": "rissoles-jalapeno-cheese",
+    "canonicalName": "Rissoles Jalapeno Cheese",
+    "category": "frozen",
+    "aliases": [
+      "rissoles jalapeno cheese"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 6.83,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 6.83,
+    "matchedProduct": "Rissoles Jalapeno Cheese",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rissoles",
+      "jalapeno",
+      "cheese"
+    ]
+  },
+  {
+    "id": "salami",
+    "canonicalName": "Salami",
+    "category": "frozen",
+    "aliases": [
+      "salami"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 1.1977200000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 1197.72,
+    "matchedProduct": "Salami",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "salami"
+    ]
+  },
+  {
+    "id": "salmon-trout-smoked",
+    "canonicalName": "Salmon Trout Smoked",
+    "category": "frozen",
+    "aliases": [
+      "salmon trout smoked"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.582,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 582,
+    "matchedProduct": "Salmon Trout Smoked",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "salmon",
+      "trout",
+      "smoked"
+    ]
+  },
+  {
+    "id": "samoosa-pastry",
+    "canonicalName": "Samoosa Pastry",
+    "category": "frozen",
+    "aliases": [
+      "samoosa pastry",
+      "pastry samoosa"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 0.9,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 0.9,
+    "matchedProduct": "Samoosa Pastry",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "samoosa",
+      "pastry"
+    ]
+  },
+  {
+    "id": "scallops-frozen",
+    "canonicalName": "Scallops Frozen",
+    "category": "frozen",
+    "aliases": [
+      "scallops frozen",
+      "frozen scallops"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.42957,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 429.57,
+    "matchedProduct": "Scallops Frozen",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "scallops",
+      "frozen"
+    ]
+  },
+  {
+    "id": "smoked-snoek",
+    "canonicalName": "Smoked Snoek",
+    "category": "frozen",
+    "aliases": [
+      "smoked snoek",
+      "snoek smoked"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.128,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 128,
+    "matchedProduct": "Smoked Snoek",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "smoked",
+      "snoek"
+    ]
+  },
+  {
+    "id": "sorbet",
+    "canonicalName": "Sorbet",
+    "category": "frozen",
+    "aliases": [
+      "sorbet"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.03,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 30,
+    "matchedProduct": "Sorbet",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sorbet"
+    ]
+  },
+  {
+    "id": "springroll-pastry",
+    "canonicalName": "Springroll Pastry",
+    "category": "frozen",
+    "aliases": [
+      "springroll pastry",
+      "pastry springroll"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 1.48,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 1.48,
+    "matchedProduct": "Springroll Pastry",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "springroll",
+      "pastry"
+    ]
+  },
+  {
+    "id": "tortilla-wrap",
+    "canonicalName": "Tortilla Wrap",
+    "category": "frozen",
+    "aliases": [
+      "tortilla wrap",
+      "wrap tortilla"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 4.53,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 4.53,
+    "matchedProduct": "Tortilla Wrap",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tortilla",
+      "wrap"
+    ]
+  },
+  {
+    "id": "chicken-pieces",
+    "canonicalName": "Chicken Pieces",
+    "category": "frozen",
+    "aliases": [
+      "chicken pieces",
+      "pieces chicken"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04974,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 49.74,
+    "matchedProduct": "Chicken Pieces",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chicken",
+      "pieces"
+    ]
+  },
+  {
+    "id": "edamame-beans",
+    "canonicalName": "Edamame Beans",
+    "category": "frozen",
+    "aliases": [
+      "edamame beans",
+      "beans edamame"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1606,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 160.6,
+    "matchedProduct": "Edamame Beans",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "edamame",
+      "beans"
+    ]
+  },
+  {
+    "id": "tofu",
+    "canonicalName": "Tofu",
+    "category": "frozen",
+    "aliases": [
+      "tofu"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.159,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 159,
+    "matchedProduct": "Tofu",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tofu"
+    ]
+  },
+  {
+    "id": "ice-cream-vanilla",
+    "canonicalName": "Ice Cream Vanilla",
+    "category": "frozen",
+    "aliases": [
+      "ice cream vanilla"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0145,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 14.5,
+    "matchedProduct": "Ice Cream Vanilla",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "ice",
+      "cream",
+      "vanilla"
+    ]
+  },
+  {
+    "id": "coriander-fresh",
+    "canonicalName": "Coriander Fresh",
+    "category": "herb",
+    "aliases": [
+      "coriander fresh",
+      "fresh coriander"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.5,
+    "matchedProduct": "Coriander Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coriander",
+      "fresh"
+    ]
+  },
+  {
+    "id": "dill-fresh",
+    "canonicalName": "Dill Fresh",
+    "category": "herb",
+    "aliases": [
+      "dill fresh",
+      "fresh dill"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1895,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 189.5,
+    "matchedProduct": "Dill Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "dill",
+      "fresh"
+    ]
+  },
+  {
+    "id": "ginger",
+    "canonicalName": "Ginger",
+    "category": "herb",
+    "aliases": [
+      "ginger"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.13,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 130,
+    "matchedProduct": "Ginger",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "ginger"
+    ]
+  },
+  {
+    "id": "herb-basil",
+    "canonicalName": "Herb Basil",
+    "category": "herb",
+    "aliases": [
+      "herb basil",
+      "basil herb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.19995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.95,
+    "matchedProduct": "Herb Basil",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "herb",
+      "basil"
+    ]
+  },
+  {
+    "id": "herb-mint",
+    "canonicalName": "Herb Mint",
+    "category": "herb",
+    "aliases": [
+      "herb mint",
+      "mint herb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.5,
+    "matchedProduct": "Herb Mint",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "herb",
+      "mint"
+    ]
+  },
+  {
+    "id": "herb-parsley",
+    "canonicalName": "Herb Parsley",
+    "category": "herb",
+    "aliases": [
+      "herb parsley",
+      "parsley herb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.18,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 180,
+    "matchedProduct": "Herb Parsley",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "herb",
+      "parsley"
+    ]
+  },
+  {
+    "id": "herb-rosemary",
+    "canonicalName": "Herb Rosemary",
+    "category": "herb",
+    "aliases": [
+      "herb rosemary",
+      "rosemary herb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.5,
+    "matchedProduct": "Herb Rosemary",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "herb",
+      "rosemary"
+    ]
+  },
+  {
+    "id": "herb-thyme",
+    "canonicalName": "Herb Thyme",
+    "category": "herb",
+    "aliases": [
+      "herb thyme",
+      "thyme herb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.121,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 121,
+    "matchedProduct": "Herb Thyme",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "herb",
+      "thyme"
+    ]
+  },
+  {
+    "id": "mint-fresh",
+    "canonicalName": "Mint Fresh",
+    "category": "herb",
+    "aliases": [
+      "mint fresh",
+      "fresh mint"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 200,
+    "matchedProduct": "Mint Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mint",
+      "fresh"
+    ]
+  },
+  {
+    "id": "oregano-dried",
+    "canonicalName": "Oregano Dried",
+    "category": "herb",
+    "aliases": [
+      "oregano dried",
+      "dried oregano"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1759,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 175.9,
+    "matchedProduct": "Oregano Dried",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "oregano",
+      "dried"
+    ]
+  },
+  {
+    "id": "pea-shoots",
+    "canonicalName": "Pea Shoots",
+    "category": "herb",
+    "aliases": [
+      "pea shoots",
+      "shoots pea"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.395,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 395,
+    "matchedProduct": "Pea Shoots",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pea",
+      "shoots"
+    ]
+  },
+  {
+    "id": "rocket",
+    "canonicalName": "Rocket",
+    "category": "herb",
+    "aliases": [
+      "rocket"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.5,
+    "matchedProduct": "Rocket",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rocket"
+    ]
+  },
+  {
+    "id": "rosemarry-fresh",
+    "canonicalName": "Rosemarry Fresh",
+    "category": "herb",
+    "aliases": [
+      "rosemarry fresh",
+      "fresh rosemarry"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 200,
+    "matchedProduct": "Rosemarry Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rosemarry",
+      "fresh"
+    ]
+  },
+  {
+    "id": "sage-fresh",
+    "canonicalName": "Sage Fresh",
+    "category": "herb",
+    "aliases": [
+      "sage fresh",
+      "fresh sage"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1895,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 189.5,
+    "matchedProduct": "Sage Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sage",
+      "fresh"
+    ]
+  },
+  {
+    "id": "watercress",
+    "canonicalName": "Watercress",
+    "category": "herb",
+    "aliases": [
+      "watercress"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.18095,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 180.95,
+    "matchedProduct": "Watercress",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "watercress"
+    ]
+  },
+  {
+    "id": "bacon-streaky",
+    "canonicalName": "Bacon Streaky",
+    "category": "meat",
+    "aliases": [
+      "bacon streaky",
+      "streaky bacon"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.10585,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 105.85,
+    "matchedProduct": "Bacon Streaky",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bacon",
+      "streaky"
+    ]
+  },
+  {
+    "id": "beef-bones",
+    "canonicalName": "Beef Bones",
+    "category": "meat",
+    "aliases": [
+      "beef bones",
+      "bones beef"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01299,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 12.99,
+    "matchedProduct": "Beef Bones",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "bones"
+    ]
+  },
+  {
+    "id": "beef-brisket",
+    "canonicalName": "Beef Brisket",
+    "category": "meat",
+    "aliases": [
+      "beef brisket",
+      "brisket beef"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09656999999999999,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 96.57,
+    "matchedProduct": "Beef Brisket",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "brisket"
+    ]
+  },
+  {
+    "id": "beef-fillet",
+    "canonicalName": "Beef Fillet",
+    "category": "meat",
+    "aliases": [
+      "beef fillet",
+      "fillet beef"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.16595,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 165.95,
+    "matchedProduct": "Beef Fillet",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "fillet"
+    ]
+  },
+  {
+    "id": "beef-mince",
+    "canonicalName": "Beef Mince",
+    "category": "meat",
+    "aliases": [
+      "beef mince",
+      "mince beef"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 100,
+    "matchedProduct": "Beef Mince",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "mince"
+    ]
+  },
+  {
+    "id": "beef-short-rib",
+    "canonicalName": "Beef Short Rib",
+    "category": "meat",
+    "aliases": [
+      "beef short rib"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.07825,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 78.25,
+    "matchedProduct": "Beef Short Rib",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "short",
+      "rib"
+    ]
+  },
+  {
+    "id": "beef-stew",
+    "canonicalName": "Beef Stew",
+    "category": "meat",
+    "aliases": [
+      "beef stew",
+      "stew beef"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09905,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 99.05,
+    "matchedProduct": "Beef Stew",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "stew"
+    ]
+  },
+  {
+    "id": "biltong-dust",
+    "canonicalName": "Biltong Dust",
+    "category": "meat",
+    "aliases": [
+      "biltong dust",
+      "dust biltong"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.33043,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 330.43,
+    "matchedProduct": "Biltong Dust",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "biltong",
+      "dust"
+    ]
+  },
+  {
+    "id": "biltong-sliced",
+    "canonicalName": "Biltong Sliced",
+    "category": "meat",
+    "aliases": [
+      "biltong sliced",
+      "sliced biltong"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.24783000000000002,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 247.83,
+    "matchedProduct": "Biltong Sliced",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "biltong",
+      "sliced"
+    ]
+  },
+  {
+    "id": "boerewors",
+    "canonicalName": "Boerewors",
+    "category": "meat",
+    "aliases": [
+      "boerewors"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0627,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 62.7,
+    "matchedProduct": "Boerewors",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "boerewors"
+    ]
+  },
+  {
+    "id": "chicken-breast",
+    "canonicalName": "Chicken Breast",
+    "category": "meat",
+    "aliases": [
+      "chicken breast",
+      "breast chicken"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 80,
+    "matchedProduct": "Chicken Breast",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chicken",
+      "breast"
+    ]
+  },
+  {
+    "id": "chicken-quarter",
+    "canonicalName": "Chicken Quarter",
+    "category": "meat",
+    "aliases": [
+      "chicken quarter",
+      "quarter chicken"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.072,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 72,
+    "matchedProduct": "Chicken Quarter",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chicken",
+      "quarter"
+    ]
+  },
+  {
+    "id": "chicken-whole",
+    "canonicalName": "Chicken Whole",
+    "category": "meat",
+    "aliases": [
+      "chicken whole",
+      "whole chicken"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04296,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 42.96,
+    "matchedProduct": "Chicken Whole",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chicken",
+      "whole"
+    ]
+  },
+  {
+    "id": "chilli-bites",
+    "canonicalName": "Chilli Bites",
+    "category": "meat",
+    "aliases": [
+      "chilli bites",
+      "bites chilli"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.30565,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 305.65,
+    "matchedProduct": "Chilli Bites",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chilli",
+      "bites"
+    ]
+  },
+  {
+    "id": "chorizo",
+    "canonicalName": "Chorizo",
+    "category": "meat",
+    "aliases": [
+      "chorizo"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.07765000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 77.65,
+    "matchedProduct": "Chorizo",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chorizo"
+    ]
+  },
+  {
+    "id": "droewors",
+    "canonicalName": "Droewors",
+    "category": "meat",
+    "aliases": [
+      "droewors"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.24783000000000002,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 247.83,
+    "matchedProduct": "Droewors",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "droewors"
+    ]
+  },
+  {
+    "id": "lamb-loin-chops",
+    "canonicalName": "Lamb Loin Chops",
+    "category": "meat",
+    "aliases": [
+      "lamb loin chops"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1913,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 191.3,
+    "matchedProduct": "Lamb Loin Chops",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lamb",
+      "loin",
+      "chops"
+    ]
+  },
+  {
+    "id": "lamb-neck-whole",
+    "canonicalName": "Lamb Neck Whole",
+    "category": "meat",
+    "aliases": [
+      "lamb neck whole"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.13825,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 138.25,
+    "matchedProduct": "Lamb Neck Whole",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lamb",
+      "neck",
+      "whole"
+    ]
+  },
+  {
+    "id": "lamb-rib",
+    "canonicalName": "Lamb Rib",
+    "category": "meat",
+    "aliases": [
+      "lamb rib",
+      "rib lamb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09079000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 90.79,
+    "matchedProduct": "Lamb Rib",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lamb",
+      "rib"
+    ]
+  },
+  {
+    "id": "lamb-shank",
+    "canonicalName": "Lamb Shank",
+    "category": "meat",
+    "aliases": [
+      "lamb shank",
+      "shank lamb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.13825,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 138.25,
+    "matchedProduct": "Lamb Shank",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lamb",
+      "shank"
+    ]
+  },
+  {
+    "id": "ostrich-fillet",
+    "canonicalName": "Ostrich Fillet",
+    "category": "meat",
+    "aliases": [
+      "ostrich fillet",
+      "fillet ostrich"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.19999,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.99,
+    "matchedProduct": "Ostrich Fillet",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "ostrich",
+      "fillet"
+    ]
+  },
+  {
+    "id": "ostrich-mince",
+    "canonicalName": "Ostrich Mince",
+    "category": "meat",
+    "aliases": [
+      "ostrich mince",
+      "mince ostrich"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.19999,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.99,
+    "matchedProduct": "Ostrich Mince",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "ostrich",
+      "mince"
+    ]
+  },
+  {
+    "id": "oxtail",
+    "canonicalName": "Oxtail",
+    "category": "meat",
+    "aliases": [
+      "oxtail"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09822,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 98.22,
+    "matchedProduct": "Oxtail",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "oxtail"
+    ]
+  },
+  {
+    "id": "pichana-steak",
+    "canonicalName": "Pichana Steak",
+    "category": "meat",
+    "aliases": [
+      "pichana steak",
+      "steak pichana"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.14861000000000002,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 148.61,
+    "matchedProduct": "Pichana Steak",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pichana",
+      "steak"
+    ]
+  },
+  {
+    "id": "pork-belly",
+    "canonicalName": "Pork Belly",
+    "category": "meat",
+    "aliases": [
+      "pork belly",
+      "belly pork"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09491,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 94.91,
+    "matchedProduct": "Pork Belly",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pork",
+      "belly"
+    ]
+  },
+  {
+    "id": "pork-mince",
+    "canonicalName": "Pork Mince",
+    "category": "meat",
+    "aliases": [
+      "pork mince",
+      "mince pork"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08999,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 89.99,
+    "matchedProduct": "Pork Mince",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pork",
+      "mince"
+    ]
+  },
+  {
+    "id": "pork-neck-whole",
+    "canonicalName": "Pork Neck Whole",
+    "category": "meat",
+    "aliases": [
+      "pork neck whole"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09905,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 99.05,
+    "matchedProduct": "Pork Neck Whole",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pork",
+      "neck",
+      "whole"
+    ]
+  },
+  {
+    "id": "pork-shoulder",
+    "canonicalName": "Pork Shoulder",
+    "category": "meat",
+    "aliases": [
+      "pork shoulder",
+      "shoulder pork"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.068,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 68,
+    "matchedProduct": "Pork Shoulder",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pork",
+      "shoulder"
+    ]
+  },
+  {
+    "id": "staff-chicken-pieces",
+    "canonicalName": "Staff Chicken Pieces",
+    "category": "meat",
+    "aliases": [
+      "staff chicken pieces"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.07427,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 74.27,
+    "matchedProduct": "Staff Chicken Pieces",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "staff",
+      "chicken",
+      "pieces"
+    ]
+  },
+  {
+    "id": "venison-fillet",
+    "canonicalName": "Venison Fillet",
+    "category": "meat",
+    "aliases": [
+      "venison fillet",
+      "fillet venison"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.18041,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 180.41,
+    "matchedProduct": "Venison Fillet",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "venison",
+      "fillet"
+    ]
+  },
+  {
+    "id": "lamb-stew",
+    "canonicalName": "Lamb Stew",
+    "category": "meat",
+    "aliases": [
+      "lamb stew",
+      "stew lamb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.15818000000000002,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 158.18,
+    "matchedProduct": "Lamb Stew",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lamb",
+      "stew"
+    ]
+  },
+  {
+    "id": "beef-tomahawk",
+    "canonicalName": "Beef Tomahawk",
+    "category": "meat",
+    "aliases": [
+      "beef tomahawk",
+      "tomahawk beef"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.15199000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 151.99,
+    "matchedProduct": "Beef Tomahawk",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "tomahawk"
+    ]
+  },
+  {
+    "id": "chicken-wings",
+    "canonicalName": "Chicken Wings",
+    "category": "meat",
+    "aliases": [
+      "chicken wings",
+      "wings chicken"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08693000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 86.93,
+    "matchedProduct": "Chicken Wings",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chicken",
+      "wings"
+    ]
+  },
+  {
+    "id": "almond-whole",
+    "canonicalName": "Almond Whole",
+    "category": "nut",
+    "aliases": [
+      "almond whole",
+      "whole almond"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.43998000000000004,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 439.98,
+    "matchedProduct": "Almond Whole",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "almond",
+      "whole"
+    ]
+  },
+  {
+    "id": "nuts-cashew",
+    "canonicalName": "Nuts Cashew",
+    "category": "nut",
+    "aliases": [
+      "nuts cashew",
+      "cashew nuts"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.19599,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 195.99,
+    "matchedProduct": "Nuts Cashew",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "nuts",
+      "cashew"
+    ]
+  },
+  {
+    "id": "nuts-macadamia",
+    "canonicalName": "Nuts Macadamia",
+    "category": "nut",
+    "aliases": [
+      "nuts macadamia",
+      "macadamia nuts"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.163,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 163,
+    "matchedProduct": "Nuts Macadamia",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "nuts",
+      "macadamia"
+    ]
+  },
+  {
+    "id": "nuts-pecan",
+    "canonicalName": "Nuts Pecan",
+    "category": "nut",
+    "aliases": [
+      "nuts pecan",
+      "pecan nuts"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.28145,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 281.45,
+    "matchedProduct": "Nuts Pecan",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "nuts",
+      "pecan"
+    ]
+  },
+  {
+    "id": "bay-leafs",
+    "canonicalName": "Bay Leafs",
+    "category": "spice",
+    "aliases": [
+      "bay leafs",
+      "leafs bay"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.457,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 457,
+    "matchedProduct": "Bay Leafs",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bay",
+      "leafs"
+    ]
+  },
+  {
+    "id": "rajah-curry-spice",
+    "canonicalName": "Rajah Curry Spice",
+    "category": "spice",
+    "aliases": [
+      "rajah curry spice"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.17282,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 172.82,
+    "matchedProduct": "Rajah Curry Spice",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "rajah",
+      "curry",
+      "spice"
+    ]
+  },
+  {
+    "id": "cardamom",
+    "canonicalName": "Cardamom",
+    "category": "spice",
+    "aliases": [
+      "cardamom"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 1.25,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 1250,
+    "matchedProduct": "Cardamom",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cardamom"
+    ]
+  },
+  {
+    "id": "cayenne",
+    "canonicalName": "Cayenne",
+    "category": "spice",
+    "aliases": [
+      "cayenne"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.165,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 165,
+    "matchedProduct": "Cayenne",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cayenne"
+    ]
+  },
+  {
+    "id": "chilli-dried",
+    "canonicalName": "Chilli Dried",
+    "category": "spice",
+    "aliases": [
+      "chilli dried",
+      "dried chilli"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.14944,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 149.44,
+    "matchedProduct": "Chilli Dried",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chilli",
+      "dried"
+    ]
+  },
+  {
+    "id": "cinnamon",
+    "canonicalName": "Cinnamon",
+    "category": "spice",
+    "aliases": [
+      "cinnamon"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.10344,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 103.44,
+    "matchedProduct": "Cinnamon",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cinnamon"
+    ]
+  },
+  {
+    "id": "cinnamon-whole",
+    "canonicalName": "Cinnamon Whole",
+    "category": "spice",
+    "aliases": [
+      "cinnamon whole",
+      "whole cinnamon"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1005,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 100.5,
+    "matchedProduct": "Cinnamon Whole",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cinnamon",
+      "whole"
+    ]
+  },
+  {
+    "id": "cloves",
+    "canonicalName": "Cloves",
+    "category": "spice",
+    "aliases": [
+      "cloves"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.34495,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 344.95,
+    "matchedProduct": "Cloves",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cloves"
+    ]
+  },
+  {
+    "id": "coriander",
+    "canonicalName": "Coriander",
+    "category": "spice",
+    "aliases": [
+      "coriander"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08849,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 88.49,
+    "matchedProduct": "Coriander",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coriander"
+    ]
+  },
+  {
+    "id": "cumin",
+    "canonicalName": "Cumin",
+    "category": "spice",
+    "aliases": [
+      "cumin"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.11494,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 114.94,
+    "matchedProduct": "Cumin",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cumin"
+    ]
+  },
+  {
+    "id": "garam-masala",
+    "canonicalName": "Garam Masala",
+    "category": "spice",
+    "aliases": [
+      "garam masala",
+      "masala garam"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.13795,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 137.95,
+    "matchedProduct": "Garam Masala",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "garam",
+      "masala"
+    ]
+  },
+  {
+    "id": "mixed-spice-blend",
+    "canonicalName": "Mixed Spice Blend",
+    "category": "spice",
+    "aliases": [
+      "mixed spice blend"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.35,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 350,
+    "matchedProduct": "Mixed Spice Blend",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mixed",
+      "spice",
+      "blend"
+    ]
+  },
+  {
+    "id": "paprika",
+    "canonicalName": "Paprika",
+    "category": "spice",
+    "aliases": [
+      "paprika"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.13219,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 132.19,
+    "matchedProduct": "Paprika",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "paprika"
+    ]
+  },
+  {
+    "id": "pepper-black-whole",
+    "canonicalName": "Pepper Black Whole",
+    "category": "spice",
+    "aliases": [
+      "pepper black whole"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.279,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 279,
+    "matchedProduct": "Pepper Black Whole",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pepper",
+      "black",
+      "whole"
+    ]
+  },
+  {
+    "id": "saffron-60g",
+    "canonicalName": "Saffron 60g",
+    "category": "spice",
+    "aliases": [
+      "saffron 60g",
+      "60g saffron"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 4.4322,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 4432.2,
+    "matchedProduct": "Saffron 60g",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "saffron",
+      "60g"
+    ]
+  },
+  {
+    "id": "salt-sea-coarse",
+    "canonicalName": "Salt Sea Coarse",
+    "category": "spice",
+    "aliases": [
+      "salt sea coarse"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 290,
+      "tbsp": 18,
+      "tsp": 6
+    },
+    "costPerUnit": 0.017,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 17,
+    "matchedProduct": "Salt Sea Coarse",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "salt",
+      "sea",
+      "coarse"
+    ]
+  },
+  {
+    "id": "star-anise",
+    "canonicalName": "Star Anise",
+    "category": "spice",
+    "aliases": [
+      "star anise",
+      "anise star"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.48928,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 489.28,
+    "matchedProduct": "Star Anise",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "star",
+      "anise"
+    ]
+  },
+  {
+    "id": "tumeric",
+    "canonicalName": "Tumeric",
+    "category": "spice",
+    "aliases": [
+      "tumeric"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.072,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 72,
+    "matchedProduct": "Tumeric",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tumeric"
+    ]
+  },
+  {
+    "id": "white-pepper",
+    "canonicalName": "White Pepper",
+    "category": "spice",
+    "aliases": [
+      "white pepper",
+      "pepper white"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.12878,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 128.78,
+    "matchedProduct": "White Pepper",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "white",
+      "pepper"
+    ]
+  },
+  {
+    "id": "vegetable-seasoning",
+    "canonicalName": "Vegetable Seasoning",
+    "category": "spice",
+    "aliases": [
+      "vegetable seasoning",
+      "seasoning vegetable"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.16755,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 167.55,
+    "matchedProduct": "Vegetable Seasoning",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "vegetable",
+      "seasoning"
+    ]
+  },
+  {
+    "id": "lemon-and-herb-seasoning",
+    "canonicalName": "Lemon And Herb Seasoning",
+    "category": "spice",
+    "aliases": [
+      "lemon and herb seasoning"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.16679,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 166.79,
+    "matchedProduct": "Lemon And Herb Seasoning",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lemon",
+      "and",
+      "herb",
+      "seasoning"
+    ]
+  },
+  {
+    "id": "chicken-spice",
+    "canonicalName": "Chicken Spice",
+    "category": "spice",
+    "aliases": [
+      "chicken spice",
+      "spice chicken"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.14051,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 140.51,
+    "matchedProduct": "Chicken Spice",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chicken",
+      "spice"
+    ]
+  },
+  {
+    "id": "bbq-spice",
+    "canonicalName": "Bbq Spice",
+    "category": "spice",
+    "aliases": [
+      "bbq spice",
+      "spice bbq"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.14051,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 140.51,
+    "matchedProduct": "Bbq Spice",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bbq",
+      "spice"
+    ]
+  },
+  {
+    "id": "all-spice",
+    "canonicalName": "All Spice",
+    "category": "spice",
+    "aliases": [
+      "all spice",
+      "spice all"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.9088200000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 908.82,
+    "matchedProduct": "All Spice",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "all",
+      "spice"
+    ]
+  },
+  {
+    "id": "nutmeg",
+    "canonicalName": "Nutmeg",
+    "category": "spice",
+    "aliases": [
+      "nutmeg"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 1.2798,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 1279.8,
+    "matchedProduct": "Nutmeg",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "nutmeg"
+    ]
+  },
+  {
+    "id": "asparagus",
+    "canonicalName": "Asparagus",
+    "category": "vegetable",
+    "aliases": [
+      "asparagus"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.44166000000000005,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 441.66,
+    "matchedProduct": "Asparagus",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "asparagus"
+    ]
+  },
+  {
+    "id": "avocado",
+    "canonicalName": "Avocado",
+    "category": "vegetable",
+    "aliases": [
+      "avocado"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 23.9,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 23.9,
+    "matchedProduct": "Avocado",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "avocado"
+    ]
+  },
+  {
+    "id": "baby-beets",
+    "canonicalName": "Baby Beets",
+    "category": "vegetable",
+    "aliases": [
+      "baby beets",
+      "beets baby"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0399,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 39.9,
+    "matchedProduct": "Baby Beets",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "baby",
+      "beets"
+    ]
+  },
+  {
+    "id": "baby-corn",
+    "canonicalName": "Baby Corn",
+    "category": "vegetable",
+    "aliases": [
+      "baby corn",
+      "corn baby"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.30212,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 302.12,
+    "matchedProduct": "Baby Corn",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "baby",
+      "corn"
+    ]
+  },
+  {
+    "id": "baby-marrow",
+    "canonicalName": "Baby Marrow",
+    "category": "vegetable",
+    "aliases": [
+      "baby marrow",
+      "marrow baby"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0675,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 67.5,
+    "matchedProduct": "Baby Marrow",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "baby",
+      "marrow"
+    ]
+  },
+  {
+    "id": "baby-onion",
+    "canonicalName": "Baby Onion",
+    "category": "vegetable",
+    "aliases": [
+      "baby onion",
+      "onion baby"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01695,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 16.95,
+    "matchedProduct": "Baby Onion",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "baby",
+      "onion"
+    ]
+  },
+  {
+    "id": "bananna",
+    "canonicalName": "Bananna",
+    "category": "vegetable",
+    "aliases": [
+      "bananna"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0295,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 29.5,
+    "matchedProduct": "Bananna",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bananna"
+    ]
+  },
+  {
+    "id": "basil-fresh",
+    "canonicalName": "Basil Fresh",
+    "category": "vegetable",
+    "aliases": [
+      "basil fresh",
+      "fresh basil"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2195,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 219.5,
+    "matchedProduct": "Basil Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "basil",
+      "fresh"
+    ]
+  },
+  {
+    "id": "bean-sprouts-mixed",
+    "canonicalName": "Bean Sprouts Mixed",
+    "category": "vegetable",
+    "aliases": [
+      "bean sprouts mixed"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.085,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 85,
+    "matchedProduct": "Bean Sprouts Mixed",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bean",
+      "sprouts",
+      "mixed"
+    ]
+  },
+  {
+    "id": "beetroot",
+    "canonicalName": "Beetroot",
+    "category": "vegetable",
+    "aliases": [
+      "beetroot"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.016989999999999998,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 16.99,
+    "matchedProduct": "Beetroot",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beetroot"
+    ]
+  },
+  {
+    "id": "blueberries",
+    "canonicalName": "Blueberries",
+    "category": "vegetable",
+    "aliases": [
+      "blueberries"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.21358000000000002,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 213.58,
+    "matchedProduct": "Blueberries",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "blueberries"
+    ]
+  },
+  {
+    "id": "broccoli",
+    "canonicalName": "Broccoli",
+    "category": "vegetable",
+    "aliases": [
+      "broccoli"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.075,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 75,
+    "matchedProduct": "Broccoli",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "broccoli"
+    ]
+  },
+  {
+    "id": "broccoli-tender-stem",
+    "canonicalName": "Broccoli Tender Stem",
+    "category": "vegetable",
+    "aliases": [
+      "broccoli tender stem"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2392,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 239.2,
+    "matchedProduct": "Broccoli Tender Stem",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "broccoli",
+      "tender",
+      "stem"
+    ]
+  },
+  {
+    "id": "butternut",
+    "canonicalName": "Butternut",
+    "category": "vegetable",
+    "aliases": [
+      "butternut"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 227,
+      "tbsp": 14,
+      "tsp": 5
+    },
+    "costPerUnit": 0.017,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 17,
+    "matchedProduct": "Butternut",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "butternut"
+    ]
+  },
+  {
+    "id": "cabage-red",
+    "canonicalName": "Cabage Red",
+    "category": "vegetable",
+    "aliases": [
+      "cabage red",
+      "red cabage"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 48.5,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 48.5,
+    "matchedProduct": "Cabage Red",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cabage",
+      "red"
+    ]
+  },
+  {
+    "id": "cabage-white",
+    "canonicalName": "Cabage White",
+    "category": "vegetable",
+    "aliases": [
+      "cabage white",
+      "white cabage"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 26.9,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 26.9,
+    "matchedProduct": "Cabage White",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cabage",
+      "white"
+    ]
+  },
+  {
+    "id": "carrots-baby",
+    "canonicalName": "Carrots Baby",
+    "category": "vegetable",
+    "aliases": [
+      "carrots baby",
+      "baby carrots"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08320999999999999,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 83.21,
+    "matchedProduct": "Carrots Baby",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "carrots",
+      "baby"
+    ]
+  },
+  {
+    "id": "cauliflower",
+    "canonicalName": "Cauliflower",
+    "category": "vegetable",
+    "aliases": [
+      "cauliflower"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.075,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 75,
+    "matchedProduct": "Cauliflower",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cauliflower"
+    ]
+  },
+  {
+    "id": "corn-on-the-cob",
+    "canonicalName": "Corn On The Cob",
+    "category": "vegetable",
+    "aliases": [
+      "corn on the cob"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0428,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 42.8,
+    "matchedProduct": "Corn On The Cob",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "corn",
+      "the",
+      "cob"
+    ]
+  },
+  {
+    "id": "cucumber",
+    "canonicalName": "Cucumber",
+    "category": "vegetable",
+    "aliases": [
+      "cucumber"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 16,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 16,
+    "matchedProduct": "Cucumber",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cucumber"
+    ]
+  },
+  {
+    "id": "edible-flowers",
+    "canonicalName": "Edible Flowers",
+    "category": "vegetable",
+    "aliases": [
+      "edible flowers",
+      "flowers edible"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.86491,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 864.91,
+    "matchedProduct": "Edible Flowers",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "edible",
+      "flowers"
+    ]
+  },
+  {
+    "id": "fennel-fresh",
+    "canonicalName": "Fennel Fresh",
+    "category": "vegetable",
+    "aliases": [
+      "fennel fresh",
+      "fresh fennel"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.085,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 85,
+    "matchedProduct": "Fennel Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "fennel",
+      "fresh"
+    ]
+  },
+  {
+    "id": "gooseberries",
+    "canonicalName": "Gooseberries",
+    "category": "vegetable",
+    "aliases": [
+      "gooseberries"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.16,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 160,
+    "matchedProduct": "Gooseberries",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "gooseberries"
+    ]
+  },
+  {
+    "id": "granadilla-passion-fruit",
+    "canonicalName": "Granadilla / Passion Fruit",
+    "category": "vegetable",
+    "aliases": [
+      "granadilla / passion fruit"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.3451,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 345.1,
+    "matchedProduct": "Granadilla / Passion Fruit",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "granadilla",
+      "passion",
+      "fruit"
+    ]
+  },
+  {
+    "id": "grapes-green",
+    "canonicalName": "Grapes Green",
+    "category": "vegetable",
+    "aliases": [
+      "grapes green",
+      "green grapes"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 90,
+    "matchedProduct": "Grapes Green",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "grapes",
+      "green"
+    ]
+  },
+  {
+    "id": "grapes-red",
+    "canonicalName": "Grapes Red",
+    "category": "vegetable",
+    "aliases": [
+      "grapes red",
+      "red grapes"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0959,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 95.9,
+    "matchedProduct": "Grapes Red",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "grapes",
+      "red"
+    ]
+  },
+  {
+    "id": "kiwi-fruit",
+    "canonicalName": "Kiwi Fruit",
+    "category": "vegetable",
+    "aliases": [
+      "kiwi fruit",
+      "fruit kiwi"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 11.9,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 11.9,
+    "matchedProduct": "Kiwi Fruit",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "kiwi",
+      "fruit"
+    ]
+  },
+  {
+    "id": "leeks",
+    "canonicalName": "Leeks",
+    "category": "vegetable",
+    "aliases": [
+      "leeks"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.06,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 60,
+    "matchedProduct": "Leeks",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "leeks"
+    ]
+  },
+  {
+    "id": "lettuce",
+    "canonicalName": "Lettuce",
+    "category": "vegetable",
+    "aliases": [
+      "lettuce"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.15,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 150,
+    "matchedProduct": "Lettuce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lettuce"
+    ]
+  },
+  {
+    "id": "lettuce-cos-baby",
+    "canonicalName": "Lettuce Cos Baby",
+    "category": "vegetable",
+    "aliases": [
+      "lettuce cos baby"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09975,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 99.75,
+    "matchedProduct": "Lettuce Cos Baby",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lettuce",
+      "cos",
+      "baby"
+    ]
+  },
+  {
+    "id": "lettuce-mixed",
+    "canonicalName": "Lettuce Mixed",
+    "category": "vegetable",
+    "aliases": [
+      "lettuce mixed",
+      "mixed lettuce"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09975,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 99.75,
+    "matchedProduct": "Lettuce Mixed",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "lettuce",
+      "mixed"
+    ]
+  },
+  {
+    "id": "limes-fresh",
+    "canonicalName": "Limes Fresh",
+    "category": "vegetable",
+    "aliases": [
+      "limes fresh",
+      "fresh limes"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0895,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 89.5,
+    "matchedProduct": "Limes Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "limes",
+      "fresh"
+    ]
+  },
+  {
+    "id": "mango-fresh",
+    "canonicalName": "Mango Fresh",
+    "category": "vegetable",
+    "aliases": [
+      "mango fresh",
+      "fresh mango"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0985,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 98.5,
+    "matchedProduct": "Mango Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mango",
+      "fresh"
+    ]
+  },
+  {
+    "id": "micro-greens-mixed",
+    "canonicalName": "Micro Greens Mixed",
+    "category": "vegetable",
+    "aliases": [
+      "micro greens mixed"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2975,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 297.5,
+    "matchedProduct": "Micro Greens Mixed",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "micro",
+      "greens",
+      "mixed"
+    ]
+  },
+  {
+    "id": "mushroom-brown",
+    "canonicalName": "Mushroom Brown",
+    "category": "vegetable",
+    "aliases": [
+      "mushroom brown",
+      "brown mushroom"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.158,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 158,
+    "matchedProduct": "Mushroom Brown",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mushroom",
+      "brown"
+    ]
+  },
+  {
+    "id": "mushroom-button",
+    "canonicalName": "Mushroom Button",
+    "category": "vegetable",
+    "aliases": [
+      "mushroom button",
+      "button mushroom"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.14759999999999998,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 147.6,
+    "matchedProduct": "Mushroom Button",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mushroom",
+      "button"
+    ]
+  },
+  {
+    "id": "nectarine",
+    "canonicalName": "Nectarine",
+    "category": "vegetable",
+    "aliases": [
+      "nectarine"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.03471,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 34.71,
+    "matchedProduct": "Nectarine",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "nectarine"
+    ]
+  },
+  {
+    "id": "onion-red",
+    "canonicalName": "Onion Red",
+    "category": "vegetable",
+    "aliases": [
+      "onion red",
+      "red onion"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0195,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 19.5,
+    "matchedProduct": "Onion Red",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "onion",
+      "red"
+    ]
+  },
+  {
+    "id": "onion-spring",
+    "canonicalName": "Onion Spring",
+    "category": "vegetable",
+    "aliases": [
+      "onion spring",
+      "spring onion"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 200,
+    "matchedProduct": "Onion Spring",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "onion",
+      "spring"
+    ]
+  },
+  {
+    "id": "patty-pans",
+    "canonicalName": "Patty Pans",
+    "category": "vegetable",
+    "aliases": [
+      "patty pans",
+      "pans patty"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.055,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 55,
+    "matchedProduct": "Patty Pans",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "patty",
+      "pans"
+    ]
+  },
+  {
+    "id": "pea-sugarsnap",
+    "canonicalName": "Pea Sugarsnap",
+    "category": "vegetable",
+    "aliases": [
+      "pea sugarsnap",
+      "sugarsnap pea"
+    ],
+    "baseUnit": "g",
+    "conversions": {
+      "cup": 200,
+      "tbsp": 12,
+      "tsp": 4
+    },
+    "costPerUnit": 0.26333,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 263.33,
+    "matchedProduct": "Pea Sugarsnap",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pea",
+      "sugarsnap"
+    ]
+  },
+  {
+    "id": "pear",
+    "canonicalName": "Pear",
+    "category": "vegetable",
+    "aliases": [
+      "pear"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0237,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 23.7,
+    "matchedProduct": "Pear",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pear"
+    ]
+  },
+  {
+    "id": "peashoot",
+    "canonicalName": "Peashoot",
+    "category": "vegetable",
+    "aliases": [
+      "peashoot"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.3905,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 390.5,
+    "matchedProduct": "Peashoot",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "peashoot"
+    ]
+  },
+  {
+    "id": "peppers-green",
+    "canonicalName": "Peppers Green",
+    "category": "vegetable",
+    "aliases": [
+      "peppers green",
+      "green peppers"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.04,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 40,
+    "matchedProduct": "Peppers Green",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "peppers",
+      "green"
+    ]
+  },
+  {
+    "id": "peppers-red",
+    "canonicalName": "Peppers Red",
+    "category": "vegetable",
+    "aliases": [
+      "peppers red",
+      "red peppers"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 80,
+    "matchedProduct": "Peppers Red",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "peppers",
+      "red"
+    ]
+  },
+  {
+    "id": "peppers-yellow",
+    "canonicalName": "Peppers Yellow",
+    "category": "vegetable",
+    "aliases": [
+      "peppers yellow",
+      "yellow peppers"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.08,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 80,
+    "matchedProduct": "Peppers Yellow",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "peppers",
+      "yellow"
+    ]
+  },
+  {
+    "id": "potato",
+    "canonicalName": "Potato",
+    "category": "vegetable",
+    "aliases": [
+      "potato"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.02,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 20,
+    "matchedProduct": "Potato",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "potato"
+    ]
+  },
+  {
+    "id": "potato-baby",
+    "canonicalName": "Potato Baby",
+    "category": "vegetable",
+    "aliases": [
+      "potato baby",
+      "baby potato"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.016,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 16,
+    "matchedProduct": "Potato Baby",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "potato",
+      "baby"
+    ]
+  },
+  {
+    "id": "radish-fresh",
+    "canonicalName": "Radish Fresh",
+    "category": "vegetable",
+    "aliases": [
+      "radish fresh",
+      "fresh radish"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1345,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 134.5,
+    "matchedProduct": "Radish Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "radish",
+      "fresh"
+    ]
+  },
+  {
+    "id": "spinach-baby",
+    "canonicalName": "Spinach Baby",
+    "category": "vegetable",
+    "aliases": [
+      "spinach baby",
+      "baby spinach"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.075,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 75,
+    "matchedProduct": "Spinach Baby",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "spinach",
+      "baby"
+    ]
+  },
+  {
+    "id": "spinach-bunch",
+    "canonicalName": "Spinach Bunch",
+    "category": "vegetable",
+    "aliases": [
+      "spinach bunch",
+      "bunch spinach"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.015,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 15,
+    "matchedProduct": "Spinach Bunch",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "spinach",
+      "bunch"
+    ]
+  },
+  {
+    "id": "strawberries",
+    "canonicalName": "Strawberries",
+    "category": "vegetable",
+    "aliases": [
+      "strawberries"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.136,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 136,
+    "matchedProduct": "Strawberries",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "strawberries"
+    ]
+  },
+  {
+    "id": "tomatoes-cherry",
+    "canonicalName": "Tomatoes Cherry",
+    "category": "vegetable",
+    "aliases": [
+      "tomatoes cherry",
+      "cherry tomatoes"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.065,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 65,
+    "matchedProduct": "Tomatoes Cherry",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tomatoes",
+      "cherry"
+    ]
+  },
+  {
+    "id": "tomatoes-fresh",
+    "canonicalName": "Tomatoes Fresh",
+    "category": "vegetable",
+    "aliases": [
+      "tomatoes fresh",
+      "fresh tomatoes"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.02,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 20,
+    "matchedProduct": "Tomatoes Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tomatoes",
+      "fresh"
+    ]
+  },
+  {
+    "id": "watermellon",
+    "canonicalName": "Watermellon",
+    "category": "vegetable",
+    "aliases": [
+      "watermellon"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 98.5,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 98.5,
+    "matchedProduct": "Watermellon",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "watermellon"
+    ]
+  },
+  {
+    "id": "kale",
+    "canonicalName": "Kale",
+    "category": "vegetable",
+    "aliases": [
+      "kale"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0395,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 39.5,
+    "matchedProduct": "Kale",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "kale"
+    ]
+  },
+  {
+    "id": "mushroom-king-oyster",
+    "canonicalName": "Mushroom King Oyster",
+    "category": "vegetable",
+    "aliases": [
+      "mushroom king oyster"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.198,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 198,
+    "matchedProduct": "Mushroom King Oyster",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mushroom",
+      "king",
+      "oyster"
+    ]
+  },
+  {
+    "id": "mushroom-shitake",
+    "canonicalName": "Mushroom Shitake",
+    "category": "vegetable",
+    "aliases": [
+      "mushroom shitake",
+      "shitake mushroom"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.2485,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 248.5,
+    "matchedProduct": "Mushroom Shitake",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mushroom",
+      "shitake"
+    ]
+  },
+  {
+    "id": "potato-sweet",
+    "canonicalName": "Potato Sweet",
+    "category": "vegetable",
+    "aliases": [
+      "potato sweet",
+      "sweet potato"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0177,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 17.7,
+    "matchedProduct": "Potato Sweet",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "potato",
+      "sweet"
+    ]
+  },
+  {
+    "id": "aubergine",
+    "canonicalName": "Aubergine",
+    "category": "vegetable",
+    "aliases": [
+      "aubergine"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.07246999999999999,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 72.47,
+    "matchedProduct": "Aubergine",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "aubergine"
+    ]
+  },
+  {
+    "id": "chilli-fresh",
+    "canonicalName": "Chilli Fresh",
+    "category": "vegetable",
+    "aliases": [
+      "chilli fresh",
+      "fresh chilli"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0985,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 98.5,
+    "matchedProduct": "Chilli Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "chilli",
+      "fresh"
+    ]
+  },
+  {
+    "id": "raspberries",
+    "canonicalName": "Raspberries",
+    "category": "vegetable",
+    "aliases": [
+      "raspberries"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.318,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 318,
+    "matchedProduct": "Raspberries",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "raspberries"
+    ]
+  },
+  {
+    "id": "bacon-jam",
+    "canonicalName": "Bacon Jam",
+    "category": "house-made",
+    "aliases": [
+      "bacon jam",
+      "jam bacon"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.093,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 93,
+    "matchedProduct": "Bacon Jam",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bacon",
+      "jam"
+    ]
+  },
+  {
+    "id": "balsamic-reduction",
+    "canonicalName": "Balsamic Reduction",
+    "category": "house-made",
+    "aliases": [
+      "balsamic reduction",
+      "reduction balsamic"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.99,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 990,
+    "matchedProduct": "Balsamic Reduction",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "balsamic",
+      "reduction"
+    ]
+  },
+  {
+    "id": "beef-jus",
+    "canonicalName": "Beef Jus",
+    "category": "house-made",
+    "aliases": [
+      "beef jus",
+      "jus beef"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.25114,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 251.14,
+    "matchedProduct": "Beef Jus",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "jus"
+    ]
+  },
+  {
+    "id": "bolognaise",
+    "canonicalName": "Bolognaise",
+    "category": "house-made",
+    "aliases": [
+      "bolognaise"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.15961,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 159.61,
+    "matchedProduct": "Bolognaise",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bolognaise"
+    ]
+  },
+  {
+    "id": "burger-bun-milk",
+    "canonicalName": "Burger Bun Milk",
+    "category": "house-made",
+    "aliases": [
+      "burger bun milk"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 4,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 4,
+    "matchedProduct": "Burger Bun Milk",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "burger",
+      "bun",
+      "milk"
+    ]
+  },
+  {
+    "id": "crme-fraiche",
+    "canonicalName": "Crème Fraiche",
+    "category": "house-made",
+    "aliases": [
+      "crème fraiche",
+      "fraiche crème"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.061,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 61,
+    "matchedProduct": "Crème Fraiche",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "crème",
+      "fraiche"
+    ]
+  },
+  {
+    "id": "hollandaise-sauce",
+    "canonicalName": "Hollandaise Sauce",
+    "category": "house-made",
+    "aliases": [
+      "hollandaise sauce",
+      "sauce hollandaise"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.17475,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 174.75,
+    "matchedProduct": "Hollandaise Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "hollandaise",
+      "sauce"
+    ]
+  },
+  {
+    "id": "home-dried-tomato",
+    "canonicalName": "Home Dried Tomato",
+    "category": "house-made",
+    "aliases": [
+      "home dried tomato"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 2.89251,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 2892.51,
+    "matchedProduct": "Home Dried Tomato",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "home",
+      "dried",
+      "tomato"
+    ]
+  },
+  {
+    "id": "hummus",
+    "canonicalName": "Hummus",
+    "category": "house-made",
+    "aliases": [
+      "hummus"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.050320000000000004,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 50.32,
+    "matchedProduct": "Hummus",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "hummus"
+    ]
+  },
+  {
+    "id": "mayo",
+    "canonicalName": "Mayo",
+    "category": "house-made",
+    "aliases": [
+      "mayo"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.05,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 50,
+    "matchedProduct": "Mayo",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "mayo"
+    ]
+  },
+  {
+    "id": "shortbread",
+    "canonicalName": "Shortbread",
+    "category": "house-made",
+    "aliases": [
+      "shortbread"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01566,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 15.66,
+    "matchedProduct": "Shortbread",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "shortbread"
+    ]
+  },
+  {
+    "id": "smoked-chicken-inhouse",
+    "canonicalName": "Smoked Chicken Inhouse",
+    "category": "house-made",
+    "aliases": [
+      "smoked chicken inhouse"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.09,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 90,
+    "matchedProduct": "Smoked Chicken Inhouse",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "smoked",
+      "chicken",
+      "inhouse"
+    ]
+  },
+  {
+    "id": "sourdough-bread",
+    "canonicalName": "Sourdough Bread",
+    "category": "house-made",
+    "aliases": [
+      "sourdough bread",
+      "bread sourdough"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01205,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 12.05,
+    "matchedProduct": "Sourdough Bread",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sourdough",
+      "bread"
+    ]
+  },
+  {
+    "id": "sourdough-rotti",
+    "canonicalName": "Sourdough Rotti",
+    "category": "house-made",
+    "aliases": [
+      "sourdough rotti",
+      "rotti sourdough"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 4,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 4,
+    "matchedProduct": "Sourdough Rotti",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sourdough",
+      "rotti"
+    ]
+  },
+  {
+    "id": "sourdough-starter",
+    "canonicalName": "Sourdough Starter",
+    "category": "house-made",
+    "aliases": [
+      "sourdough starter",
+      "starter sourdough"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.01,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 10,
+    "matchedProduct": "Sourdough Starter",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "sourdough",
+      "starter"
+    ]
+  },
+  {
+    "id": "white-sauce",
+    "canonicalName": "White Sauce",
+    "category": "house-made",
+    "aliases": [
+      "white sauce",
+      "sauce white"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.03265,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 32.65,
+    "matchedProduct": "White Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "white",
+      "sauce"
+    ]
+  },
+  {
+    "id": "parsley-pesto",
+    "canonicalName": "Parsley Pesto",
+    "category": "house-made",
+    "aliases": [
+      "parsley pesto",
+      "pesto parsley"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.11029000000000001,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 110.29,
+    "matchedProduct": "Parsley Pesto",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "parsley",
+      "pesto"
+    ]
+  },
+  {
+    "id": "pea-hummus",
+    "canonicalName": "Pea Hummus",
+    "category": "house-made",
+    "aliases": [
+      "pea hummus",
+      "hummus pea"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0626,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 62.6,
+    "matchedProduct": "Pea Hummus",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pea",
+      "hummus"
+    ]
+  },
+  {
+    "id": "potato-and-leek-mash",
+    "canonicalName": "Potato And Leek Mash",
+    "category": "house-made",
+    "aliases": [
+      "potato and leek mash"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.05799,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 57.99,
+    "matchedProduct": "Potato And Leek Mash",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "potato",
+      "and",
+      "leek",
+      "mash"
+    ]
+  },
+  {
+    "id": "simple-syrup",
+    "canonicalName": "Simple Syrup",
+    "category": "house-made",
+    "aliases": [
+      "simple syrup",
+      "syrup simple"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.01075,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 10.75,
+    "matchedProduct": "Simple Syrup",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "simple",
+      "syrup"
+    ]
+  },
+  {
+    "id": "herb-chives",
+    "canonicalName": "Herb Chives",
+    "category": "herb",
+    "aliases": [
+      "herb chives",
+      "chives herb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.26039999999999996,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 260.4,
+    "matchedProduct": "Herb Chives",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "herb",
+      "chives"
+    ]
+  },
+  {
+    "id": "capers",
+    "canonicalName": "Capers",
+    "category": "dry-goods",
+    "aliases": [
+      "capers"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.06869,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 68.69,
+    "matchedProduct": "Capers",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "capers"
+    ]
+  },
+  {
+    "id": "cheese-borrata",
+    "canonicalName": "Cheese Borrata",
+    "category": "dairy",
+    "aliases": [
+      "cheese borrata",
+      "borrata cheese"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.512,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 512,
+    "matchedProduct": "Cheese Borrata",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cheese",
+      "borrata"
+    ]
+  },
+  {
+    "id": "prosciutto",
+    "canonicalName": "Prosciutto",
+    "category": "frozen",
+    "aliases": [
+      "prosciutto"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.553,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 553,
+    "matchedProduct": "Prosciutto",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "prosciutto"
+    ]
+  },
+  {
+    "id": "pomegranate",
+    "canonicalName": "Pomegranate",
+    "category": "vegetable",
+    "aliases": [
+      "pomegranate"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 68,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 68,
+    "matchedProduct": "Pomegranate",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "pomegranate"
+    ]
+  },
+  {
+    "id": "beef-ribs-marinated",
+    "canonicalName": "Beef Ribs Marinated",
+    "category": "meat",
+    "aliases": [
+      "beef ribs marinated"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.12383,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 123.83,
+    "matchedProduct": "Beef Ribs Marinated",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "beef",
+      "ribs",
+      "marinated"
+    ]
+  },
+  {
+    "id": "bbq-sauce",
+    "canonicalName": "Bbq Sauce",
+    "category": "house-made",
+    "aliases": [
+      "bbq sauce",
+      "sauce bbq"
+    ],
+    "baseUnit": "ml",
+    "conversions": {
+      "cup": 240,
+      "tbsp": 15,
+      "tsp": 5
+    },
+    "costPerUnit": 0.08555,
+    "packageValue": 1,
+    "packageUnit": "l",
+    "packagePrice": 85.55,
+    "matchedProduct": "Bbq Sauce",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "bbq",
+      "sauce"
+    ]
+  },
+  {
+    "id": "tomato-base-pizza",
+    "canonicalName": "Tomato Base Pizza",
+    "category": "house-made",
+    "aliases": [
+      "tomato base pizza"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 0,
+    "matchedProduct": "Tomato Base Pizza",
+    "dateLastUpdated": null,
+    "needsCosting": true,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "tomato",
+      "base",
+      "pizza"
+    ]
+  },
+  {
+    "id": "cherries-glazed",
+    "canonicalName": "Cherries Glazed",
+    "category": "dry-goods",
+    "aliases": [
+      "cherries glazed",
+      "glazed cherries"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.15816999999999998,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 158.17,
+    "matchedProduct": "Cherries Glazed",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "cherries",
+      "glazed"
+    ]
+  },
+  {
+    "id": "leg-of-lamb",
+    "canonicalName": "Leg Of Lamb",
+    "category": "meat",
+    "aliases": [
+      "leg of lamb"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.16183,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 161.83,
+    "matchedProduct": "Leg Of Lamb",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "leg",
+      "lamb"
+    ]
+  },
+  {
+    "id": "baby-chicken",
+    "canonicalName": "Baby Chicken",
+    "category": "meat",
+    "aliases": [
+      "baby chicken",
+      "chicken baby"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.0882,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 88.2,
+    "matchedProduct": "Baby Chicken",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "baby",
+      "chicken"
+    ]
+  },
+  {
+    "id": "duck-breast",
+    "canonicalName": "Duck Breast",
+    "category": "meat",
+    "aliases": [
+      "duck breast",
+      "breast duck"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.325,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 325,
+    "matchedProduct": "Duck Breast",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "duck",
+      "breast"
+    ]
+  },
+  {
+    "id": "prawns-6080",
+    "canonicalName": "Prawns 60/80",
+    "category": "house-made",
+    "aliases": [
+      "prawns 60/80",
+      "60/80 prawns"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 0,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 0,
+    "matchedProduct": "Prawns 60/80",
+    "dateLastUpdated": null,
+    "needsCosting": true,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "prawns",
+      "60/80"
+    ]
+  },
+  {
+    "id": "corriander-fresh",
+    "canonicalName": "Corriander Fresh",
+    "category": "house-made",
+    "aliases": [
+      "corriander fresh",
+      "fresh corriander"
+    ],
+    "baseUnit": "g",
+    "conversions": {},
+    "costPerUnit": 0.1995,
+    "packageValue": 1,
+    "packageUnit": "kg",
+    "packagePrice": 199.5,
+    "matchedProduct": "Corriander Fresh",
+    "dateLastUpdated": "2026-04-26",
+    "needsCosting": false,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "corriander",
+      "fresh"
+    ]
+  },
+  {
+    "id": "coca-cola",
+    "canonicalName": "Coca Cola",
+    "category": "house-made",
+    "aliases": [
+      "coca cola",
+      "cola coca"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 0,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 0,
+    "matchedProduct": "Coca Cola",
+    "dateLastUpdated": null,
+    "needsCosting": true,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "coca",
+      "cola"
+    ]
+  },
+  {
+    "id": "squid-ink",
+    "canonicalName": "Squid Ink",
+    "category": "house-made",
+    "aliases": [
+      "squid ink",
+      "ink squid"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 0,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 0,
+    "matchedProduct": "Squid Ink",
+    "dateLastUpdated": null,
+    "needsCosting": true,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "squid",
+      "ink"
+    ]
+  },
+  {
+    "id": "soy-lesithen",
+    "canonicalName": "Soy Lesithen",
+    "category": "house-made",
+    "aliases": [
+      "soy lesithen",
+      "lesithen soy"
+    ],
+    "baseUnit": "each",
+    "conversions": {},
+    "costPerUnit": 0,
+    "packageValue": 1,
+    "packageUnit": "each",
+    "packagePrice": 0,
+    "matchedProduct": "Soy Lesithen",
+    "dateLastUpdated": null,
+    "needsCosting": true,
+    "priceOptionCount": 3,
+    "searchHints": [
+      "soy",
+      "lesithen"
     ]
   }
 ]

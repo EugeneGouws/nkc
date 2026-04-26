@@ -69,7 +69,7 @@ export default {
       );
       apifyUrl.searchParams.append('token', apiKey);
       apifyUrl.searchParams.append('timeout', '20');
-      apifyUrl.searchParams.append('memory', '256');
+      apifyUrl.searchParams.append('memory', '4096');
 
       const resp = await fetch(apifyUrl.toString(), {
         method: 'POST',

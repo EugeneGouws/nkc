@@ -9,6 +9,8 @@
 import seedPantry from '../data/pantry.json';
 
 const PANTRY_KEY = 'local_pantry';
+const PANTRY_VERSION_KEY = 'kitchen_pantry_version';
+const CURRENT_PANTRY_VERSION = 'v3';
 
 // ─── Internal read/write ──────────────────────────────────────────────────────
 
@@ -224,4 +226,39 @@ export function refreshNeedsCosting() {
  */
 export function getPendingSubmissions() {
   return readAllPantry().filter(item => item.userAdded && !item.submittedToSeed);
+}
+
+/**
+ * One-time pantry migration: aligns user's localStorage pantry with the current seed file
+ * while preserving all user pricing data and any custom (user-added) ingredients.
+ * Guarded by a version key so it only runs once per version bump.
+ */
+export function migratePantryIfNeeded() {
+  const storedVersion = localStorage.getItem(PANTRY_VERSION_KEY)
+  if (storedVersion === CURRENT_PANTRY_VERSION) return
+
+  const stored = readAllPantry()
+  const storedById = Object.fromEntries(stored.map(item => [item.id, item]))
+
+  const merged = seedPantry.map(seedItem => {
+    const existing = storedById[seedItem.id]
+    if (!existing) return seedItem
+    return {
+      ...seedItem,
+      costPerUnit:      existing.costPerUnit,
+      packageValue:     existing.packageValue,
+      packageUnit:      existing.packageUnit,
+      packagePrice:     existing.packagePrice,
+      matchedProduct:   existing.matchedProduct,
+      dateLastUpdated:  existing.dateLastUpdated,
+      needsCosting:     existing.needsCosting,
+      priceOptionCount: existing.priceOptionCount,
+    }
+  })
+
+  const seedIds = new Set(seedPantry.map(i => i.id))
+  const customItems = stored.filter(item => !seedIds.has(item.id))
+
+  writePantry([...merged, ...customItems])
+  localStorage.setItem(PANTRY_VERSION_KEY, CURRENT_PANTRY_VERSION)
 }

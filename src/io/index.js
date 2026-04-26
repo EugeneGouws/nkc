@@ -14,4 +14,4 @@
  */
 
 export { readRecipes, saveRecipe, saveRecipes, toggleRecipeFavourite, deleteRecipe } from './recipeStore.js';
-export { readPantry, savePantryItem, getPendingSubmissions, refreshNeedsCosting } from './pantryStore.js';
+export { readPantry, savePantryItem, getPendingSubmissions, refreshNeedsCosting, migratePantryIfNeeded } from './pantryStore.js';

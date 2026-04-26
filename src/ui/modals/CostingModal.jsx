@@ -23,7 +23,7 @@ export default function CostingModal({ recipe, pantry, layoutMode = 'wide', onSe
   const [selectedIds, setSelectedIds] = useState(new Set())
   const [servings,    setServings]    = useState(recipe?.servings ?? 1)
   const [markupPct,   setMarkupPct]   = useState(150)
-  const [packaging,   setPackaging]   = useState(20)
+  const [packaging,   setPackaging]   = useState(0)
 
   const pantryMap = useMemo(() => {
     const m = new Map()

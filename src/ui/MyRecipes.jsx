@@ -30,6 +30,7 @@ export default function MyRecipes({
   onOpenCosting,
   onEditRecipe,
   onDeleteRecipe,
+  onSaveRecipeTags,
   onFavFilterChange,
   onCollectionChange,
 }) {
@@ -37,6 +38,8 @@ export default function MyRecipes({
   const [selectedCollections, setSelectedCollections] = useState([])
   const [collectionsOpen,    setCollectionsOpen]    = useState(false)
   const [searchQuery,        setSearchQuery]        = useState('')
+  const [tagInput,           setTagInput]           = useState('')
+  const [tagAddOpen,         setTagAddOpen]         = useState(false)
 
   const searchRef      = useRef(null)
   const collectionsRef = useRef(null)
@@ -80,9 +83,28 @@ export default function MyRecipes({
   function handleRowClick(id) {
     const next = expandedId === id ? null : id
     onExpandRecipe(next)
+    setTagInput('')
+    setTagAddOpen(false)
     if (next !== null) {
       setTimeout(() => itemRefs.current[next]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 0)
     }
+  }
+
+  function getRecipeTags(recipe) {
+    return recipe.collection ? recipe.collection.split(',').map(t => t.trim()).filter(Boolean) : []
+  }
+
+  function addTag(recipe, tag) {
+    const t = tag.trim().replace(/,$/, '')
+    if (!t) return
+    const current = getRecipeTags(recipe)
+    if (current.includes(t)) return
+    onSaveRecipeTags?.(recipe.id, [...current, t])
+  }
+
+  function removeTag(recipe, tag) {
+    const next = getRecipeTags(recipe).filter(t => t !== tag)
+    onSaveRecipeTags?.(recipe.id, next)
   }
 
   function handleDelete(e, id) {
@@ -187,31 +209,106 @@ export default function MyRecipes({
 
               {isExpanded && (
                 <div className="recipe-preview">
-                  <div className="recipe-preview-cost">
-                    <span className={`status-dot ${status}`} />
-                    {total !== null && (
-                      <span className="recipe-preview-total">R{total.toFixed(2)}</span>
-                    )}
-                    <button
-                      className="ctrl-btn"
-                      onClick={e => { e.stopPropagation(); onOpenCosting(recipe) }}
-                    >
-                      View costing breakdown
-                    </button>
+                  <div className="recipe-preview-row">
+                    <div className="recipe-preview-cost">
+                      <span className={`status-dot ${status}`} />
+                      {total !== null && (
+                        <span className="recipe-preview-total">
+                          R{((total * 1.15) / Math.max(1, recipe.servings ?? 1)).toFixed(2)}/svg
+                        </span>
+                      )}
+                      <button
+                        className="ctrl-btn"
+                        onClick={e => { e.stopPropagation(); onOpenCosting(recipe) }}
+                      >
+                        View costing breakdown
+                      </button>
+                    </div>
+                    <div className="recipe-preview-actions">
+                      <button
+                        className="ctrl-btn"
+                        onClick={e => { e.stopPropagation(); onEditRecipe?.(recipe) }}
+                      >
+                        Edit recipe
+                      </button>
+                      <button
+                        className="ctrl-btn recipe-delete-btn"
+                        onClick={e => handleDelete(e, recipe.id)}
+                      >
+                        ✕
+                      </button>
+                    </div>
                   </div>
-                  <div className="recipe-preview-actions">
-                    <button
-                      className="ctrl-btn"
-                      onClick={e => { e.stopPropagation(); onEditRecipe?.(recipe) }}
-                    >
-                      Edit recipe
-                    </button>
-                    <button
-                      className="ctrl-btn recipe-delete-btn"
-                      onClick={e => handleDelete(e, recipe.id)}
-                    >
-                      ✕
-                    </button>
+                  <div className="recipe-preview-tags" onClick={e => e.stopPropagation()}>
+                    {getRecipeTags(recipe).map(tag => (
+                      <span key={tag} className="tag-pill">
+                        {tag}
+                        <button
+                          className="tag-remove"
+                          onClick={() => removeTag(recipe, tag)}
+                          aria-label={`Remove ${tag}`}
+                        >✕</button>
+                      </span>
+                    ))}
+                    {tagAddOpen
+                      ? (
+                        <>
+                          <input
+                            className="tag-input tag-input--inline"
+                            value={tagInput}
+                            autoFocus
+                            onChange={e => {
+                              const val = e.target.value
+                              const isExactMatch = (collections ?? []).some(c => c === val && !getRecipeTags(recipe).includes(c))
+                              if (isExactMatch) {
+                                addTag(recipe, val)
+                                setTagInput('')
+                                setTagAddOpen(false)
+                              } else {
+                                setTagInput(val)
+                              }
+                            }}
+                            onKeyDown={e => {
+                              if (e.key === 'Enter' || e.key === ',') {
+                                e.preventDefault()
+                                const t = e.currentTarget.value.trim().replace(/,$/, '')
+                                if (t && !getRecipeTags(recipe).includes(t)) {
+                                  onSaveRecipeTags?.(recipe.id, [...getRecipeTags(recipe), t])
+                                }
+                                setTagInput('')
+                                setTagAddOpen(false)
+                              }
+                              if (e.key === 'Escape') {
+                                setTagInput('')
+                                setTagAddOpen(false)
+                              }
+                            }}
+                            onBlur={e => {
+                              const t = e.currentTarget.value.trim().replace(/,$/, '')
+                              if (t && !getRecipeTags(recipe).includes(t)) {
+                                onSaveRecipeTags?.(recipe.id, [...getRecipeTags(recipe), t])
+                              }
+                              setTagInput('')
+                              setTagAddOpen(false)
+                            }}
+                            placeholder="Tag…"
+                            list="recipe-tag-suggestions"
+                          />
+                          <datalist id="recipe-tag-suggestions">
+                            {(collections ?? []).filter(c => !getRecipeTags(recipe).includes(c)).map(c => (
+                              <option key={c} value={c} />
+                            ))}
+                          </datalist>
+                        </>
+                      )
+                      : (
+                        <button
+                          className="tag-add-btn"
+                          onClick={() => setTagAddOpen(true)}
+                          aria-label="Add tag"
+                        >+</button>
+                      )
+                    }
                   </div>
                 </div>
               )}

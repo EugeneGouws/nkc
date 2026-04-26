@@ -54,9 +54,8 @@ src/
 │   ├── pantry.json        # Seed pantry — never mutated at runtime
 │   └── recipes.json       # Seed recipes
 ├── io/
-│   ├── pantryStore.js     # localStorage read/write for kitchen\_pantry
-│   ├── recipeStore.js     # localStorage read/write for kitchen\_recipes
-│   └── migration.js       # One-time migration from Baker's Cost Pro data
+│   ├── pantryStore.js     # localStorage read/write for kitchen\_pantry (+ versioned migration)
+│   └── recipeStore.js     # localStorage read/write for kitchen\_recipes
 ├── lib/
 │   ├── parser.js          # Pure text parser (parseIngredientLine, parseRecipeText)
 │   ├── matcher.js         # Fuzzy pantry matching
@@ -70,6 +69,8 @@ src/
 │   ├── MyPantry.jsx       # Pantry panel
 │   ├── MyRecipes.jsx      # Recipes panel
 │   └── modals/            # AddIngredient, UpdatePrice, ImportRecipe, Costing
+├── workers/
+│   └── fetch-prices.js    # Cloudflare Worker — Apify Checkers proxy
 └── App.jsx                # Shell, layout mode, modal router
 ```
 
@@ -103,7 +104,7 @@ Prompts are kept under 400 characters with strict output schemas to ensure relia
 
 ## 💸 Price Fetching
 
-Live price data is fetched from **Checkers** via an Apify scraper proxied through a Netlify serverless function. The API key never appears in the client bundle.
+Live price data is fetched from **Checkers** via an Apify scraper proxied through a Cloudflare Worker (`src/workers/fetch-prices.js`). The API key is stored as a Wrangler secret (`APIFY_KEY`) and never appears in the client bundle.
 
 * Uses the free Apify tier — no cost for typical personal use.
 * Results are scored and ranked by name similarity, unit match, category, and brand.
@@ -116,13 +117,13 @@ Live price data is fetched from **Checkers** via an Apify scraper proxied throug
 |Layer|Technology|
 |-|-|
 |Framework|React 19 + Vite|
-|Deployment|Netlify (static + serverless functions)|
+|Deployment|Cloudflare Pages (frontend) + Cloudflare Workers (price proxy)|
 |Storage|`localStorage` (no backend database)|
 |Testing|Vitest|
 |File parsing|`mammoth.js` (`.docx`), `pdf.js` (PDF)|
 |AI (on-device)|Chrome Gemini Nano (LanguageModel API)|
 |AI (dev)|Ollama `qwen2.5:1.5b`|
-|Price scraping|Apify + Checkers (via Netlify function)|
+|Price scraping|Apify + Checkers (via Cloudflare Worker)|
 
 \---
 
@@ -154,12 +155,25 @@ All 124 parser tests should pass.
 
 ### Deploy
 
-The project is configured for Netlify. Connect the repo in the Netlify dashboard and set the following environment variables:
+The frontend deploys to **Cloudflare Pages** (auto-deploy on `git push` to `main`). The Apify proxy is a separate **Cloudflare Worker**.
 
+**Frontend (Cloudflare Pages):**
+Connect the repo in the Cloudflare dashboard → Pages. Build command: `npm run build`. Build output: `dist`.
+
+**Worker (Apify proxy):**
+
+```bash
+# 1. Install Wrangler
+npm install -g wrangler
+
+# 2. Set the Apify API key as a secure secret
+wrangler secret put APIFY_KEY --env production
+
+# 3. Deploy the Worker
+wrangler deploy --env production
 ```
-GEMINI\_API\_KEY=your\_gemini\_flash\_key   # for Netlify ai-parse function
-APIFY\_API\_KEY=your\_apify\_key           # for Netlify fetch-prices function
-```
+
+Worker config lives in `wrangler.toml`. Live URL: `https://nkc-fetch-prices-production.egouws-music.workers.dev`. The frontend (`src/lib/pricer.js`) points to this URL directly.
 
 \---
 
@@ -167,8 +181,8 @@ APIFY\_API\_KEY=your\_apify\_key           # for Netlify fetch-prices function
 
 All recipe and pantry data is stored **locally in your browser** using `localStorage`. Nothing is sent to any server except:
 
-* Ingredient lines sent to Gemini 2.5 Flash (via Netlify function) when using the AI import feature.
-* Ingredient names sent to Apify/Checkers when fetching price options.
+* Ingredient lines sent to Gemini Nano (on-device in Chrome) or Ollama (local) when using the AI import feature.
+* Ingredient names sent to Apify/Checkers via a Cloudflare Worker proxy when fetching price options.
 
 Both are opt-in actions triggered explicitly by the user.
 

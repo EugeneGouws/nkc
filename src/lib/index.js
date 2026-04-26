@@ -6,3 +6,4 @@ export { importRecipe, importFromFile, importFinished, resolveIngredientLine, re
 export { readFileAsText } from './fileUploader.js';
 export { AIMatchIngredient, AIFillIngredient, AISuggestRecipeMeta, detectAIBackend, initAI } from './aiMatcher.js';
 export { fetchPriceOptions, computeCostPerUnit, parsePackageInfo, convertToBaseUnits } from './pricer.js';
+export { parseXlsx } from './xlsxParser.js';

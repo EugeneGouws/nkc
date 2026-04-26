@@ -3,7 +3,8 @@ import { fetchPriceOptions } from '../../lib/pricer.js'
 import './modal-base.css'
 import './PriceQueueModal.css'
 
-export default function PriceQueueModal({ sessionIds, pantry, onSave, onClose }) {
+export default function PriceQueueModal({ sessionIds: initialIds, pantry, onSave, onComplete, onClose }) {
+  const [sessionIds]  = useState(initialIds)
   const [cursor,      setCursor]      = useState(0)
   const [results,     setResults]     = useState([])
   const [loading,     setLoading]     = useState(false)
@@ -11,6 +12,7 @@ export default function PriceQueueModal({ sessionIds, pantry, onSave, onClose })
   const [retryCount,  setRetryCount]  = useState(0)
   const [completions, setCompletions] = useState({}) // { [id]: 'done' | 'skipped' }
   const resultsRef = useRef(null)
+  const cacheRef   = useRef({})
 
   const pantryMap = useMemo(() => {
     const m = new Map()
@@ -21,7 +23,7 @@ export default function PriceQueueModal({ sessionIds, pantry, onSave, onClose })
   const currentId   = sessionIds[cursor]
   const allDone     = cursor >= sessionIds.length
 
-  // Fetch prices whenever current item changes
+  // Fetch prices whenever current item changes; serve from cache if available; prefetch next
   useEffect(() => {
     const item = pantryMap.get(currentId)
     if (!currentId || !item) {
@@ -30,16 +32,34 @@ export default function PriceQueueModal({ sessionIds, pantry, onSave, onClose })
       setError(null)
       return
     }
+
+    if (retryCount === 0 && cacheRef.current[currentId]) {
+      setResults(cacheRef.current[currentId])
+      setLoading(false)
+      setError(null)
+      return
+    }
+
+    if (retryCount > 0) delete cacheRef.current[currentId]
+
     let cancelled = false
     setLoading(true)
     setError(null)
     setResults([])
     fetchPriceOptions(item)
       .then(options => {
-        if (!cancelled) {
-          setResults(options)
-          setLoading(false)
-          setTimeout(() => resultsRef.current?.scrollTo({ top: 0, behavior: 'smooth' }), 50)
+        if (cancelled) return
+        cacheRef.current[currentId] = options
+        setResults(options)
+        setLoading(false)
+        setTimeout(() => resultsRef.current?.scrollTo({ top: 0, behavior: 'smooth' }), 50)
+
+        const nextId   = sessionIds[cursor + 1]
+        const nextItem = pantryMap.get(nextId)
+        if (nextId && nextItem && !cacheRef.current[nextId]) {
+          fetchPriceOptions(nextItem)
+            .then(opts => { cacheRef.current[nextId] = opts })
+            .catch(() => {})
         }
       })
       .catch(err => {
@@ -57,6 +77,7 @@ export default function PriceQueueModal({ sessionIds, pantry, onSave, onClose })
     setResults([])
     setError(null)
     setRetryCount(0)
+    onComplete?.(id)
   }
 
   function handleSkip() {
